@@ -6,7 +6,8 @@ import Profil from "./pages/Profil";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddCategoryForm from "./components/AddCategoryForm";
+import AddCategoryForm from "./components/categories/AddCategoryForm";
+import UpdateCategory from "./components/categories/UpdateCategory";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
             <Route
               path="/dashboard/add_category"
               element={<AddCategoryForm />}
+            ></Route>
+            <Route
+              path="/dashboard/category/:id/:name"
+              element={<UpdateCategory />}
             ></Route>
           </Route>
         </Routes>
