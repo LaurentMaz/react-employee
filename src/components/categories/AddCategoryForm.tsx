@@ -19,7 +19,6 @@ const AddCategoryForm = () => {
         }
       })
       .catch((err) => console.log(err));
-    console.log("submit");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

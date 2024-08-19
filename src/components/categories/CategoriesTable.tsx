@@ -1,21 +1,17 @@
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-
-interface Categories {
-  id: number;
-  name: string;
-}
+import { ICategories } from "../../types/types";
 
 interface CategoriesTableProps {
-  categories: Categories[];
+  categories: ICategories[];
+  handleDelete: (id: number) => void;
 }
 
-const handleDelete = (id: number) => {
-  console.log("Delete");
-};
-
-const CategoriesTable = ({ categories }: CategoriesTableProps) => {
+const CategoriesTable = ({
+  categories,
+  handleDelete,
+}: CategoriesTableProps) => {
   return (
     <div className="flex flex-col gap-5 p-8">
       {categories.map((cat) => (
