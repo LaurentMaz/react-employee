@@ -2,6 +2,7 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Input from "../Input";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const UpdateCategory = () => {
   const { id, name } = useParams();
@@ -16,6 +17,7 @@ const UpdateCategory = () => {
       .then((result) => {
         if (result.data.Status) {
           navigate("/dashboard/category");
+          toast.success("Catégorie modifiée");
         } else {
           alert(result.data.Error);
         }

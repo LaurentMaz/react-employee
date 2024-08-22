@@ -4,6 +4,7 @@ interface inputProps {
   name: string;
   type: string;
   value?: string;
+  isRequired?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,6 +14,7 @@ const Input = ({
   name,
   type,
   value,
+  isRequired = false,
   onChange,
 }: inputProps) => {
   return (
@@ -28,6 +30,7 @@ const Input = ({
         name={name}
         onChange={onChange}
         value={value}
+        required={isRequired}
       />
     </div>
   );

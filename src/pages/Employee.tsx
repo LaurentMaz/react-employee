@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EmployeesTable from "../components/employees/EmployeesTable";
 import useFetchEmployees from "../hooks/useFetchEmployees";
@@ -8,7 +7,6 @@ const Employee = () => {
   const { employees, setEmployees, loading, error } = useFetchEmployees();
   if (error) console.log(error);
 
-  const notify = () => toast.success("Employé supprimé");
   return (
     <div className="flex h-full flex-col items-center justify-start mt-16 gap-10">
       <div className="flex flex-col items-center justify-center">
@@ -24,9 +22,8 @@ const Employee = () => {
         {loading ? (
           "Chargement de la liste"
         ) : (
-          <EmployeesTable employees={employees} />
+          <EmployeesTable employees={employees} setEmployees={setEmployees} />
         )}
-        <ToastContainer position="bottom-right" />
       </div>
     </div>
   );

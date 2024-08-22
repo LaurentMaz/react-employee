@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import CategoriesTable from "../components/categories/CategoriesTable";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFetchCategories from "../hooks/useFetchCategories";
 
@@ -44,8 +44,6 @@ const Category = () => {
             handleDelete={handleDelete}
           />
         )}
-
-        <ToastContainer position="bottom-right" />
       </div>
     </div>
   );

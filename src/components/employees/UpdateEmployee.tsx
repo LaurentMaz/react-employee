@@ -4,6 +4,7 @@ import { employeeType } from "../../types/types";
 import Input from "../Input";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const UpdateEmployee = () => {
   const { categories, loading, error } = useFetchCategories();
@@ -12,14 +13,15 @@ const UpdateEmployee = () => {
   const { id } = useParams();
 
   const [employee, setEmployee] = useState<employeeType>({
+    id: 0,
     lastName: "",
     firstName: "",
     email: "",
-    password: "",
+    // password: "",
     salary: "",
     address: "",
     category: null,
-    picture: "",
+    // picture: "",
   });
 
   useEffect(() => {
@@ -30,14 +32,15 @@ const UpdateEmployee = () => {
           console.log(result.data.result);
           setEmployee({
             ...employee,
+            id: result.data.Result[0].id,
             firstName: result.data.Result[0].firstName,
             lastName: result.data.Result[0].lastName,
             email: result.data.Result[0].email,
-            password: result.data.Result[0].password,
+            // password: result.data.Result[0].password,
             salary: result.data.Result[0].salary,
             address: result.data.Result[0].address,
-            category: result.data.Result[0].category,
-            picture: result.data.Result[0].picture,
+            category: result.data.Result[0].category_id,
+            // picture: result.data.Result[0].picture,
           });
         } else {
           console.log("Une erreur innatendue est survenue");
@@ -61,9 +64,10 @@ const UpdateEmployee = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/update_employee/${id}`, employee)
+      .put(`http://localhost:3000/auth/update_employee/${id}`, employee)
       .then((result) => {
-        console.log(result.data);
+        navigate("/dashboard/employee");
+        toast.success("Employé modifié");
       })
       .catch((err) => {
         console.log(err);
@@ -99,17 +103,17 @@ const UpdateEmployee = () => {
         onChange={handleChange}
         value={employee.email}
       />
-      <Input
+      {/* <Input
         isLabel={true}
         label="Mot de passe"
         name="password"
         type="password"
         onChange={handleChange}
         value={employee.password}
-      />
+      /> */}
       <Input
         isLabel={true}
-        label="Salaire"
+        label="Salaire (€)"
         name="salary"
         type="number"
         onChange={handleChange}
@@ -149,7 +153,7 @@ const UpdateEmployee = () => {
         )}
       </div>
 
-      <Input
+      {/* <Input
         isLabel={true}
         label="Photo"
         name="picture"
@@ -162,7 +166,7 @@ const UpdateEmployee = () => {
           src={"http://localhost:3000/images/" + employee.picture}
           alt=""
         />
-      </div>
+      </div> */}
 
       <div className="flex gap-5">
         <button className="bg-red-500 hover:bg-red-400 rounded p-2 font-bold text-white w-full">

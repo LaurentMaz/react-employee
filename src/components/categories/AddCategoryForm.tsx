@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../Input";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddCategoryForm = () => {
   const [category, setCategory] = useState<string>();
@@ -14,6 +15,7 @@ const AddCategoryForm = () => {
       .then((result) => {
         if (result.data.Status) {
           navigate("/dashboard/category");
+          toast.success("Catégorie ajoutée");
         } else {
           alert(result.data.Error);
         }

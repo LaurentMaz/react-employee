@@ -1,11 +1,30 @@
 import { Link } from "react-router-dom";
 import { employeeType } from "../../types/types";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 interface EmployeesTableProps {
   employees: employeeType[];
+  setEmployees: React.Dispatch<React.SetStateAction<employeeType[]>>;
 }
 
-const EmployeesTable = ({ employees }: EmployeesTableProps) => {
+const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
+  const handleDelete = (id?: number) => {
+    if (id !== undefined) {
+      axios
+        .post(`http://localhost:3000/auth/remove_employee/`, { id })
+        .then((result) => {
+          setEmployees(employees.filter((employee) => employee.id !== id));
+          toast.success("Employé supprimé");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      toast.error("L'id de l'employé n'est pas valide");
+    }
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -68,12 +87,15 @@ const EmployeesTable = ({ employees }: EmployeesTableProps) => {
               <td className="px-6 py-4">{employee.salary}€</td>
               <td className="px-6 py-4">
                 <div className="flex gap-5">
-                  <div className="flex justify-center cursor-pointer items-center bg-amber-400 text-white p-3 rounded">
-                    <Link to={`/dashboard/employee/${employee.id}`}>
+                  <Link to={`/dashboard/employee/${employee.id}`}>
+                    <div className="flex justify-center cursor-pointer items-center bg-amber-400 text-white p-3 rounded">
                       Modifier
-                    </Link>
-                  </div>
-                  <div className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded">
+                    </div>
+                  </Link>
+                  <div
+                    onClick={() => handleDelete(employee.id)}
+                    className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded"
+                  >
                     Supprimer
                   </div>
                 </div>

@@ -10,6 +10,7 @@ import AddCategoryForm from "./components/categories/AddCategoryForm";
 import UpdateCategory from "./components/categories/UpdateCategory";
 import AddEmployeeForm from "./components/employees/AddEmployeeForm";
 import UpdateEmployee from "./components/employees/UpdateEmployee";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             ></Route>
           </Route>
         </Routes>
+        <ToastContainer position="bottom-right" />
       </BrowserRouter>
     </div>
   );

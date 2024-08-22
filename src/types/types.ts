@@ -13,9 +13,9 @@ export type employeeType = {
   lastName: string;
   firstName: string;
   email: string;
-  password: string;
+  password?: string;
   salary: string;
   address: string;
   category: number | null;
-  picture: string;
+  picture?: string;
 };
