@@ -12,7 +12,7 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
   const handleDelete = (id?: number) => {
     if (id !== undefined) {
       axios
-        .post(`http://localhost:3000/auth/remove_employee/`, { id })
+        .delete(`http://localhost:3000/auth/remove_employee/${id}`)
         .then((result) => {
           setEmployees(employees.filter((employee) => employee.id !== id));
           toast.success("Employé supprimé");
