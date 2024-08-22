@@ -11,6 +11,7 @@ import UpdateCategory from "./components/categories/UpdateCategory";
 import AddEmployeeForm from "./components/employees/AddEmployeeForm";
 import UpdateEmployee from "./components/employees/UpdateEmployee";
 import { ToastContainer } from "react-toastify";
+import UpdateAdmin from "./components/admins/UpdateAdmin";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route
               path="/dashboard/employee/:id"
               element={<UpdateEmployee />}
+            ></Route>
+            <Route
+              path="/dashboard/admin/:id"
+              element={<UpdateAdmin />}
             ></Route>
           </Route>
         </Routes>

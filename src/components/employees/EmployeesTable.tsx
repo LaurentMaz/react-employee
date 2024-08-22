@@ -83,7 +83,7 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
               </td>
               <td className="px-6 py-4">{employee.email}</td>
               <td className="px-6 py-4">{employee.address}</td>
-              <td className="px-6 py-4">{employee.category}</td>
+              <td className="px-6 py-4">{employee.category_name}</td>
               <td className="px-6 py-4">{employee.salary}€</td>
               <td className="px-6 py-4">
                 <div className="flex gap-5">

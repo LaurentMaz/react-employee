@@ -18,4 +18,11 @@ export type employeeType = {
   address: string;
   category: number | null;
   picture?: string;
+  category_name?: string;
+};
+
+export type adminRecordType = {
+  id?: number;
+  email: string;
+  isSuperAdmin: boolean;
 };
