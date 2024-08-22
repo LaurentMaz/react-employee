@@ -15,6 +15,7 @@ Front End for Employees management system.
 
 - Typescript
 - React Router DOM
+- Custom Hook
 
 ## Back end
 

@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddCategoryForm from "./components/categories/AddCategoryForm";
 import UpdateCategory from "./components/categories/UpdateCategory";
+import AddEmployeeForm from "./components/employees/AddEmployeeForm";
+import UpdateEmployee from "./components/employees/UpdateEmployee";
 
 function App() {
   return (
@@ -27,6 +29,14 @@ function App() {
             <Route
               path="/dashboard/category/:id/:name"
               element={<UpdateCategory />}
+            ></Route>
+            <Route
+              path="/dashboard/add_employee"
+              element={<AddEmployeeForm />}
+            ></Route>
+            <Route
+              path="/dashboard/employee/:id"
+              element={<UpdateEmployee />}
             ></Route>
           </Route>
         </Routes>

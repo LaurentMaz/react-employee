@@ -1,28 +1,14 @@
 import { Link } from "react-router-dom";
 import CategoriesTable from "../components/categories/CategoriesTable";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { ICategories } from "../types/types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useFetchCategories from "../hooks/useFetchCategories";
 
 const Category = () => {
-  const [categories, setCategories] = useState<ICategories[]>([]);
   const notify = () => toast.success("Catégorie supprimée");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/auth/category")
-      .then((result) => {
-        if (result.data.Status) {
-          setCategories(result.data.Result);
-          console.log(result.data.Result);
-        } else {
-          console.log(result.data.Error);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const { categories, setCategories, loading, error } = useFetchCategories();
+  if (error) console.log(error);
 
   const handleDelete = (id: number) => {
     axios
@@ -50,7 +36,15 @@ const Category = () => {
         </Link>
       </div>
       <div className="w-[80%]">
-        <CategoriesTable categories={categories} handleDelete={handleDelete} />
+        {loading ? (
+          "Chargement des catégories..."
+        ) : (
+          <CategoriesTable
+            categories={categories}
+            handleDelete={handleDelete}
+          />
+        )}
+
         <ToastContainer position="bottom-right" />
       </div>
     </div>
