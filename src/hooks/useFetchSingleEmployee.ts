@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { employeeType } from "../types/types";
+import { useEffect } from "react";
 import axios from "axios";
 import useEmployeeContext from "./useEmployeeContext";
 
@@ -10,11 +9,6 @@ const useFetchSingleEmployee = () => {
     useEmployeeContext();
 
   useEffect(() => {
-    // if (id == undefined) {
-    //   setFetchEmpError("ID is undefined");
-    //   return;
-    // }
-
     const fetchEmployee = async () => {
       try {
         const result = await axios.get(`http://localhost:3000/employee/detail`);

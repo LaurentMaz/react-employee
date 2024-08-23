@@ -5,11 +5,8 @@ import { GoHome } from "react-icons/go";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
-import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 const NavbarEmployee = () => {
-  const { employee } = useEmployeeContext();
-
   const navigate = useNavigate();
   const logOut = () => {
     axios

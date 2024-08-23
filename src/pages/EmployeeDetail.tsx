@@ -1,10 +1,11 @@
+import Container from "../components/UI/Container";
 import useEmployeeContext from "../hooks/useEmployeeContext";
 
 const EmployeeDetail = () => {
-  const { FetchEmpError, employee, setEmployee } = useEmployeeContext();
+  const { FetchEmpError, employee } = useEmployeeContext();
 
   return (
-    <div>
+    <Container>
       {FetchEmpError ? (
         <div>Erreur: {FetchEmpError}</div>
       ) : (
@@ -19,7 +20,7 @@ const EmployeeDetail = () => {
           )}
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
