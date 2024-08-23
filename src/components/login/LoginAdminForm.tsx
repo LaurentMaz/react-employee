@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Input from "../Input";
+import Input from "../UI/Input";
 import { loginType } from "../../types/types";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,6 +30,7 @@ const LoginAdminForm = () => {
       .post("http://localhost:3000/auth/adminlogin", loginValues)
       .then((result) => {
         if (result.data.loginStatus) {
+          localStorage.setItem("authAdmin", "true");
           navigate("/dashboard");
         } else {
           setLoginError(result.data.Error);

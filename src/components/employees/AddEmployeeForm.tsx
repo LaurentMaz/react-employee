@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFetchCategories from "../../hooks/useFetchCategories";
-import Input from "../Input";
+import Input from "../UI/Input";
 import { employeeType } from "../../types/types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

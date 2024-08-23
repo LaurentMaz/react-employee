@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import NavItem from "./NavItem";
+import NavItem from "../UI/NavItem";
 
 import { GoHome } from "react-icons/go";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -13,6 +13,7 @@ const NavbarEmployee = () => {
       .get("http://localhost:3000/employee/logout")
       .then((result) => {
         if (result.data.Status) {
+          localStorage.removeItem("authEmployee");
           navigate("/");
         }
       })

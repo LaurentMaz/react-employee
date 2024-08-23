@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../Input";
+import Input from "../UI/Input";
 import { useState } from "react";
 import { loginType } from "../../types/types";
 import axios from "axios";
@@ -28,7 +28,8 @@ const LoginEmployeeForm = () => {
       .post("http://localhost:3000/employee/employeelogin", loginValues)
       .then((result) => {
         if (result.data.loginStatus) {
-          navigate(`/home/employeeDetail/${result.data.id}`);
+          localStorage.setItem("authEmployee", "true");
+          navigate(`/home`);
         } else {
           setLoginError(result.data.Error);
         }

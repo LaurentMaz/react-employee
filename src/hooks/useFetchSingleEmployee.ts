@@ -7,6 +7,8 @@ const useFetchSingleEmployee = (id?: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     if (!id) {
       setLoading(false);
@@ -22,7 +24,7 @@ const useFetchSingleEmployee = (id?: string) => {
         if (result.data.Status) {
           setEmployee(result.data.Result);
         } else {
-          setError(result.data.Error || "Failed to fetch employee");
+          setError(result.data.Error);
         }
       } catch (err) {
         if (err instanceof Error) {

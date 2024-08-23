@@ -4,8 +4,8 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
-import NavItem from "./NavItem";
 import axios from "axios";
+import NavItem from "../UI/NavItem";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Navbar = () => {
       .get("http://localhost:3000/auth/logout")
       .then((result) => {
         if (result.data.Status) {
+          localStorage.removeItem("authAdmin");
           navigate("/");
         }
       })

@@ -6,6 +6,7 @@ Front End for Employees management system.
 ## Authentication
 
 - JWT Token for authentication with cookies
+- Protected routes
 
 ## Database
 
@@ -24,3 +25,10 @@ Front End for Employees management system.
 - Create API Routes
 - SQL Statements
 - CORS usage to connect back and front
+- Mécanismes d'authentification et d'autorisation pour l'accès aux données : Middleware, JWT et id BDD
+
+## TODO
+
+- Permettre uniquement aux super admins d'activer/désactiver l'option super admin sur les autres admins
+- Sécuriser les routes employeeDetail pour l'utilisateur actuel (éviter que le 30 puisse voir les data du 31 par ex)
+- Créer un context pour la partie employee

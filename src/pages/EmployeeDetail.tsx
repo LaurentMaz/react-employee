@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetchSingleEmployee from "../hooks/useFetchSingleEmployee";
 
@@ -9,7 +9,7 @@ const EmployeeDetail = () => {
 
   useEffect(() => {}, []);
 
-  return <div>{employee?.firstName}</div>;
+  return <div>{error ? error : <div>{employee?.firstName}</div>}</div>;
 };
 
 export default EmployeeDetail;

@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Input from "../Input";
+import Input from "../UI/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";

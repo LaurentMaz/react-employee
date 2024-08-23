@@ -12,11 +12,12 @@ import UpdateEmployee from "./components/employees/UpdateEmployee";
 import { ToastContainer } from "react-toastify";
 import UpdateAdmin from "./components/admins/UpdateAdmin";
 import LoginEmployee from "./pages/LoginEmployee";
-import Start from "./components/Start";
+import Start from "./pages/Start";
 import EmployeeDetail from "./pages/EmployeeDetail";
 import Dashboard from "./pages/Dashboard";
 import DashboardEmployee from "./pages/DashboardEmployee";
 import HomeEmployee from "./pages/HomeEmployee";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -26,7 +27,14 @@ function App() {
           <Route path="/" element={<Start />}></Route>
           <Route path="/adminLogin" element={<LoginAdmin />}></Route>
           <Route path="/employeeLogin" element={<LoginEmployee />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute type="authAdmin">
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          >
             <Route path="" element={<Home />}></Route>
             <Route path="/dashboard/employee" element={<Employee />}></Route>
             <Route path="/dashboard/category" element={<Category />}></Route>
@@ -52,7 +60,14 @@ function App() {
               element={<UpdateAdmin />}
             ></Route>
           </Route>
-          <Route path="/home" element={<DashboardEmployee />}>
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute type="authEmployee">
+                <DashboardEmployee />
+              </ProtectedRoute>
+            }
+          >
             <Route path="" element={<HomeEmployee />}></Route>
             <Route
               path="/home/employeeDetail/:id"
