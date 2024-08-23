@@ -1,12 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoPeopleOutline } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import NavItem from "./NavItem";
+import axios from "axios";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
+  const logOut = () => {
+    axios
+      .get("http://localhost:3000/auth/logout")
+      .then((result) => {
+        if (result.data.Status) {
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <nav className="flex flex-col gap-5">
       <Link to="/dashboard" className="font-black text-xl">
@@ -29,7 +43,12 @@ const Navbar = () => {
           title="Profil"
           Icon={IoPersonCircleOutline}
         />
-        <NavItem to="/" title="Déconnexion" Icon={TbLogout2} />
+        <NavItem
+          to="/"
+          title="Déconnexion"
+          Icon={TbLogout2}
+          handleClick={logOut}
+        />
       </ul>
     </nav>
   );

@@ -1,17 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
+import Input from "../Input";
 import { useState } from "react";
-import Input from "./Input";
-import { loginType } from "../types/types";
+import { loginType } from "../../types/types";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginEmployeeForm = () => {
   const [loginValues, setLoginValues] = useState<loginType>({
     email: "",
     password: "",
   });
-
   const [loginError, setLoginError] = useState();
-
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
@@ -27,10 +25,10 @@ const LoginForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/auth/adminlogin", loginValues)
+      .post("http://localhost:3000/employee/employeelogin", loginValues)
       .then((result) => {
         if (result.data.loginStatus) {
-          navigate("/dashboard");
+          navigate(`/employeeDetail/${result.data.id}`);
         } else {
           setLoginError(result.data.Error);
         }
@@ -62,9 +60,14 @@ const LoginForm = () => {
       <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
         Connexion
       </button>
-      {loginError && <span className="text-red-500">{loginError}</span>}
+      <Link className="text-xs" to={"/adminLogin"}>
+        Admin ?
+      </Link>
+      <div className="h-5">
+        {loginError && <span className="text-red-500">{loginError}</span>}
+      </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default LoginEmployeeForm;

@@ -5,11 +5,12 @@ interface navItemProps {
   to: string;
   Icon: IconType;
   title: string;
+  handleClick?: () => void;
 }
 
-const NavItem = ({ to, Icon, title }: navItemProps) => {
+const NavItem = ({ to, Icon, title, handleClick }: navItemProps) => {
   return (
-    <li>
+    <li onClick={handleClick}>
       <Link
         to={to}
         className="flex items-center gap-1 text-lg hover:bg-teal-800 rounded p-2"
