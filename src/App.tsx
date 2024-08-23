@@ -3,7 +3,6 @@ import Category from "./pages/Category";
 import Employee from "./pages/Employee";
 import Home from "./pages/Home";
 import Profil from "./pages/Profil";
-import Dashboard from "./pages/Dashboard";
 import LoginAdmin from "./pages/LoginAdmin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddCategoryForm from "./components/categories/AddCategoryForm";
@@ -15,6 +14,9 @@ import UpdateAdmin from "./components/admins/UpdateAdmin";
 import LoginEmployee from "./pages/LoginEmployee";
 import Start from "./components/Start";
 import EmployeeDetail from "./pages/EmployeeDetail";
+import Dashboard from "./pages/Dashboard";
+import DashboardEmployee from "./pages/DashboardEmployee";
+import HomeEmployee from "./pages/HomeEmployee";
 
 function App() {
   return (
@@ -50,10 +52,13 @@ function App() {
               element={<UpdateAdmin />}
             ></Route>
           </Route>
-          <Route
-            path="/employeeDetail/:id"
-            element={<EmployeeDetail />}
-          ></Route>
+          <Route path="/home" element={<DashboardEmployee />}>
+            <Route path="" element={<HomeEmployee />}></Route>
+            <Route
+              path="/home/employeeDetail/:id"
+              element={<EmployeeDetail />}
+            ></Route>
+          </Route>
         </Routes>
         <ToastContainer position="bottom-right" />
       </BrowserRouter>

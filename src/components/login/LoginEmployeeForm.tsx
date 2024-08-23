@@ -28,7 +28,7 @@ const LoginEmployeeForm = () => {
       .post("http://localhost:3000/employee/employeelogin", loginValues)
       .then((result) => {
         if (result.data.loginStatus) {
-          navigate(`/employeeDetail/${result.data.id}`);
+          navigate(`/home/employeeDetail/${result.data.id}`);
         } else {
           setLoginError(result.data.Error);
         }

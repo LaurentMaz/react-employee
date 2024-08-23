@@ -1,18 +1,15 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useFetchSingleEmployee from "../hooks/useFetchSingleEmployee";
 
 const EmployeeDetail = () => {
   const { id } = useParams();
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/employee/detail/${id}`)
-      .then((result) => console.log(result.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const { employee, setEmployee, loading, error } = useFetchSingleEmployee(id);
 
-  return <div>EmployeeDetails id</div>;
+  useEffect(() => {}, []);
+
+  return <div>{employee?.firstName}</div>;
 };
 
 export default EmployeeDetail;
