@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type loginType = {
   email: string;
   password: string;
@@ -25,4 +27,11 @@ export type adminRecordType = {
   id?: number;
   email: string;
   isSuperAdmin: boolean;
+};
+
+export type EmployeeContextType = {
+  employee: employeeType | undefined;
+  setEmployee: (employee: employeeType) => void;
+  FetchEmpError: string | null;
+  setFetchEmpError: Dispatch<SetStateAction<string | null>>;
 };

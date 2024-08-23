@@ -1,46 +1,44 @@
 import { useEffect, useState } from "react";
 import { employeeType } from "../types/types";
 import axios from "axios";
+import useEmployeeContext from "./useEmployeeContext";
 
-const useFetchSingleEmployee = (id?: string) => {
-  const [employee, setEmployee] = useState<employeeType>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
+const useFetchSingleEmployee = () => {
   axios.defaults.withCredentials = true;
 
+  const { employee, setEmployee, setFetchEmpError, FetchEmpError } =
+    useEmployeeContext();
+
   useEffect(() => {
-    if (!id) {
-      setLoading(false);
-      setError("ID is undefined");
-      return;
-    }
+    // if (id == undefined) {
+    //   setFetchEmpError("ID is undefined");
+    //   return;
+    // }
 
     const fetchEmployee = async () => {
       try {
-        const result = await axios.get(
-          `http://localhost:3000/employee/detail/${id}`
-        );
+        const result = await axios.get(`http://localhost:3000/employee/detail`);
         if (result.data.Status) {
           setEmployee(result.data.Result);
         } else {
-          setError(result.data.Error);
+          setFetchEmpError(result.data.Error);
         }
       } catch (err) {
         if (err instanceof Error) {
-          setError(err.message || "An error occurred");
+          setFetchEmpError(err.message || "An error occurred");
         } else {
-          setError("An unknown error occurred");
+          setFetchEmpError("An unknown error occurred");
         }
-      } finally {
-        setLoading(false);
       }
+      // finally {
+      //   setLoading(false);
+      // }
     };
 
     fetchEmployee();
   }, []);
 
-  return { employee, setEmployee, loading, error };
+  return { employee, setEmployee, FetchEmpError };
 };
 
 export default useFetchSingleEmployee;

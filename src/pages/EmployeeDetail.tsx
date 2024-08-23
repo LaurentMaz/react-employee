@@ -1,15 +1,26 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import useFetchSingleEmployee from "../hooks/useFetchSingleEmployee";
+import useEmployeeContext from "../hooks/useEmployeeContext";
 
 const EmployeeDetail = () => {
-  const { id } = useParams();
+  const { FetchEmpError, employee, setEmployee } = useEmployeeContext();
 
-  const { employee, setEmployee, loading, error } = useFetchSingleEmployee(id);
-
-  useEffect(() => {}, []);
-
-  return <div>{error ? error : <div>{employee?.firstName}</div>}</div>;
+  return (
+    <div>
+      {FetchEmpError ? (
+        <div>Erreur: {FetchEmpError}</div>
+      ) : (
+        <div>
+          {employee && (
+            <div>
+              <h1>
+                {employee.firstName} {employee.lastName}
+              </h1>
+              {/* Affichez d'autres informations sur l'employé ici */}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default EmployeeDetail;

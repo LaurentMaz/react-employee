@@ -5,8 +5,11 @@ import { GoHome } from "react-icons/go";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
+import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 const NavbarEmployee = () => {
+  const { employee } = useEmployeeContext();
+
   const navigate = useNavigate();
   const logOut = () => {
     axios
@@ -27,7 +30,7 @@ const NavbarEmployee = () => {
       <ul className="flex flex-col gap-2">
         <NavItem to="/home" title="Home" Icon={GoHome} />
         <NavItem
-          to={`/home/employeeDetail/30`}
+          to={`/home/employeeDetail/`}
           title="Profil"
           Icon={IoPersonCircleOutline}
         />

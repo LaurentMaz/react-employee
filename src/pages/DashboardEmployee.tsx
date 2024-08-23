@@ -1,7 +1,9 @@
 import { Outlet } from "react-router-dom";
 import NavbarEmployee from "../components/employees/NavbarEmployee";
+import useFetchSingleEmployee from "../hooks/useFetchSingleEmployee";
 
 const DashboardEmployee = () => {
+  useFetchSingleEmployee();
   return (
     <div className="flex w-full h-[100vh]">
       <div className="flex w-[15%] bg-teal-950 text-white items-start justify-center pt-10">

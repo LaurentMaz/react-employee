@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import DashboardEmployee from "./pages/DashboardEmployee";
 import HomeEmployee from "./pages/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { EmployeeContextProvider } from "./contexts/employee.context";
 
 function App() {
   return (
@@ -64,15 +65,14 @@ function App() {
             path="/home"
             element={
               <ProtectedRoute type="authEmployee">
-                <DashboardEmployee />
+                <EmployeeContextProvider>
+                  <DashboardEmployee />
+                </EmployeeContextProvider>
               </ProtectedRoute>
             }
           >
-            <Route path="" element={<HomeEmployee />}></Route>
-            <Route
-              path="/home/employeeDetail/:id"
-              element={<EmployeeDetail />}
-            ></Route>
+            <Route path="/home" element={<HomeEmployee />} />
+            <Route path="/home/employeeDetail/" element={<EmployeeDetail />} />
           </Route>
         </Routes>
         <ToastContainer position="bottom-right" />
