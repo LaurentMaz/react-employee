@@ -3,12 +3,13 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface ButtonProps {
-  type: string;
+  type: "danger" | "main" | "warning";
   className?: string;
   link?: boolean;
   to?: string;
   children: ReactNode;
-  handleClick: () => void;
+  onClick: (...args: any[]) => void;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -17,7 +18,8 @@ const Button = ({
   link,
   to = "",
   children,
-  handleClick,
+  onClick,
+  disabled = false,
 }: ButtonProps) => {
   let btnClass = "";
 
@@ -38,11 +40,19 @@ const Button = ({
       break;
   }
   return link ? (
-    <Link to={to} className={clsx(btnClass, className)}>
+    <Link to={to} className={clsx(btnClass, className, disabled && "disabled")}>
       {children}
     </Link>
   ) : (
-    <button onClick={handleClick} className={clsx(btnClass, className)}>
+    <button
+      onClick={onClick}
+      className={clsx(
+        btnClass,
+        className,
+        disabled && "cursor-not-allowed opacity-50"
+      )}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

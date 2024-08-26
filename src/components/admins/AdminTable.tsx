@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { adminRecordType } from "../../types/types";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
+import Button from "../UI/Button";
 
 const AdminTable = () => {
+  const { email } = useFetchCurrentAdmin();
   const [adminRecords, setAdminRecords] = useState<adminRecordType[] | null>();
 
   const handleDelete = (
@@ -77,14 +80,16 @@ const AdminTable = () => {
                         Modifier
                       </div>
                     </Link>
-                    <div
+                    <Button
+                      type="danger"
+                      disabled={admin.email === email}
                       onClick={() =>
                         handleDelete(admin.id, admin.isSuperAdmin, admin.email)
                       }
                       className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded"
                     >
                       Supprimer
-                    </div>
+                    </Button>
                   </div>
                 </td>
               </tr>

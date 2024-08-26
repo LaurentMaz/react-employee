@@ -85,7 +85,7 @@ const AvailableEmployeeTable = () => {
                   <div className="flex gap-5">
                     <Button
                       type="main"
-                      handleClick={() => handleClick(user.email, user.password)}
+                      onClick={() => handleClick(user.email, user.password)}
                     >
                       Ajouter
                     </Button>
