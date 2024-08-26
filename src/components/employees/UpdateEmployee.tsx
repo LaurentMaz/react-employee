@@ -29,7 +29,6 @@ const UpdateEmployee = () => {
       .get(`http://localhost:3000/auth/employee/${id}`)
       .then((result) => {
         if (result.data.Status) {
-          console.log(result.data.result);
           setEmployee({
             ...employee,
             id: result.data.Result[0].id,

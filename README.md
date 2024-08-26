@@ -32,6 +32,7 @@ Front End for Employees management system.
 - Créer un context pour la partie admin (? voir l'utilité)
 - Possibilité de modifier l'image d'un employé
 - Possibilité de modifier le mot de passe d'un employé - DONE
+- Possibilité de modifier le mot de passe d'un admin - DONE
 - Créer les vues des employés
 - Créer le profil de admin
 - Gérer les équipements des employés

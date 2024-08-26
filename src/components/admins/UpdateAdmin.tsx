@@ -3,14 +3,15 @@ import Input from "../UI/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import useFetchSingleAdmin from "../../hooks/useFetchSingleAdmin";
+import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
 
 const UpdateAdmin = () => {
   const [adminChecked, setAdminChecked] = useState(true);
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { email, setEmail, isCurrentSuperAdmin } = useFetchSingleAdmin();
+  const { email, setEmail, isCurrentSuperAdmin } = useFetchCurrentAdmin();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const UpdateAdmin = () => {
       .put(`http://localhost:3000/auth/update_admin/${id}`, {
         email,
         adminChecked,
+        password,
       })
       .then((result) => {
         if (result.data.Status) {
@@ -31,7 +33,8 @@ const UpdateAdmin = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    if (e.target.name === "email") setEmail(e.target.value);
+    if (e.target.name === "password") setPassword(e.target.value);
   };
 
   useEffect(() => {
@@ -60,6 +63,13 @@ const UpdateAdmin = () => {
         type="text"
         onChange={handleChange}
         value={email}
+      />
+      <Input
+        isLabel={true}
+        label="Mot de passe"
+        name="password"
+        type="password"
+        onChange={handleChange}
       />
       {isCurrentSuperAdmin ? (
         <label className="inline-flex items-center cursor-pointer">

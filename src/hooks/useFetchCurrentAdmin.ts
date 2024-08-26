@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useFetchSingleAdmin = () => {
+const useFetchCurrentAdmin = () => {
   const [email, setEmail] = useState("");
   const [isCurrentSuperAdmin, setIsCurrentSuperAdmin] = useState(false);
   axios.defaults.withCredentials = true;
@@ -28,4 +28,4 @@ const useFetchSingleAdmin = () => {
   return { email, setEmail, isCurrentSuperAdmin };
 };
 
-export default useFetchSingleAdmin;
+export default useFetchCurrentAdmin;

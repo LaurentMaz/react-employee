@@ -27,6 +27,7 @@ export type adminRecordType = {
   id?: number;
   email: string;
   isSuperAdmin: boolean;
+  password: string;
 };
 
 export type EmployeeContextType = {

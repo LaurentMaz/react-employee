@@ -25,9 +25,9 @@ const Input = ({
   const [typeState, setTypeState] = useState(type);
 
   useEffect(() => {
-    if (typeState === "password" && showPassword) {
+    if (typeState === "password" && showPassword && name === "password") {
       setTypeState("text");
-    } else if (typeState === "text" && !showPassword) {
+    } else if (typeState === "text" && !showPassword && name === "password") {
       setTypeState("password");
     }
   }, [showPassword]);
