@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+
 interface inputProps {
   isLabel?: boolean;
   label?: string;
@@ -17,6 +21,17 @@ const Input = ({
   isRequired = false,
   onChange,
 }: inputProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [typeState, setTypeState] = useState(type);
+
+  useEffect(() => {
+    if (typeState === "password" && showPassword) {
+      setTypeState("text");
+    } else if (typeState === "text" && !showPassword) {
+      setTypeState("password");
+    }
+  }, [showPassword]);
+
   return (
     <div className="w-full">
       {isLabel && (
@@ -24,14 +39,24 @@ const Input = ({
           {label}:
         </label>
       )}
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type={type}
-        name={name}
-        onChange={onChange}
-        value={value}
-        required={isRequired}
-      />
+      <div className="flex items-center justify-center">
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type={typeState}
+          name={name}
+          onChange={onChange}
+          value={value}
+          required={isRequired}
+        />
+        {type === "password" && (
+          <span
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </span>
+        )}
+      </div>
     </div>
   );
 };

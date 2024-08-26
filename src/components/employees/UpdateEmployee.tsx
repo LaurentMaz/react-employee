@@ -17,7 +17,7 @@ const UpdateEmployee = () => {
     lastName: "",
     firstName: "",
     email: "",
-    // password: "",
+    password: "",
     salary: "",
     address: "",
     category: null,
@@ -36,7 +36,6 @@ const UpdateEmployee = () => {
             firstName: result.data.Result[0].firstName,
             lastName: result.data.Result[0].lastName,
             email: result.data.Result[0].email,
-            // password: result.data.Result[0].password,
             salary: result.data.Result[0].salary,
             address: result.data.Result[0].address,
             category: result.data.Result[0].category_id,
@@ -103,14 +102,14 @@ const UpdateEmployee = () => {
         onChange={handleChange}
         value={employee.email}
       />
-      {/* <Input
+      <Input
         isLabel={true}
         label="Mot de passe"
         name="password"
         type="password"
         onChange={handleChange}
-        value={employee.password}
-      /> */}
+      />
+
       <Input
         isLabel={true}
         label="Salaire (€)"

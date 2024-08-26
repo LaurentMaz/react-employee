@@ -30,6 +30,10 @@ Front End for Employees management system.
 ## TODO
 
 - Créer un context pour la partie admin (? voir l'utilité)
+- Possibilité de modifier l'image d'un employé
+- Possibilité de modifier le mot de passe d'un employé - DONE
+- Créer les vues des employés
+- Créer le profil de admin
 - Gérer les équipements des employés
 - Gérer les congés des employés
 - Système de ticket ?
