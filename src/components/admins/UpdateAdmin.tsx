@@ -3,13 +3,14 @@ import Input from "../UI/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useFetchSingleAdmin from "../../hooks/useFetchSingleAdmin";
 
 const UpdateAdmin = () => {
-  const [email, setEmail] = useState("");
-  const [isSuperAdmin, setIsSuperAdmin] = useState();
   const [adminChecked, setAdminChecked] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const { email, setEmail, isCurrentSuperAdmin } = useFetchSingleAdmin();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ const UpdateAdmin = () => {
       .then((result) => {
         if (result.data.Status) {
           setEmail(result.data.Result[0].email);
-          setIsSuperAdmin(result.data.Result[0].isSuperAdmin);
+          setAdminChecked(result.data.Result[0].isSuperAdmin);
         } else {
           alert(result.data.Error);
         }
@@ -60,7 +61,7 @@ const UpdateAdmin = () => {
         onChange={handleChange}
         value={email}
       />
-      {isSuperAdmin ? (
+      {isCurrentSuperAdmin ? (
         <label className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"

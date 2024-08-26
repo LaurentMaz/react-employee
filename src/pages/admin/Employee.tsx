@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import EmployeesTable from "../components/employees/EmployeesTable";
-import useFetchEmployees from "../hooks/useFetchEmployees";
+import EmployeesTable from "../../components/employees/EmployeesTable";
+import useFetchEmployees from "../../hooks/useFetchEmployees";
 
 const Employee = () => {
   const { employees, setEmployees, loading, error } = useFetchEmployees();

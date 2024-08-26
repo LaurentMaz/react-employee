@@ -1,4 +1,4 @@
-import LoginEmployeeForm from "../components/login/LoginEmployeeForm";
+import LoginEmployeeForm from "../../components/login/LoginEmployeeForm";
 
 const LoginEmployee = () => {
   return (

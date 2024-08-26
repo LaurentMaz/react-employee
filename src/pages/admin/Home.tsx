@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import RecapBox from "../components/UI/RecapBox";
+import RecapBox from "../../components/UI/RecapBox";
 import axios from "axios";
-import AdminTable from "../components/admins/AdminTable";
+import AdminTable from "../../components/admins/AdminTable";
 
 const Home = () => {
   const [adminTotal, setAdminTotal] = useState<string>("0");

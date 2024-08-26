@@ -1,5 +1,5 @@
-import Container from "../components/UI/Container";
-import useEmployeeContext from "../hooks/useEmployeeContext";
+import Container from "../../components/UI/Container";
+import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 const EmployeeDetail = () => {
   const { FetchEmpError, employee } = useEmployeeContext();

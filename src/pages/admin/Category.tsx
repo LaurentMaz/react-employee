@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import CategoriesTable from "../components/categories/CategoriesTable";
+import CategoriesTable from "../../components/categories/CategoriesTable";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useFetchCategories from "../hooks/useFetchCategories";
+import useFetchCategories from "../../hooks/useFetchCategories";
 
 const Category = () => {
   const notify = () => toast.success("Catégorie supprimée");

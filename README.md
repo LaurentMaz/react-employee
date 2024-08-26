@@ -29,6 +29,8 @@ Front End for Employees management system.
 
 ## TODO
 
-- Permettre uniquement aux super admins d'activer/désactiver l'option super admin sur les autres admins
-- Sécuriser les routes employeeDetail pour l'utilisateur actuel (éviter que le 30 puisse voir les data du 31 par ex)
-- Créer un context pour la partie employee
+- Créer un context pour la partie admin (? voir l'utilité)
+- Gérer les équipements des employés
+- Gérer les congés des employés
+- Système de ticket ?
+- Scale : SSR with express & ReactDOMServer
