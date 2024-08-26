@@ -19,6 +19,7 @@ import DashboardEmployee from "./pages/employee/DashboardEmployee";
 import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
+import AddAdminForm from "./components/admins/AddAdminForm";
 
 function App() {
   return (
@@ -37,29 +38,27 @@ function App() {
             }
           >
             <Route path="" element={<Home />}></Route>
-            <Route path="/dashboard/employee" element={<Employee />}></Route>
-            <Route path="/dashboard/category" element={<Category />}></Route>
-            <Route path="/dashboard/profil" element={<Profil />}></Route>
+            <Route path="/dashboard/employee" element={<Employee />} />
+            <Route path="/dashboard/category" element={<Category />} />
+            <Route path="/dashboard/profil" element={<Profil />} />
             <Route
               path="/dashboard/add_category"
               element={<AddCategoryForm />}
-            ></Route>
+            />
             <Route
               path="/dashboard/category/:id/:name"
               element={<UpdateCategory />}
-            ></Route>
+            />
             <Route
               path="/dashboard/add_employee"
               element={<AddEmployeeForm />}
-            ></Route>
+            />
             <Route
               path="/dashboard/employee/:id"
               element={<UpdateEmployee />}
-            ></Route>
-            <Route
-              path="/dashboard/admin/:id"
-              element={<UpdateAdmin />}
-            ></Route>
+            />
+            <Route path="/dashboard/admin/:id" element={<UpdateAdmin />} />
+            <Route path="/dashboard/addAdmin" element={<AddAdminForm />} />
           </Route>
           <Route
             path="/home"

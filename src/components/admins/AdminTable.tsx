@@ -7,17 +7,27 @@ import { toast } from "react-toastify";
 const AdminTable = () => {
   const [adminRecords, setAdminRecords] = useState<adminRecordType[] | null>();
 
-  const handleDelete = (id: number | undefined, isSuperAdmin: boolean) => {
+  const handleDelete = (
+    id: number | undefined,
+    isSuperAdmin: boolean,
+    email: string
+  ) => {
     if (id !== undefined) {
       axios
         .request({
           url: `http://localhost:3000/auth/delete_admin/${id}`,
           method: "delete",
-          data: { isSuperAdmin: isSuperAdmin },
+          data: { isSuperAdmin: isSuperAdmin, email: email },
         })
         .then((result) => {
           if (result.data.Status) {
             toast.success("Admin supprimé");
+            adminRecords &&
+              setAdminRecords(
+                adminRecords.filter(
+                  (adminRecord) => adminRecord.email !== email
+                )
+              );
           } else {
             toast.error(result.data.Error);
           }
@@ -68,7 +78,9 @@ const AdminTable = () => {
                       </div>
                     </Link>
                     <div
-                      onClick={() => handleDelete(admin.id, admin.isSuperAdmin)}
+                      onClick={() =>
+                        handleDelete(admin.id, admin.isSuperAdmin, admin.email)
+                      }
                       className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded"
                     >
                       Supprimer

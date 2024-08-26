@@ -21,6 +21,7 @@ export type employeeType = {
   category: number | null;
   picture?: string;
   category_name?: string;
+  isAdmin?: boolean;
 };
 
 export type adminRecordType = {

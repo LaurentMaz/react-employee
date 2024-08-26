@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import RecapBox from "../../components/UI/RecapBox";
 import axios from "axios";
 import AdminTable from "../../components/admins/AdminTable";
+import AddAdminForm from "../../components/admins/AddAdminForm";
+import { Link } from "react-router-dom";
+import Button from "../../components/UI/Button";
 
 const Home = () => {
   const [adminTotal, setAdminTotal] = useState<string>("0");
@@ -55,7 +58,13 @@ const Home = () => {
         <RecapBox title="Salaires (€)" total={salaryTotal} />
       </div>
       <div className="w-full flex flex-col gap-5">
-        <h2 className="text-2xl font-bold">Liste des admins</h2>
+        <div className="flex gap-5 items-center justify-start">
+          <h2 className="text-2xl font-bold">Liste des admins</h2>
+          <Button type="main" link={true} to="/dashboard/addAdmin">
+            Gérer les administrateur
+          </Button>
+        </div>
+
         <div>
           <AdminTable />
         </div>

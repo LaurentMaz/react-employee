@@ -29,13 +29,18 @@ Front End for Employees management system.
 
 ## TODO
 
-- Créer un context pour la partie admin (? voir l'utilité)
 - Possibilité de modifier l'image d'un employé
-- Possibilité de modifier le mot de passe d'un employé - DONE
-- Possibilité de modifier le mot de passe d'un admin - DONE
+- Composants boutons réutilisable
+- Possibilité d'ajouter des admins directement depuis l'app via un SELECT des employés qui ne sont pas déjà admin
 - Créer les vues des employés
 - Créer le profil de admin
+- Barre de recherche parmis les employés
 - Gérer les équipements des employés
 - Gérer les congés des employés
 - Système de ticket ?
 - Scale : SSR with express & ReactDOMServer
+- Vérification de sécurité et de BDD (ne pas ajouter plusieurs fois le même user par ex)
+- Créer un context pour la partie admin (? voir l'utilité)
+
+- Possibilité de modifier le mot de passe d'un employé - DONE
+- Possibilité de modifier le mot de passe d'un admin - DONE
