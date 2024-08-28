@@ -19,7 +19,7 @@ const AdminTable = () => {
       axios
         .request({
           url: `http://localhost:3000/auth/delete_admin/${id}`,
-          method: "delete",
+          method: "put",
           data: { isSuperAdmin: isSuperAdmin, email: email },
         })
         .then((result) => {

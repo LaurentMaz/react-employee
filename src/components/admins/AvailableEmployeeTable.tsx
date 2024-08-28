@@ -23,11 +23,12 @@ const AvailableEmployeeTable = () => {
 
   const handleClick = (email: string, password: string | undefined) => {
     axios
-      .post("http://localhost:3000/auth/add_admin", { email, password })
+      .put("http://localhost:3000/auth/add_admin", { email, password })
       .then((result) => {
-        setusers(users.filter((user) => user.email !== email));
-        toast.success("Administrateur ajouté");
-        // navigate("/dashboard");
+        if (result.status) {
+          setusers(users.filter((user) => user.email !== email));
+          toast.success("Administrateur ajouté");
+        }
       })
       .catch((err) => console.log(err));
   };
