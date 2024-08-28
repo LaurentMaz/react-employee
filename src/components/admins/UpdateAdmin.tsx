@@ -7,14 +7,18 @@ import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
 
 const UpdateAdmin = () => {
   const [adminChecked, setAdminChecked] = useState(true);
+  const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { email, setEmail, isCurrentSuperAdmin } = useFetchCurrentAdmin();
+  const { isCurrentSuperAdmin } = useFetchCurrentAdmin();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+    console.log("Submit !");
     axios
       .put(`http://localhost:3000/auth/update_admin/${id}`, {
         email,
@@ -49,6 +53,7 @@ const UpdateAdmin = () => {
         }
       })
       .catch((err) => console.log(err));
+    return () => console.log("Component unmounted");
   }, []);
 
   return (
@@ -66,7 +71,7 @@ const UpdateAdmin = () => {
       />
       <Input
         isLabel={true}
-        label="Mot de passe"
+        label="Nouveau mot de passe"
         name="password"
         type="password"
         onChange={handleChange}
@@ -95,7 +100,10 @@ const UpdateAdmin = () => {
             Annuler
           </button>
         </Link>
-        <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
+        <button
+          type="submit"
+          className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full"
+        >
           Modifier
         </button>
       </div>

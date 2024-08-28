@@ -8,7 +8,7 @@ interface ButtonProps {
   link?: boolean;
   to?: string;
   children: ReactNode;
-  onClick: (...args: any[]) => void;
+  onClick?: (...args: any[]) => void;
   disabled?: boolean;
 }
 
@@ -18,7 +18,7 @@ const Button = ({
   link,
   to = "",
   children,
-  onClick,
+  onClick = () => {},
   disabled = false,
 }: ButtonProps) => {
   let btnClass = "";
