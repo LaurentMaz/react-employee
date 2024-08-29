@@ -53,6 +53,12 @@ const AdminTable = () => {
         <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">
           <tr>
             <th scope="col" className="px-6 py-3">
+              NOM
+            </th>
+            <th scope="col" className="px-6 py-3">
+              PRENOM
+            </th>
+            <th scope="col" className="px-6 py-3">
               EMAIL
             </th>
             <th scope="col" className="px-6 py-3">
@@ -67,6 +73,18 @@ const AdminTable = () => {
                 key={admin.id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {admin.lastName}
+                </th>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {admin.firstName}
+                </th>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

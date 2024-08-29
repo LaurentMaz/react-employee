@@ -27,6 +27,8 @@ export type employeeType = {
 
 export type adminRecordType = {
   id?: number;
+  lastName: string;
+  firstName: string;
   email: string;
   isSuperAdmin: boolean;
   password: string;

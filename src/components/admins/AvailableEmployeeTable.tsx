@@ -78,7 +78,7 @@ const AvailableEmployeeTable = () => {
                   <img
                     src={"http://localhost:3000/images/" + user.picture}
                     alt="profil image"
-                    className="border-r-2 pr-2 rounded-full w-[40px] h-[40px] object-cover"
+                    className="rounded-full w-[40px] h-[40px] object-cover"
                   />
                 </td>
                 <td className="px-6 py-4">{user.email}</td>
