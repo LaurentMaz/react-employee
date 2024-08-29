@@ -8,6 +8,7 @@ interface inputProps {
   name: string;
   type: string;
   value?: string;
+  placeholder?: string;
   isRequired?: boolean;
   disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -19,6 +20,7 @@ const Input = ({
   name,
   type,
   value,
+  placeholder,
   isRequired = false,
   disabled,
   onChange,
@@ -50,6 +52,7 @@ const Input = ({
           value={value}
           required={isRequired}
           disabled={disabled}
+          placeholder={placeholder}
         />
         {type === "password" && (
           <span

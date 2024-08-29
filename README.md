@@ -31,17 +31,17 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
-- Créer les vues des employés
+- Barre de recherche parmis les employés
 
 ### TODOS
 
-- Barre de recherche parmis les employés
 - Gérer les équipements des employés
 - Gérer les congés des employés
 - Système de ticket ?
 - Scale : SSR with express & ReactDOMServer
 - Vérification de sécurité et de BDD (ne pas ajouter plusieurs fois le même user par ex)
 - Créer un context pour la partie admin (? voir l'utilité)
+- Créer les vues des employés
 
 ### DONE
 
