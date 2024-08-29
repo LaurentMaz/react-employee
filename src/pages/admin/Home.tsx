@@ -3,6 +3,7 @@ import RecapBox from "../../components/UI/RecapBox";
 import axios from "axios";
 import AdminTable from "../../components/admins/AdminTable";
 import Button from "../../components/UI/Button";
+import Table from "../../components/UI/Table";
 
 const Home = () => {
   const [adminTotal, setAdminTotal] = useState<string>("0");

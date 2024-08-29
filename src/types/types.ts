@@ -31,7 +31,6 @@ export type adminRecordType = {
   firstName: string;
   email: string;
   isSuperAdmin: boolean;
-  password: string;
 };
 
 export type EmployeeContextType = {
