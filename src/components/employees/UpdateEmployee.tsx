@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { employeeType } from "../../types/types";
 import Input from "../UI/Input";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "../UI/Button";
@@ -22,8 +22,10 @@ const UpdateEmployee = () => {
     salary: "",
     address: "",
     category: null,
-    // picture: "",
+    picture: "",
   });
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
     axios
@@ -39,7 +41,7 @@ const UpdateEmployee = () => {
             salary: result.data.Result[0].salary,
             address: result.data.Result[0].address,
             category: result.data.Result[0].category_id,
-            // picture: result.data.Result[0].picture,
+            picture: result.data.Result[0].picture,
           });
         } else {
           console.log("Une erreur innatendue est survenue");
@@ -53,19 +55,38 @@ const UpdateEmployee = () => {
   ) => {
     if (e.target.type === "file" && e.target instanceof HTMLInputElement) {
       const file = e.target.files ? e.target.files[0] : null;
-      setEmployee({ ...employee, [e.target.name]: file });
+      setSelectedFile(file);
     } else {
       const value = e.target.value === "" ? null : e.target.value;
       setEmployee({ ...employee, [e.target.name]: value });
     }
+    console.log(employee);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
+
+    const formData = new FormData();
+    formData.append("firstName", employee.firstName);
+    formData.append("lastName", employee.lastName);
+    formData.append("email", employee.email);
+    formData.append("salary", employee.salary);
+    formData.append("address", employee.address);
+    formData.append("category", employee.category?.toString() || "");
+    if (employee.password) {
+      formData.append("password", employee.password);
+    }
+    if (selectedFile) {
+      formData.append("picture", selectedFile);
+    }
+
     axios
-      .put(`http://localhost:3000/auth/update_employee/${id}`, employee)
-      .then((result) => {
+      .put(`http://localhost:3000/auth/update_employee/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
         navigate("/dashboard/employee");
         toast.success("Employé modifié");
       })
@@ -153,7 +174,7 @@ const UpdateEmployee = () => {
         )}
       </div>
 
-      {/* <Input
+      <Input
         isLabel={true}
         label="Photo"
         name="picture"
@@ -166,7 +187,7 @@ const UpdateEmployee = () => {
           src={"http://localhost:3000/images/" + employee.picture}
           alt=""
         />
-      </div> */}
+      </div>
 
       <div className="flex gap-5">
         <Button type="danger" link={true} to="/dashboard/employee">

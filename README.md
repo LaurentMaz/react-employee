@@ -31,12 +31,11 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
-- Possibilité de modifier l'image d'un employé
+- Créer les vues des employés
+- Créer le profil de admin
 
 ### TODOS
 
-- Créer les vues des employés
-- Créer le profil de admin
 - Barre de recherche parmis les employés
 - Gérer les équipements des employés
 - Gérer les congés des employés
@@ -50,3 +49,4 @@ Front End for Employees management system.
 - Possibilité de modifier le mot de passe d'un employé
 - Possibilité de modifier le mot de passe d'un admin
 - Possibilité d'ajouter des admins directement depuis l'app via les employés
+- Possibilité de modifier l'image d'un employé
