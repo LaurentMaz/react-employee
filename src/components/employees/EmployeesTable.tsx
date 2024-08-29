@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { employeeType } from "../../types/types";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
+import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
+import Button from "../UI/Button";
 
 interface EmployeesTableProps {
   employees: employeeType[];
@@ -10,6 +10,8 @@ interface EmployeesTableProps {
 }
 
 const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
+  const { currentAdminEmail } = useFetchCurrentAdmin();
+
   const handleDelete = (id?: number) => {
     if (id !== undefined) {
       const confirmDelete = confirm(
@@ -18,7 +20,7 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
       if (confirmDelete) {
         axios
           .delete(`http://localhost:3000/auth/remove_employee/${id}`)
-          .then((result) => {
+          .then(() => {
             setEmployees(employees.filter((employee) => employee.id !== id));
             toast.success("Employé supprimé");
           })
@@ -93,7 +95,22 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
               <td className="px-6 py-4">{employee.salary}€</td>
               <td className="px-6 py-4">
                 <div className="flex gap-5">
-                  <Link to={`/dashboard/employee/${employee.id}`}>
+                  <Button
+                    type="warning"
+                    link
+                    to={`/dashboard/employee/${employee.id}`}
+                  >
+                    Modifier
+                  </Button>
+                  <Button
+                    type="danger"
+                    onClick={() => handleDelete(employee.id)}
+                    disabled={employee.email === currentAdminEmail}
+                  >
+                    Supprimer
+                  </Button>
+
+                  {/* <Link to={`/dashboard/employee/${employee.id}`}>
                     <div className="flex justify-center cursor-pointer items-center bg-amber-400 text-white p-3 rounded">
                       Modifier
                     </div>
@@ -103,7 +120,7 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
                     className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded"
                   >
                     Supprimer
-                  </div>
+                  </div> */}
                 </div>
               </td>
             </tr>

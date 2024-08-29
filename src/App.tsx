@@ -2,7 +2,6 @@ import "./App.css";
 import Category from "./pages/admin/Category";
 import Employee from "./pages/admin/Employee";
 import Home from "./pages/admin/Home";
-import Profil from "./pages/admin/Profil";
 import LoginAdmin from "./pages/admin/LoginAdmin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddCategoryForm from "./components/categories/AddCategoryForm";
@@ -40,7 +39,6 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/dashboard/employee" element={<Employee />} />
             <Route path="/dashboard/category" element={<Category />} />
-            <Route path="/dashboard/profil" element={<Profil />} />
             <Route
               path="/dashboard/add_category"
               element={<AddCategoryForm />}

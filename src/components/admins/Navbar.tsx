@@ -6,8 +6,10 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
 import NavItem from "../UI/NavItem";
+import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
 
 const Navbar = () => {
+  const { currentAdminId } = useFetchCurrentAdmin();
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const logOut = () => {
@@ -40,7 +42,7 @@ const Navbar = () => {
           Icon={LuLayoutDashboard}
         />
         <NavItem
-          to="/dashboard/profil"
+          to={`/dashboard/employee/${currentAdminId}`}
           title="Profil"
           Icon={IoPersonCircleOutline}
         />
