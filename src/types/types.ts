@@ -22,6 +22,7 @@ export type employeeType = {
   picture?: string;
   category_name?: string;
   isAdmin?: boolean;
+  isSuperAdmin?: boolean;
 };
 
 export type adminRecordType = {

@@ -4,19 +4,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
+import Button from "../UI/Button";
 
 const UpdateAdmin = () => {
   const [adminChecked, setAdminChecked] = useState(true);
-  const [email, setEmail] = useState<string>();
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
   const { isCurrentSuperAdmin } = useFetchCurrentAdmin();
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submit !");
     axios
@@ -26,12 +25,8 @@ const UpdateAdmin = () => {
         password,
       })
       .then((result) => {
-        if (result.data.Status) {
-          navigate("/dashboard");
-          toast.success("Admin modifiée");
-        } else {
-          alert(result.data.Error);
-        }
+        navigate("/dashboard");
+        toast.success("Admin modifiée");
       })
       .catch((err) => console.log(err));
   };
@@ -95,17 +90,10 @@ const UpdateAdmin = () => {
       )}
 
       <div className="flex gap-5">
-        <Link to={"/dashboard"}>
-          <button className="bg-red-500 hover:bg-red-400 rounded p-2 font-bold text-white w-full">
-            Annuler
-          </button>
-        </Link>
-        <button
-          type="submit"
-          className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full"
-        >
-          Modifier
-        </button>
+        <Button type="danger" link={true} to="/dashboard">
+          Annuler
+        </Button>
+        <Button type="main">Modifier</Button>
       </div>
     </form>
   );

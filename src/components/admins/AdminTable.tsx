@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { adminRecordType } from "../../types/types";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
 import Button from "../UI/Button";
 
 const AdminTable = () => {
-  const { email } = useFetchCurrentAdmin();
+  const { currentAdminEmail } = useFetchCurrentAdmin();
   const [adminRecords, setAdminRecords] = useState<adminRecordType[] | null>();
 
   const handleDelete = (
@@ -47,6 +46,7 @@ const AdminTable = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -75,14 +75,16 @@ const AdminTable = () => {
                 </th>
                 <td className="px-6 py-4">
                   <div className="flex gap-5">
-                    <Link to={`/dashboard/admin/${admin.id}`}>
-                      <div className="flex justify-center cursor-pointer items-center bg-amber-400 text-white p-3 rounded">
-                        Modifier
-                      </div>
-                    </Link>
+                    <Button
+                      type="warning"
+                      link={true}
+                      to={`/dashboard/admin/${admin.id}`}
+                    >
+                      Modifier
+                    </Button>
                     <Button
                       type="danger"
-                      disabled={admin.email === email}
+                      disabled={admin.email === currentAdminEmail}
                       onClick={() =>
                         handleDelete(admin.id, admin.isSuperAdmin, admin.email)
                       }

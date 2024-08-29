@@ -5,6 +5,7 @@ import Input from "../UI/Input";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Button from "../UI/Button";
 
 const UpdateEmployee = () => {
   const { categories, loading, error } = useFetchCategories();
@@ -61,6 +62,7 @@ const UpdateEmployee = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("submit");
     axios
       .put(`http://localhost:3000/auth/update_employee/${id}`, employee)
       .then((result) => {
@@ -167,12 +169,10 @@ const UpdateEmployee = () => {
       </div> */}
 
       <div className="flex gap-5">
-        <button className="bg-red-500 hover:bg-red-400 rounded p-2 font-bold text-white w-full">
-          <Link to={"/dashboard/employee"}>Annuler</Link>
-        </button>
-        <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
-          Modifier
-        </button>
+        <Button type="danger" link={true} to="/dashboard/employee">
+          Annuler
+        </Button>
+        <Button type="main">Modifier</Button>
       </div>
     </form>
   );

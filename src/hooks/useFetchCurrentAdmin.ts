@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useFetchCurrentAdmin = () => {
-  const [email, setEmail] = useState("");
+  const [currentAdminEmail, setCurrentAdminEmail] = useState("");
   const [isCurrentSuperAdmin, setIsCurrentSuperAdmin] = useState(false);
   axios.defaults.withCredentials = true;
   useEffect(() => {
@@ -12,7 +12,7 @@ const useFetchCurrentAdmin = () => {
           `http://localhost:3000/auth/currentAdmin`
         );
         if (result.data.Status) {
-          setEmail(result.data.Result.email);
+          setCurrentAdminEmail(result.data.Result.email);
           setIsCurrentSuperAdmin(result.data.Result.isSuperAdmin);
         } else {
           console.log(result.data.Error);
@@ -25,7 +25,7 @@ const useFetchCurrentAdmin = () => {
     fetchCurrentAdmin();
   }, []);
 
-  return { email, setEmail, isCurrentSuperAdmin };
+  return { currentAdminEmail, setCurrentAdminEmail, isCurrentSuperAdmin };
 };
 
 export default useFetchCurrentAdmin;
