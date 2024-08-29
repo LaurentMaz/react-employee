@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "../UI/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -24,7 +24,7 @@ const UpdateAdmin = () => {
         adminChecked,
         password,
       })
-      .then((result) => {
+      .then(() => {
         navigate("/dashboard");
         toast.success("Admin modifiée");
       })
