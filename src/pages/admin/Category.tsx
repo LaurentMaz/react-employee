@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import CategoriesTable from "../../components/categories/CategoriesTable";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFetchCategories from "../../hooks/useFetchCategories";
+import Container from "../../components/UI/Container";
+import Button from "../../components/UI/Button";
 
 const Category = () => {
   const notify = () => toast.success("Catégorie supprimée");
@@ -25,17 +26,14 @@ const Category = () => {
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-start mt-16 gap-10">
-      <div className="flex flex-col items-center justify-center">
+    <Container className="flex h-full flex-col items-center justify-start mt-16 gap-10">
+      <div className="flex items-center justify-between w-full">
         <h3 className="mb-5 text-3xl font-bold">Liste des catégories</h3>
-        <Link
-          className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white"
-          to="/dashboard/add_category"
-        >
+        <Button type="main" link={true} to="/dashboard/add_category">
           Ajouter une catégorie
-        </Link>
+        </Button>
       </div>
-      <div className="w-[80%]">
+      <div className="w-full">
         {loading ? (
           "Chargement des catégories..."
         ) : (
@@ -45,7 +43,7 @@ const Category = () => {
           />
         )}
       </div>
-    </div>
+    </Container>
   );
 };
 

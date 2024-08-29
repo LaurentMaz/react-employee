@@ -13,11 +13,11 @@ const CategoriesTable = ({
   handleDelete,
 }: CategoriesTableProps) => {
   return (
-    <div className="flex flex-col gap-5 p-8">
+    <div className="flex flex-col gap-5 ">
       {categories.map((cat) => (
         <div
           key={cat.id}
-          className="flex gap-5 w-full border rounded-xl p-5 shadow-lg justify-between"
+          className="flex gap-5 w-full border rounded-xl px-5 py-4 shadow-lg justify-between"
         >
           <div className="font-medium flex items-center justify-center">
             {cat.name}

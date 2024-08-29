@@ -3,6 +3,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { IoPeopleOutline } from "react-icons/io5";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { FaComputer } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
 import NavItem from "../UI/NavItem";
@@ -40,6 +41,11 @@ const Navbar = () => {
           to="/dashboard/category"
           title="Catégories"
           Icon={LuLayoutDashboard}
+        />
+        <NavItem
+          to="/dashboard/equipement"
+          title="Equipements"
+          Icon={FaComputer}
         />
         <NavItem
           to={`/dashboard/profil/${currentAdminId}`}

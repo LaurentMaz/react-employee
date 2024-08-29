@@ -5,6 +5,7 @@ import { employeeType } from "../../types/types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "../UI/Button";
 
 const AddEmployeeForm = () => {
   const { categories, loading, error } = useFetchCategories();
@@ -143,10 +144,12 @@ const AddEmployeeForm = () => {
         onChange={handleChange}
       />
 
-      <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
-        Ajouter
-      </button>
-      {/* {loginError && <span className="text-red-500">{loginError}</span>} */}
+      <div className="flex gap-5">
+        <Button type="danger" link={true} to="/dashboard/employee">
+          Annuler
+        </Button>
+        <Button type="main">Ajouter</Button>
+      </div>
     </form>
   );
 };

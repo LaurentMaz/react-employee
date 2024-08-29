@@ -18,6 +18,7 @@ import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
 import AddAdminForm from "./components/admins/AddAdminForm";
+import Equipement from "./pages/admin/Equipement";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/dashboard/employee" element={<Employee />} />
             <Route path="/dashboard/category" element={<Category />} />
+            <Route path="/dashboard/equipement" element={<Equipement />} />
             <Route
               path="/dashboard/add_category"
               element={<AddCategoryForm />}

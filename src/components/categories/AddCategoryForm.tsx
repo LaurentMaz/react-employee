@@ -3,6 +3,7 @@ import Input from "../UI/Input";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "../UI/Button";
 
 const AddCategoryForm = () => {
   const [category, setCategory] = useState<string>();
@@ -37,12 +38,15 @@ const AddCategoryForm = () => {
         name="category"
         type="text"
         onChange={handleChange}
+        isRequired={true}
       />
 
-      <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
-        Ajouter
-      </button>
-      {/* {loginError && <span className="text-red-500">{loginError}</span>} */}
+      <div className="flex gap-5">
+        <Button type="danger" link={true} to="/dashboard/category">
+          Annuler
+        </Button>
+        <Button type="main">Ajouter</Button>
+      </div>
     </form>
   );
 };
