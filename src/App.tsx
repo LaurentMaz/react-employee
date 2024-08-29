@@ -12,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import UpdateAdmin from "./components/admins/UpdateAdmin";
 import LoginEmployee from "./pages/employee/LoginEmployee";
 import Start from "./pages/Start";
-import EmployeeDetail from "./pages/employee/EmployeeDetail";
 import Dashboard from "./pages/admin/Dashboard";
 import DashboardEmployee from "./pages/employee/DashboardEmployee";
 import HomeEmployee from "./pages/employee/HomeEmployee";
@@ -53,7 +52,11 @@ function App() {
             />
             <Route
               path="/dashboard/employee/:id"
-              element={<UpdateEmployee />}
+              element={<UpdateEmployee from="admin" />}
+            />
+            <Route
+              path="/dashboard/profil/:id"
+              element={<UpdateEmployee from="profil" />}
             />
             <Route path="/dashboard/admin/:id" element={<UpdateAdmin />} />
             <Route path="/dashboard/addAdmin" element={<AddAdminForm />} />
@@ -69,7 +72,11 @@ function App() {
             }
           >
             <Route path="/home" element={<HomeEmployee />} />
-            <Route path="/home/employeeDetail/" element={<EmployeeDetail />} />
+            <Route
+              path="/home/profil/:id"
+              element={<UpdateEmployee from="employee" />}
+            />
+            {/* <Route path="/home/employeeDetail/" element={<EmployeeDetail />} /> */}
           </Route>
         </Routes>
         <ToastContainer position="bottom-right" />

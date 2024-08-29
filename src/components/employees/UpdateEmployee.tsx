@@ -7,7 +7,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "../UI/Button";
 
-const UpdateEmployee = () => {
+interface UpdateEmployeeProps {
+  from: string;
+}
+
+const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
   const { categories, loading, error } = useFetchCategories();
   if (error) console.log(error);
   const navigate = useNavigate();
@@ -87,8 +91,8 @@ const UpdateEmployee = () => {
         },
       })
       .then(() => {
-        navigate("/dashboard/employee");
-        toast.success("Employé modifié");
+        from === "admin" ? navigate("/dashboard/employee") : navigate("/home");
+        toast.success("Données modifiés");
       })
       .catch((err) => {
         console.log(err);
@@ -139,6 +143,7 @@ const UpdateEmployee = () => {
         type="number"
         onChange={handleChange}
         value={employee.salary}
+        disabled={from === "employee"}
       />
       <Input
         isLabel={true}
@@ -157,6 +162,7 @@ const UpdateEmployee = () => {
         ) : (
           <select
             onChange={handleChange}
+            disabled={from === "employee"}
             value={employee?.category !== null ? employee?.category : ""}
             name="category"
             id="category"
@@ -190,9 +196,15 @@ const UpdateEmployee = () => {
       </div>
 
       <div className="flex gap-5">
-        <Button type="danger" link={true} to="/dashboard/employee">
-          Annuler
-        </Button>
+        {from !== "profil" && (
+          <Button
+            type="danger"
+            link={true}
+            to={from === "admin" ? "/dashboard/employee" : "/home"}
+          >
+            Annuler
+          </Button>
+        )}
         <Button type="main">Modifier</Button>
       </div>
     </form>

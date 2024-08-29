@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
 import { EmployeeContextType, employeeType } from "../types/types";
-import useFetchSingleEmployee from "../hooks/useFetchSingleEmployee";
-import { useParams } from "react-router-dom";
 
 const EmployeeContext = createContext<EmployeeContextType | null>(null);
 

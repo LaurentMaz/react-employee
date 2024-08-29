@@ -32,7 +32,6 @@ Front End for Employees management system.
 ### IN PROGRESS
 
 - Créer les vues des employés
-- Créer le profil de admin
 
 ### TODOS
 

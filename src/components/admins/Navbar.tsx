@@ -42,7 +42,7 @@ const Navbar = () => {
           Icon={LuLayoutDashboard}
         />
         <NavItem
-          to={`/dashboard/employee/${currentAdminId}`}
+          to={`/dashboard/profil/${currentAdminId}`}
           title="Profil"
           Icon={IoPersonCircleOutline}
         />

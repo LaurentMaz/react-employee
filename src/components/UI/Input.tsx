@@ -9,6 +9,7 @@ interface inputProps {
   type: string;
   value?: string;
   isRequired?: boolean;
+  disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -19,6 +20,7 @@ const Input = ({
   type,
   value,
   isRequired = false,
+  disabled,
   onChange,
 }: inputProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +49,7 @@ const Input = ({
           onChange={onChange}
           value={value}
           required={isRequired}
+          disabled={disabled}
         />
         {type === "password" && (
           <span
