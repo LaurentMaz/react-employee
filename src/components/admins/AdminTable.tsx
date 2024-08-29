@@ -15,26 +15,31 @@ const AdminTable = () => {
     email: string
   ) => {
     if (id !== undefined) {
-      axios
-        .request({
-          url: `http://localhost:3000/auth/delete_admin/${id}`,
-          method: "put",
-          data: { isSuperAdmin: isSuperAdmin, email: email },
-        })
-        .then((result) => {
-          if (result.data.Status) {
-            toast.success("Admin supprimé");
-            adminRecords &&
-              setAdminRecords(
-                adminRecords.filter(
-                  (adminRecord) => adminRecord.email !== email
-                )
-              );
-          } else {
-            toast.error(result.data.Error);
-          }
-        })
-        .catch((err) => alert(err));
+      const confirmDelete = confirm(
+        "Êtes-vous sûr de vouloir supprimer l'administrateur ?"
+      );
+      if (confirmDelete) {
+        axios
+          .request({
+            url: `http://localhost:3000/auth/delete_admin/${id}`,
+            method: "put",
+            data: { isSuperAdmin: isSuperAdmin, email: email },
+          })
+          .then((result) => {
+            if (result.data.Status) {
+              toast.success("Admin supprimé");
+              adminRecords &&
+                setAdminRecords(
+                  adminRecords.filter(
+                    (adminRecord) => adminRecord.email !== email
+                  )
+                );
+            } else {
+              toast.error(result.data.Error);
+            }
+          })
+          .catch((err) => alert(err));
+      }
     }
   };
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { employeeType } from "../../types/types";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 interface EmployeesTableProps {
   employees: employeeType[];
@@ -11,15 +12,20 @@ interface EmployeesTableProps {
 const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
   const handleDelete = (id?: number) => {
     if (id !== undefined) {
-      axios
-        .delete(`http://localhost:3000/auth/remove_employee/${id}`)
-        .then((result) => {
-          setEmployees(employees.filter((employee) => employee.id !== id));
-          toast.success("Employé supprimé");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const confirmDelete = confirm(
+        "Êtes-vous sûr de vouloir supprimer l'utilisateur ?"
+      );
+      if (confirmDelete) {
+        axios
+          .delete(`http://localhost:3000/auth/remove_employee/${id}`)
+          .then((result) => {
+            setEmployees(employees.filter((employee) => employee.id !== id));
+            toast.success("Employé supprimé");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     } else {
       toast.error("L'id de l'employé n'est pas valide");
     }
