@@ -40,7 +40,7 @@ const AddEmployeeForm = () => {
           navigate("/dashboard/employee");
           toast.success("Employé ajouté");
         } else {
-          alert(result.data.Error);
+          toast.error(result.data.ErrorMessage);
         }
       })
       .catch((err) => console.log(err));

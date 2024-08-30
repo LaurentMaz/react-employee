@@ -31,14 +31,12 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
-- Gérer les pc des employés
+- Gérer les congés des employés
 
 ### TODOS
 
-- Gérer les congés des employés
 - Système de ticket ?
 - Scale : SSR with express & ReactDOMServer
-- Vérification de sécurité et de BDD (ne pas ajouter plusieurs fois le même user par ex)
 - Créer un context pour la partie admin (? voir l'utilité)
 - Créer les vues des employés
 - Ajouter la gestion des téléphones mobiles
@@ -50,3 +48,5 @@ Front End for Employees management system.
 - Possibilité d'ajouter des admins directement depuis l'app via les employés
 - Possibilité de modifier l'image d'un employé
 - Barre de recherche parmis les employés
+- Gérer les pc des employés
+- Vérification de sécurité et de BDD (ne pas ajouter plusieurs fois le même user par ex)
