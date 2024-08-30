@@ -48,7 +48,6 @@ const UpdateAdmin = () => {
         }
       })
       .catch((err) => console.log(err));
-    return () => console.log("Component unmounted");
   }, []);
 
   return (

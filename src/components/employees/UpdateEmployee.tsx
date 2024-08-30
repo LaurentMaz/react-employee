@@ -64,7 +64,6 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
       const value = e.target.value === "" ? null : e.target.value;
       setEmployee({ ...employee, [e.target.name]: value });
     }
-    console.log(employee);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -149,7 +148,7 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
         isLabel={true}
         label="Adresse"
         name="address"
-        type="string"
+        type="text"
         onChange={handleChange}
         value={employee.address}
       />
@@ -197,11 +196,7 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
 
       <div className="flex gap-5">
         {from !== "profil" && (
-          <Button
-            type="danger"
-            link={true}
-            to={from === "admin" ? "/dashboard/employee" : "/home"}
-          >
+          <Button type="danger" onClick={() => navigate(-1)}>
             Annuler
           </Button>
         )}

@@ -6,7 +6,7 @@ interface inputProps {
   isLabel?: boolean;
   label?: string;
   name: string;
-  type: string;
+  type: "text" | "password" | "date" | "email" | "number" | "file";
   value?: string;
   placeholder?: string;
   isRequired?: boolean;

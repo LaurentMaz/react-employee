@@ -14,7 +14,6 @@ const AvailableEmployeeTable = () => {
     axios
       .get("http://localhost:3000/auth/employeesNoAdmin")
       .then((result) => {
-        console.log(result.data.Result);
         setusers(result.data.Result);
         setloading(false);
       })

@@ -10,6 +10,7 @@ interface ButtonProps {
   children: ReactNode;
   onClick?: (...args: any[]) => void;
   disabled?: boolean;
+  submit?: boolean;
 }
 
 const Button = ({
@@ -20,8 +21,11 @@ const Button = ({
   children,
   onClick = () => {},
   disabled = false,
+  submit,
 }: ButtonProps) => {
   let btnClass = "";
+
+  const submitType = submit ? "submit" : "button";
 
   switch (type) {
     case "danger":
@@ -52,6 +56,7 @@ const Button = ({
         disabled && "cursor-not-allowed opacity-50"
       )}
       disabled={disabled}
+      type={submitType}
     >
       {children}
     </button>

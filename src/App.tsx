@@ -19,6 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
 import AddAdminForm from "./components/admins/AddAdminForm";
 import Equipement from "./pages/admin/Equipement";
+import AddEquipementForm from "./components/equipements/AddEquipementForm";
 
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
             />
             <Route path="/dashboard/admin/:id" element={<UpdateAdmin />} />
             <Route path="/dashboard/addAdmin" element={<AddAdminForm />} />
+            <Route
+              path="/dashboard/addEquipement"
+              element={<AddEquipementForm />}
+            />
           </Route>
           <Route
             path="/home"

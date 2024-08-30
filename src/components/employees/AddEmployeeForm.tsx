@@ -106,7 +106,7 @@ const AddEmployeeForm = () => {
         isLabel={true}
         label="Adresse"
         name="address"
-        type="string"
+        type="text"
         onChange={handleChange}
       />
       <div className="w-full">

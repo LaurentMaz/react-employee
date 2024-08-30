@@ -1,3 +1,4 @@
+import EquipementTable from "../../components/equipements/EquipementTable";
 import Button from "../../components/UI/Button";
 import Container from "../../components/UI/Container";
 
@@ -6,10 +7,13 @@ const Equipement = () => {
     <Container className="flex flex-col mt-16 gap-10">
       <div className="flex justify-between w-full">
         <h1 className="text-2xl font-bold">Liste des équipements</h1>
-        <Button type="main">Ajouter un équipement</Button>
+        <Button type="main" link={true} to="/dashboard/addEquipement">
+          Ajouter un équipement
+        </Button>
       </div>
-      <div></div>
-      Liste
+      <div>
+        <EquipementTable />
+      </div>
     </Container>
   );
 };

@@ -39,3 +39,15 @@ export type EmployeeContextType = {
   FetchEmpError: string | null;
   setFetchEmpError: Dispatch<SetStateAction<string | null>>;
 };
+
+export type EquipementType = {
+  id?: number;
+  brand: string;
+  name: string;
+  ram: number;
+  proc: string;
+  serial: string;
+  date_service: Date | null;
+  employee_id?: number | null;
+  employee_name?: string | null;
+};
