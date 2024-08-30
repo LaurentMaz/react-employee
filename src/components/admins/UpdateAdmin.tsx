@@ -92,7 +92,9 @@ const UpdateAdmin = () => {
         <Button type="danger" link={true} to="/dashboard">
           Annuler
         </Button>
-        <Button type="main">Modifier</Button>
+        <Button submit={true} type="main">
+          Modifier
+        </Button>
       </div>
     </form>
   );

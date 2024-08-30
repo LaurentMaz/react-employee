@@ -8,7 +8,7 @@ import axios from "axios";
 import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 const NavbarEmployee = () => {
-  const { employee } = useEmployeeContext();
+  const { logedEmployee } = useEmployeeContext();
   const navigate = useNavigate();
   const logOut = () => {
     axios
@@ -29,7 +29,7 @@ const NavbarEmployee = () => {
       <ul className="flex flex-col gap-2">
         <NavItem to="/home" title="Home" Icon={GoHome} />
         <NavItem
-          to={`/home/profil/${employee?.id}`}
+          to={`/home/profil/${logedEmployee?.id}`}
           title="Profil"
           Icon={IoPersonCircleOutline}
         />

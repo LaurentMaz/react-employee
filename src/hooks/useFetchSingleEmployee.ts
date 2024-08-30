@@ -5,7 +5,7 @@ import useEmployeeContext from "./useEmployeeContext";
 const useFetchSingleEmployee = () => {
   axios.defaults.withCredentials = true;
 
-  const { employee, setEmployee, setFetchEmpError, FetchEmpError } =
+  const { logedEmployee, setLogedEmployee, setFetchEmpError, FetchEmpError } =
     useEmployeeContext();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const useFetchSingleEmployee = () => {
       try {
         const result = await axios.get(`http://localhost:3000/employee/detail`);
         if (result.data.Status) {
-          setEmployee(result.data.Result);
+          setLogedEmployee(result.data.Result);
         } else {
           setFetchEmpError(result.data.Error);
         }
@@ -32,7 +32,7 @@ const useFetchSingleEmployee = () => {
     fetchEmployee();
   }, []);
 
-  return { employee, setEmployee, FetchEmpError };
+  return { logedEmployee, setLogedEmployee, FetchEmpError };
 };
 
 export default useFetchSingleEmployee;

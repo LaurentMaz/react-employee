@@ -34,8 +34,8 @@ export type adminRecordType = {
 };
 
 export type EmployeeContextType = {
-  employee: employeeType | undefined;
-  setEmployee: (employee: employeeType) => void;
+  logedEmployee: employeeType | undefined;
+  setLogedEmployee: (employee: employeeType) => void;
   FetchEmpError: string | null;
   setFetchEmpError: Dispatch<SetStateAction<string | null>>;
 };

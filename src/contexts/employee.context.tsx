@@ -10,13 +10,18 @@ interface EmployeeContextProviderProps {
 export const EmployeeContextProvider = ({
   children,
 }: EmployeeContextProviderProps) => {
-  const [employee, setEmployee] = useState<employeeType>();
+  const [logedEmployee, setLogedEmployee] = useState<employeeType>();
   const [loading, setLoading] = useState(true);
   const [FetchEmpError, setFetchEmpError] = useState<string | null>(null);
 
   return (
     <EmployeeContext.Provider
-      value={{ employee, setEmployee, FetchEmpError, setFetchEmpError }}
+      value={{
+        logedEmployee,
+        setLogedEmployee,
+        FetchEmpError,
+        setFetchEmpError,
+      }}
     >
       {children}
     </EmployeeContext.Provider>

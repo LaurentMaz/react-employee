@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "../UI/Button";
+import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 interface UpdateEmployeeProps {
   from: string;
@@ -15,6 +16,8 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
   const { categories, loading, error } = useFetchCategories();
   if (error) console.log(error);
   const navigate = useNavigate();
+  const { logedEmployee } = useEmployeeContext();
+
   const { id } = useParams();
 
   const [employee, setEmployee] = useState<employeeType>({
@@ -47,6 +50,9 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
             category: result.data.Result[0].category_id,
             picture: result.data.Result[0].picture,
           });
+        } else if (!result.data.Satus && result.data.Error == "Non autorisé") {
+          navigate("/home");
+          toast.error("Action non authorisée");
         } else {
           console.log("Une erreur innatendue est survenue");
         }
@@ -84,11 +90,15 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
     }
 
     axios
-      .put(`http://localhost:3000/auth/update_employee/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .put(
+        `http://localhost:3000/auth/update_employee/${logedEmployee?.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then(() => {
         from === "admin" ? navigate("/dashboard/employee") : navigate("/home");
         toast.success("Données modifiés");
@@ -200,7 +210,9 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
             Annuler
           </Button>
         )}
-        <Button type="main">Modifier</Button>
+        <Button type="main" submit={true}>
+          Modifier
+        </Button>
       </div>
     </form>
   );

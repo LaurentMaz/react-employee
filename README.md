@@ -10,13 +10,17 @@ Front End for Employees management system.
 
 ## Database
 
-- SQL Database (SELECT, INSERT)
+- SQL Database (SQL Queries : SELECT, PUT, DELETE, POST)
+- Relations and Constraints
 
 ## Front end
 
 - Typescript
 - React Router DOM
 - Custom Hook
+- Reusable components
+- React Context
+- Axios
 
 ## Back end
 
@@ -25,7 +29,7 @@ Front End for Employees management system.
 - Create API Routes
 - SQL Statements
 - CORS usage to connect back and front
-- Mécanismes d'authentification et d'autorisation pour l'accès aux données : Middleware, JWT et id BDD
+- Mécanismes d'authentification et d'autorisation pour l'accès aux données : Middleware, JWT
 
 ## TODO
 
