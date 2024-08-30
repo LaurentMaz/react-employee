@@ -19,7 +19,7 @@ const Category = () => {
           setCategories(categories.filter((category) => category.id !== id));
           notify();
         } else {
-          alert(result.data.Error);
+          alert(result.data.ErrorMessage);
         }
       })
       .catch((err) => console.log(err));
