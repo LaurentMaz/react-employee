@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Input from "../UI/Input";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Button from "../UI/Button";
 
 const UpdateCategory = () => {
   const { id, name } = useParams();
@@ -43,12 +44,12 @@ const UpdateCategory = () => {
       />
 
       <div className="flex gap-5">
-        <button className="bg-red-500 hover:bg-red-400 rounded p-2 font-bold text-white w-full">
-          <Link to={"/dashboard/category"}>Annuler</Link>
-        </button>
-        <button className="bg-teal-500 hover:bg-teal-400 rounded p-2 font-bold text-white w-full">
+        <Button type="danger" link={true} to="/dashboard/category">
+          Annuler
+        </Button>
+        <Button type="main" submit={true}>
           Modifier
-        </button>
+        </Button>
       </div>
 
       {/* {loginError && <span className="text-red-500">{loginError}</span>} */}

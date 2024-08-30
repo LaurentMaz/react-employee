@@ -60,7 +60,7 @@ const Home = () => {
         <div className="flex gap-5 items-center justify-start">
           <h2 className="text-2xl font-bold">Liste des admins</h2>
           <Button type="main" link={true} to="/dashboard/addAdmin">
-            Gérer les administrateurs
+            Ajouter des administrateurs
           </Button>
         </div>
 
