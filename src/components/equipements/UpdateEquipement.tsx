@@ -112,12 +112,9 @@ const UpdateEquipement = () => {
                   onChange={handleChange}
                   value={equipement.employee_id ? equipement.employee_id : ""}
                   name="employee_id"
-                  required
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option value={""} disabled>
-                    -- Choisir un utilisateur --
-                  </option>
+                  <option value="">-- Non attribué --</option>
                   {employees.map((employee) => (
                     <option key={employee.id} value={employee.id}>
                       {employee.firstName + " " + employee.lastName}

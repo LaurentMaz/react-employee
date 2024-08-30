@@ -24,10 +24,7 @@ const SearchBar = ({ data, setData }: SearchBarProps) => {
           params: { searchValue: e.target.value },
         })
         .then((result) => {
-          console.log(result);
-
           setData(result.data.Result);
-          console.log(data);
         })
         .catch((err) => console.log(err));
     }, 1000); // Délai de 1000ms
