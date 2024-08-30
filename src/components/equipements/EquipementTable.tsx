@@ -3,9 +3,35 @@ import { useEffect, useState } from "react";
 import { EquipementType } from "../../types/types";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EquipementTable = () => {
   const [equipements, setEquipements] = useState<EquipementType[]>();
+
+  const handleDelete = (id?: number) => {
+    if (id !== undefined) {
+      const confirmDelete = confirm(
+        "Êtes-vous sûr de vouloir supprimer l'équipement ?"
+      );
+      if (confirmDelete) {
+        axios
+          .delete(`http://localhost:3000/auth/remove_equipement`, {
+            data: { id: id },
+          })
+          .then(() => {
+            setEquipements(
+              equipements?.filter((equipement) => equipement.id !== id)
+            );
+            toast.success("Equipement supprimé");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    } else {
+      toast.error("L'id de l'employé n'est pas valide");
+    }
+  };
 
   useEffect(() => {
     axios
@@ -92,7 +118,7 @@ const EquipementTable = () => {
                     </Button>
                     <Button
                       type="danger"
-                      //   onClick={() => handleDelete(equipement.id)}
+                      onClick={() => handleDelete(equipement.id)}
                     >
                       Supprimer
                     </Button>
