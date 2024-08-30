@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "../UI/Input";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -51,8 +51,6 @@ const UpdateCategory = () => {
           Modifier
         </Button>
       </div>
-
-      {/* {loginError && <span className="text-red-500">{loginError}</span>} */}
     </form>
   );
 };

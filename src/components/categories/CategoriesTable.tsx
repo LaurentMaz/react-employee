@@ -1,8 +1,6 @@
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { ICategories } from "../../types/types";
 import Button from "../UI/Button";
+import { MdDelete, MdOutlineEdit } from "react-icons/md";
 
 interface CategoriesTableProps {
   categories: ICategories[];
@@ -45,10 +43,15 @@ const CategoriesTable = ({
                     type="warning"
                     link
                     to={`/dashboard/category/${cat.id}/${cat.name}`}
+                    icon={<MdOutlineEdit />}
                   >
                     Modifier
                   </Button>
-                  <Button type="danger" onClick={() => handleDelete(cat.id)}>
+                  <Button
+                    icon={<MdDelete />}
+                    type="danger"
+                    onClick={() => handleDelete(cat.id)}
+                  >
                     Supprimer
                   </Button>
                 </div>
