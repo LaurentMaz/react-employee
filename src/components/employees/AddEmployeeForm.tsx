@@ -148,7 +148,9 @@ const AddEmployeeForm = () => {
         <Button type="danger" link={true} to="/dashboard/employee">
           Annuler
         </Button>
-        <Button type="main">Ajouter</Button>
+        <Button type="main" submit={true}>
+          Ajouter
+        </Button>
       </div>
     </form>
   );

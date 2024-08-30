@@ -21,9 +21,13 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
       if (confirmDelete) {
         axios
           .delete(`http://localhost:3000/auth/remove_employee/${id}`)
-          .then(() => {
-            setEmployees(employees.filter((employee) => employee.id !== id));
-            toast.success("Employé supprimé");
+          .then((result) => {
+            if (result.data.Status) {
+              setEmployees(employees.filter((employee) => employee.id !== id));
+              toast.success("Employé supprimé");
+            } else {
+              toast.error(result.data.ErrorMessage);
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -36,7 +40,11 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
 
   return (
     <>
-      <SearchBar data={employees} setData={setEmployees} />
+      <SearchBar
+        setData={setEmployees}
+        apiRoute="http://localhost:3000/auth/searchEmployee"
+        placeholder="Rechercher un employé"
+      />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">

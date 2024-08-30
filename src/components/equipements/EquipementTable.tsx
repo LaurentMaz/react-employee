@@ -4,6 +4,7 @@ import { EquipementType } from "../../types/types";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import SearchBar from "../UI/SearchBar";
 
 const EquipementTable = () => {
   const [equipements, setEquipements] = useState<EquipementType[]>();
@@ -43,6 +44,11 @@ const EquipementTable = () => {
   }, []);
   return (
     <>
+      <SearchBar
+        setData={setEquipements}
+        apiRoute="http://localhost:3000/auth/searchEquipement"
+        placeholder="Rechercher des équipements"
+      />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">

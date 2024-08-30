@@ -6,9 +6,11 @@ import { employeeType } from "../../types/types";
 interface SearchBarProps {
   data?: employeeType[];
   setData: any;
+  apiRoute: string;
+  placeholder: string;
 }
 
-const SearchBar = ({ data, setData }: SearchBarProps) => {
+const SearchBar = ({ setData, apiRoute, placeholder }: SearchBarProps) => {
   const [searchValue, setsearchValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setsearchValue(e.target.value);
@@ -20,7 +22,7 @@ const SearchBar = ({ data, setData }: SearchBarProps) => {
     // Définit un nouveau timeout pour déclencher l'appel API après un délai
     timeoutRef.current = setTimeout(() => {
       axios
-        .get("http://localhost:3000/auth/searchEmployee", {
+        .get(apiRoute, {
           params: { searchValue: e.target.value },
         })
         .then((result) => {
@@ -39,7 +41,7 @@ const SearchBar = ({ data, setData }: SearchBarProps) => {
         value={searchValue}
         type="text"
         name="search"
-        placeholder="Rechercher un employé"
+        placeholder={placeholder}
       />
     </div>
   );
