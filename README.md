@@ -31,7 +31,7 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
-- Gérer les équipements des employés
+- Gérer les pc des employés
 
 ### TODOS
 
@@ -41,6 +41,7 @@ Front End for Employees management system.
 - Vérification de sécurité et de BDD (ne pas ajouter plusieurs fois le même user par ex)
 - Créer un context pour la partie admin (? voir l'utilité)
 - Créer les vues des employés
+- Ajouter la gestion des téléphones mobiles
 
 ### DONE
 

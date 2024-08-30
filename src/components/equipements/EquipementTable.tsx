@@ -86,7 +86,7 @@ const EquipementTable = () => {
                     <Button
                       type="warning"
                       link
-                      to={`/dashboard/employee/${equipement.id}`}
+                      to={`/dashboard/equipement/${equipement.id}`}
                     >
                       Modifier
                     </Button>

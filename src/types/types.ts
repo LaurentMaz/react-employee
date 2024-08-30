@@ -44,10 +44,10 @@ export type EquipementType = {
   id?: number;
   brand: string;
   name: string;
-  ram: number;
+  ram: string;
   proc: string;
   serial: string;
-  date_service: Date | null;
+  date_service: string;
   employee_id?: number | null;
   employee_name?: string | null;
 };

@@ -13,7 +13,7 @@ const UpdateCategory = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/auth/update_category", { category, id })
+      .put("http://localhost:3000/auth/update_category", { category, id })
       .then((result) => {
         if (result.data.Status) {
           navigate("/dashboard/category");

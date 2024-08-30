@@ -112,18 +112,6 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
                     >
                       Supprimer
                     </Button>
-
-                    {/* <Link to={`/dashboard/employee/${employee.id}`}>
-                    <div className="flex justify-center cursor-pointer items-center bg-amber-400 text-white p-3 rounded">
-                      Modifier
-                    </div>
-                  </Link>
-                  <div
-                    onClick={() => handleDelete(employee.id)}
-                    className="flex justify-center cursor-pointer items-center bg-red-500 text-white p-3 rounded"
-                  >
-                    Supprimer
-                  </div> */}
                   </div>
                 </td>
               </tr>

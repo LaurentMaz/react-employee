@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { EquipementType } from "../../types/types";
-import Input from "../UI/Input";
-import Container from "../UI/Container";
+import { useEffect, useState } from "react";
 import useFetchEmployees from "../../hooks/useFetchEmployees";
-import Button from "../UI/Button";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import Container from "../UI/Container";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
+import { EquipementType } from "../../types/types";
 import { toast } from "react-toastify";
 
-const AddEquipementForm = () => {
+const UpdateEquipement = () => {
   const { employees } = useFetchEmployees();
   const [equipement, setEquipement] = useState<EquipementType>({
     brand: "",
@@ -20,15 +20,30 @@ const AddEquipementForm = () => {
     employee_id: null,
   });
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/auth/equipements/${id}`)
+      .then((result) => {
+        setEquipement(result.data.Result[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/auth/add_equipement", equipement)
+      .put("http://localhost:3000/auth/update_equipement", {
+        equipement: equipement,
+        id: id,
+      })
       .then((result) => {
         if (result.data.Status) {
           navigate("/dashboard/equipement");
-          toast.success("Equipement ajouté");
+          toast.success("Equipement modifié");
+        } else {
+          console.log(result.data.Error);
         }
       })
       .catch((err) => console.log(err));
@@ -59,6 +74,7 @@ const AddEquipementForm = () => {
                 name="brand"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.brand}
               />
               <Input
                 type="text"
@@ -67,6 +83,7 @@ const AddEquipementForm = () => {
                 name="name"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.name}
               />
               <Input
                 type="text"
@@ -75,6 +92,7 @@ const AddEquipementForm = () => {
                 name="serial"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.serial}
               />
               <Input
                 type="date"
@@ -83,6 +101,7 @@ const AddEquipementForm = () => {
                 name="date_service"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.date_service}
               />
 
               <div>
@@ -93,6 +112,7 @@ const AddEquipementForm = () => {
                   onChange={handleChange}
                   value={equipement.employee_id ? equipement.employee_id : ""}
                   name="employee_id"
+                  required
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option value={""} disabled>
@@ -117,6 +137,7 @@ const AddEquipementForm = () => {
                 name="ram"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.ram}
               />
               <Input
                 type="text"
@@ -125,17 +146,18 @@ const AddEquipementForm = () => {
                 name="proc"
                 onChange={handleChange}
                 isRequired={true}
+                value={equipement.proc}
               />
             </div>
           </div>
         </div>
 
         <div className="flex gap-5">
-          <Button type="danger" link={true} to="/dashboard/equipement">
+          <Button type="danger" onClick={() => navigate(-1)}>
             Annuler
           </Button>
           <Button type="main" submit={true}>
-            Ajouter
+            Modifier
           </Button>
         </div>
       </form>
@@ -143,4 +165,4 @@ const AddEquipementForm = () => {
   );
 };
 
-export default AddEquipementForm;
+export default UpdateEquipement;
