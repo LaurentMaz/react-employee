@@ -11,7 +11,7 @@ export const EmployeeContextProvider = ({
   children,
 }: EmployeeContextProviderProps) => {
   const [logedEmployee, setLogedEmployee] = useState<employeeType>();
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [FetchEmpError, setFetchEmpError] = useState<string | null>(null);
 
   return (

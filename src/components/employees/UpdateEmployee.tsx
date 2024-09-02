@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "../UI/Button";
-import useEmployeeContext from "../../hooks/useEmployeeContext";
 
 interface UpdateEmployeeProps {
   from: string;
@@ -16,7 +15,6 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
   const { categories, loading, error } = useFetchCategories();
   if (error) console.log(error);
   const navigate = useNavigate();
-  const { logedEmployee } = useEmployeeContext();
 
   const { id } = useParams();
 
@@ -35,29 +33,45 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/auth/employee/${id}`)
-      .then((result) => {
-        if (result.data.Status) {
-          setEmployee({
-            ...employee,
-            id: result.data.Result[0].id,
-            firstName: result.data.Result[0].firstName,
-            lastName: result.data.Result[0].lastName,
-            email: result.data.Result[0].email,
-            salary: result.data.Result[0].salary,
-            address: result.data.Result[0].address,
-            category: result.data.Result[0].category_id,
-            picture: result.data.Result[0].picture,
-          });
-        } else if (!result.data.Satus && result.data.Error == "Non autorisé") {
-          navigate("/home");
-          toast.error("Action non authorisée");
-        } else {
-          console.log("Une erreur innatendue est survenue");
-        }
-      })
-      .catch((err) => console.log(err));
+    if (from == "admin") {
+      axios
+        .get(`http://localhost:3000/auth/employee/${id}`)
+        .then((result) => {
+          if (result.data.Status) {
+            setEmployee({
+              ...employee,
+              id: result.data.Result[0].id,
+              firstName: result.data.Result[0].firstName,
+              lastName: result.data.Result[0].lastName,
+              email: result.data.Result[0].email,
+              salary: result.data.Result[0].salary,
+              address: result.data.Result[0].address,
+              category: result.data.Result[0].category_id,
+              picture: result.data.Result[0].picture,
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    } else if (from == "employee") {
+      axios
+        .get(`http://localhost:3000/employee/detail`)
+        .then((result) => {
+          if (result.data.Status) {
+            setEmployee({
+              ...employee,
+              id: result.data.Result.id,
+              firstName: result.data.Result.firstName,
+              lastName: result.data.Result.lastName,
+              email: result.data.Result.email,
+              salary: result.data.Result.salary,
+              address: result.data.Result.address,
+              category: result.data.Result.category_id,
+              picture: result.data.Result.picture,
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   const handleChange = (
@@ -90,15 +104,11 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
     }
 
     axios
-      .put(
-        `http://localhost:3000/auth/update_employee/${logedEmployee?.id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .put(`http://localhost:3000/auth/update_employee/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         from === "admin" ? navigate("/dashboard/employee") : navigate("/home");
         toast.success("Données modifiés");
