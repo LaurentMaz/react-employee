@@ -5,6 +5,8 @@ import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import SearchBar from "../UI/SearchBar";
+import { MdLaptopMac } from "react-icons/md";
+import { FaDesktop } from "react-icons/fa";
 
 const EquipementTable = () => {
   const [equipements, setEquipements] = useState<EquipementType[]>();
@@ -63,6 +65,9 @@ const EquipementTable = () => {
                 NUMERO DE SERIE
               </th>
               <th scope="col" className="px-6 py-3">
+                TYPE
+              </th>
+              <th scope="col" className="px-6 py-3">
                 DATE D'ACHAT
               </th>
               <th scope="col" className="px-6 py-3">
@@ -98,6 +103,13 @@ const EquipementTable = () => {
                   {equipement.name}
                 </td>
                 <td className="px-6 py-4">{equipement.serial}</td>
+                <td className="px-6 py-4">
+                  {equipement.type == "laptop" ? (
+                    <MdLaptopMac className="text-xl font-bold" />
+                  ) : (
+                    <FaDesktop className="text-xl font-bold " />
+                  )}
+                </td>
                 <td className="px-6 py-4">
                   {equipement.date_service?.toString()}
                 </td>

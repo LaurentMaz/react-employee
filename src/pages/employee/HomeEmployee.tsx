@@ -11,7 +11,7 @@ const HomeEmployee = () => {
       <div className="flex text-lg items-center justify-center gap-2">
         Bonjour {logedEmployee?.firstName}{" "}
         <span className="text-2xl">
-          <MdOutlineWavingHand />
+          <MdOutlineWavingHand className="font-bold" />
         </span>
       </div>
       <div>

@@ -44,6 +44,7 @@ export type EquipementType = {
   id?: number;
   brand: string;
   name: string;
+  type: "desktop" | "laptop" | "";
   ram: string;
   proc: string;
   serial: string;

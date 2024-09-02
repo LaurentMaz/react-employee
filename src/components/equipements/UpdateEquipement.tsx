@@ -13,6 +13,7 @@ const UpdateEquipement = () => {
   const [equipement, setEquipement] = useState<EquipementType>({
     brand: "",
     name: "",
+    type: "",
     ram: "",
     proc: "",
     serial: "",
@@ -145,6 +146,23 @@ const UpdateEquipement = () => {
                 isRequired={true}
                 value={equipement.proc}
               />
+              <div>
+                <label className="font-semibold" htmlFor={"category"}>
+                  Type de machine :
+                </label>
+                <select
+                  onChange={handleChange}
+                  value={equipement.type ? equipement.type : ""}
+                  name="type"
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option value={""} disabled>
+                    -- Choisir un type --
+                  </option>
+                  <option value={"laptop"}>Oridnateur portable</option>
+                  <option value={"desktop"}>Ordinateur fixe</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
