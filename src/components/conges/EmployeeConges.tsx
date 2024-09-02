@@ -71,7 +71,6 @@ const EmployeeConges = () => {
             )}
           </div>
         </div>
-
         <div className="flex w-full gap-10">
           <div className="flex flex-col gap-5 flex-1">
             <h2 className="text-2xl font-bold">Mes congés validés</h2>

@@ -40,12 +40,22 @@ export const EmployeeContextProvider = ({
   };
 
   useEffect(() => {
-    setCongesAvalaibleNextYear(calculateCongeAvalaibleNextYear);
+    // setCongesAvalaibleNextYear(calculateCongeAvalaibleNextYear);
     axios
       .get("http://localhost:3000/employee/congesAvalaible_currentYear")
       .then((result) => {
         setCongesAvalaibleCurrentYear(
           congesAvalaibleCurrentYear - result.data.Result[0].totalBusinessDays
+        );
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://localhost:3000/employee/congesAvalaible_nextYear")
+      .then((result) => {
+        setCongesAvalaibleNextYear(
+          calculateCongeAvalaibleNextYear() -
+            result.data.Result[0].totalBusinessDays
         );
       })
       .catch((err) => console.log(err));
