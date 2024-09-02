@@ -18,6 +18,9 @@ const HomeEmployee = () => {
         <h2 className="text-xl font-bold">Vos équipements</h2>
         <EmployeeEquipements />
       </div>
+      <div>
+        <h2 className="text-xl font-bold">Vos congés</h2>
+      </div>
     </Container>
   );
 };

@@ -21,6 +21,8 @@ import AddAdminForm from "./components/admins/AddAdminForm";
 import Equipement from "./pages/admin/Equipement";
 import AddEquipementForm from "./components/equipements/AddEquipementForm";
 import UpdateEquipement from "./components/equipements/UpdateEquipement";
+import EmployeeConges from "./components/conges/EmployeeConges";
+import AddCongeForm from "./components/conges/AddCongeForm";
 
 function App() {
   return (
@@ -88,7 +90,8 @@ function App() {
               path="/home/profil/:id"
               element={<UpdateEmployee from="employee" />}
             />
-            {/* <Route path="/home/employeeDetail/" element={<EmployeeDetail />} /> */}
+            <Route path="/home/conges" element={<EmployeeConges />} />
+            <Route path="/home/add_conges/" element={<AddCongeForm />} />
           </Route>
         </Routes>
         <ToastContainer position="bottom-right" />

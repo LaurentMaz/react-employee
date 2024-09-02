@@ -3,6 +3,7 @@ import NavItem from "../UI/NavItem";
 
 import { GoHome } from "react-icons/go";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { FaRegCalendarAlt } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
 import useEmployeeContext from "../../hooks/useEmployeeContext";
@@ -33,6 +34,7 @@ const NavbarEmployee = () => {
           title="Profil"
           Icon={IoPersonCircleOutline}
         />
+        <NavItem to={`/home/conges/`} title="Congés" Icon={FaRegCalendarAlt} />
         <NavItem
           to="/"
           title="Déconnexion"

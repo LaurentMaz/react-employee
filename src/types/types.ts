@@ -10,6 +10,13 @@ export interface ICategories {
   name: string;
 }
 
+export interface ICongeTypes {
+  id: number;
+  name: string;
+  description: string;
+  defaultDays: number;
+}
+
 export type employeeType = {
   id?: number;
   lastName: string;
@@ -38,6 +45,8 @@ export type EmployeeContextType = {
   setLogedEmployee: (employee: employeeType) => void;
   FetchEmpError: string | null;
   setFetchEmpError: Dispatch<SetStateAction<string | null>>;
+  congesAvalaible: number;
+  setCongesAvalaible: (conge: number) => void;
 };
 
 export type EquipementType = {
@@ -51,4 +60,14 @@ export type EquipementType = {
   date_service: string;
   employee_id?: number | null;
   employee_name?: string | null;
+};
+
+export type CongeType = {
+  id?: number;
+  employeeId?: number | null;
+  congeTypesId: number | null;
+  startDate: string;
+  endDate: string;
+  status: "En cours" | "Approuvé" | "Rejeté";
+  reason: string;
 };

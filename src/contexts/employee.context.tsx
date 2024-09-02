@@ -13,6 +13,7 @@ export const EmployeeContextProvider = ({
   const [logedEmployee, setLogedEmployee] = useState<employeeType>();
   // const [loading, setLoading] = useState(true);
   const [FetchEmpError, setFetchEmpError] = useState<string | null>(null);
+  const [congesAvalaible, setCongesAvalaible] = useState<number>(30);
 
   return (
     <EmployeeContext.Provider
@@ -21,6 +22,8 @@ export const EmployeeContextProvider = ({
         setLogedEmployee,
         FetchEmpError,
         setFetchEmpError,
+        congesAvalaible,
+        setCongesAvalaible,
       }}
     >
       {children}
