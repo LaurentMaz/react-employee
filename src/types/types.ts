@@ -45,8 +45,10 @@ export type EmployeeContextType = {
   setLogedEmployee: (employee: employeeType) => void;
   FetchEmpError: string | null;
   setFetchEmpError: Dispatch<SetStateAction<string | null>>;
-  congesAvalaible: number;
-  setCongesAvalaible: (conge: number) => void;
+  congesAvalaibleCurrentYear: number;
+  setCongesAvalaibleCurrentYear: (conge: number) => void;
+  congesAvalaibleNextYear: number;
+  setCongesAvalaibleNextYear: (conge: number) => void;
 };
 
 export type EquipementType = {
@@ -68,6 +70,7 @@ export type CongeType = {
   congeTypesId: number | null;
   startDate: string;
   endDate: string;
+  businessDays: number;
   status: "En cours" | "Approuvé" | "Rejeté";
   reason: string;
 };

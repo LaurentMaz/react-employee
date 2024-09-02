@@ -36,6 +36,8 @@ Front End for Employees management system.
 ### IN PROGRESS
 
 - Gérer les congés des employés
+- Gérer la date d'entrée des employés pour ajuster le calcul des congés
+- Affiner le calcul des congés au réel
 
 ### TODOS
 

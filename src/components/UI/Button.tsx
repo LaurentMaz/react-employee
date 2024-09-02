@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface ButtonProps {
-  type: "danger" | "main" | "warning";
+  type: "danger" | "main" | "warning" | "secondary";
   className?: string;
   link?: boolean;
   to?: string;
@@ -41,6 +41,10 @@ const Button = ({
     case "main":
       btnClass =
         "bg-teal-500 gap-1 hover:bg-teal-400 rounded p-2 font-bold text-white";
+      break;
+    case "secondary":
+      btnClass =
+        "bg-white gap-1 hover:bg-teal-400 hover:text-white rounded p-2 font-bold text-teal-500 border border-teal-500";
       break;
     default:
       break;
