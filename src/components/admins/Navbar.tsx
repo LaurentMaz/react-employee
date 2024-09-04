@@ -5,6 +5,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { FaComputer } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
+import { FaRegCalendarAlt } from "react-icons/fa";
 import axios from "axios";
 import NavItem from "../UI/NavItem";
 import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
@@ -36,6 +37,11 @@ const Navbar = () => {
           to="/dashboard/employee"
           title="Gestion des employés"
           Icon={IoPeopleOutline}
+        />
+        <NavItem
+          to="/dashboard/conges"
+          title="Gestion des congés"
+          Icon={FaRegCalendarAlt}
         />
         <NavItem
           to="/dashboard/category"

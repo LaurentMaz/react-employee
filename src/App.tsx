@@ -24,6 +24,7 @@ import UpdateEquipement from "./components/equipements/UpdateEquipement";
 import EmployeeConges from "./components/conges/EmployeeConges";
 import AddCongeForm from "./components/conges/AddCongeForm";
 import UpdateConge from "./components/conges/UpdateConge";
+import AdminConges from "./pages/admin/AdminConges";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           >
             <Route path="" element={<Home />} />
             <Route path="/dashboard/employee" element={<Employee />} />
+            <Route path="/dashboard/conges" element={<AdminConges />} />
             <Route path="/dashboard/category" element={<Category />} />
             <Route path="/dashboard/equipement" element={<Equipement />} />
             <Route

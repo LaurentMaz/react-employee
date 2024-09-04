@@ -12,6 +12,7 @@ interface ButtonProps {
   disabled?: boolean;
   submit?: boolean;
   icon?: ReactNode;
+  dataSet?: string;
 }
 
 const Button = ({
@@ -24,6 +25,7 @@ const Button = ({
   disabled = false,
   submit,
   icon,
+  dataSet,
 }: ButtonProps) => {
   let btnClass = "";
 
@@ -40,11 +42,11 @@ const Button = ({
       break;
     case "main":
       btnClass =
-        "bg-teal-500 gap-1 hover:bg-teal-400 rounded p-2 font-bold text-white";
+        "bg-teal-500 gap-1 justify-center hover:bg-teal-400 rounded p-2 font-bold text-white";
       break;
     case "secondary":
       btnClass =
-        "bg-white gap-1 hover:bg-teal-400 hover:text-white rounded p-2 font-bold text-teal-500 border border-teal-500";
+        "bg-white gap-1 justify-center hover:bg-teal-400 hover:text-white rounded p-2 font-bold text-teal-500 border border-teal-500";
       break;
     default:
       break;
@@ -56,6 +58,7 @@ const Button = ({
     </Link>
   ) : (
     <button
+      data-data={dataSet}
       onClick={onClick}
       className={clsx(
         btnClass,

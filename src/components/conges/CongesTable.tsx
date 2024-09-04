@@ -3,7 +3,7 @@ import Button from "../UI/Button";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
-import { useApiClient } from "../../axios";
+import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
 
 interface CongesTableProps {
@@ -11,9 +11,17 @@ interface CongesTableProps {
   setConges?: (e: any) => void;
 
   fullDisplay: boolean;
+  admin?: boolean;
+  fetchParentData?: () => void;
 }
 
-const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
+const CongesTable = ({
+  conges,
+  fullDisplay,
+  setConges,
+  admin = false,
+  fetchParentData,
+}: CongesTableProps) => {
   const statusIcon = (status: string) => {
     switch (status) {
       case "En cours":
@@ -28,6 +36,7 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
   };
 
   const apiClient = useApiClient();
+  const apiAdmin = useApiAdmin();
 
   const handleDelete = (id: number | undefined) => {
     if (!id) {
@@ -47,6 +56,30 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
     }
   };
 
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: number | undefined
+  ) => {
+    const data = e.currentTarget.dataset.data;
+    if (id) {
+      apiAdmin
+        .put(`/updateConge/${id}`, {
+          status: data,
+        })
+        .then((result) => {
+          if (result.data.Status) {
+            fetchParentData && fetchParentData();
+            toast.success("Demande modifiée");
+          } else {
+            toast.error(result.data.Error);
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("Erreur: id manquant");
+    }
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -55,6 +88,11 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
             <th scope="col" className="px-6 py-3">
               DATES
             </th>
+            {admin && (
+              <th scope="col" className="px-6 py-3">
+                EMPLOYE
+              </th>
+            )}
             {fullDisplay && (
               <th scope="col" className="px-6 py-3">
                 RAISON
@@ -87,6 +125,14 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
                 >
                   Du {conge.startDate} au {conge.endDate}
                 </td>
+                {admin && (
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {conge.employeeId}
+                  </td>
+                )}
                 {fullDisplay && (
                   <td
                     scope="row"
@@ -100,7 +146,7 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
                 <td className="px-6 py-4 flex items-center justify-center gap-1">
                   {conge.status} {statusIcon(conge.status)}
                 </td>
-                {fullDisplay && (
+                {fullDisplay && !admin && (
                   <td className="px-6 py-4">
                     <div className="flex gap-5">
                       <Button
@@ -115,6 +161,33 @@ const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
                         to={`/home/conge/${conge.id}`}
                       >
                         Modifier
+                      </Button>
+                    </div>
+                  </td>
+                )}
+                {fullDisplay && admin && (
+                  <td className="px-6 py-4">
+                    <div className="flex gap-5">
+                      <Button
+                        type="danger"
+                        dataSet="Rejeté"
+                        onClick={(e) => handleClick(e, conge.id)}
+                      >
+                        Refuser
+                      </Button>
+                      <Button
+                        type="warning"
+                        dataSet="En cours"
+                        onClick={(e) => handleClick(e, conge.id)}
+                      >
+                        En cours
+                      </Button>
+                      <Button
+                        type="main"
+                        dataSet="Approuvé"
+                        onClick={(e) => handleClick(e, conge.id)}
+                      >
+                        Accepter
                       </Button>
                     </div>
                   </td>
