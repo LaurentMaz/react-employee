@@ -70,7 +70,7 @@ export type CongeType = {
   congeTypesId: number | null;
   startDate: string;
   endDate: string;
-  businessDays: number;
+  businessDays?: number;
   status: "En cours" | "Approuvé" | "Rejeté";
   reason: string;
 };

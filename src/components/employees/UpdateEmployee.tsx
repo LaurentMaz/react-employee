@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "../UI/Button";
+import { useApiAdmin, useApiClient } from "../../axios";
 
 interface UpdateEmployeeProps {
   from: string;
@@ -15,6 +16,8 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
   const { categories, loading, error } = useFetchCategories();
   if (error) console.log(error);
   const navigate = useNavigate();
+  const apiAdmin = useApiAdmin();
+  const apiClient = useApiClient();
 
   const { id } = useParams();
 
@@ -34,8 +37,8 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
 
   useEffect(() => {
     if (from == "admin") {
-      axios
-        .get(`http://localhost:3000/auth/employee/${id}`)
+      apiAdmin
+        .get(`/employee/${id}`)
         .then((result) => {
           if (result.data.Status) {
             setEmployee({
@@ -53,8 +56,8 @@ const UpdateEmployee = ({ from }: UpdateEmployeeProps) => {
         })
         .catch((err) => console.log(err));
     } else if (from == "employee") {
-      axios
-        .get(`http://localhost:3000/employee/detail`)
+      apiClient
+        .get(`/detail`)
         .then((result) => {
           if (result.data.Status) {
             setEmployee({

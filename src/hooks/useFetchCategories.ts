@@ -1,30 +1,26 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { ICategories } from "../types/types";
+import { useApiAdmin } from "../axios";
 
 const useFetchCategories = () => {
   const [categories, setCategories] = useState<ICategories[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const apiAdmin = useApiAdmin();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const result = await axios.get("http://localhost:3000/auth/category");
-        if (result.data.Status) {
-          setCategories(result.data.Result);
-        } else {
-          setError(result.data.Error || "Failed to fetch categories");
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message || "An error occurred");
-        } else {
-          setError("An unknown error occurred");
-        }
-      } finally {
-        setLoading(false);
-      }
+    const fetchCategories = () => {
+      apiAdmin
+        .get("http://localhost:3000/auth/category")
+        .then((result) => {
+          if (result.data.Status) {
+            setLoading(false);
+            setCategories(result.data.Result);
+          } else {
+            setError(result.data.Error || "Failed to fetch categories");
+          }
+        })
+        .catch((err) => console.log(err));
     };
 
     fetchCategories();

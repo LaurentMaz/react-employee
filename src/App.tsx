@@ -62,7 +62,7 @@ function App() {
             />
             <Route
               path="/dashboard/profil/:id"
-              element={<UpdateEmployee from="profil" />}
+              element={<UpdateEmployee from="admin" />}
             />
             <Route path="/dashboard/admin/:id" element={<UpdateAdmin />} />
             <Route path="/dashboard/addAdmin" element={<AddAdminForm />} />

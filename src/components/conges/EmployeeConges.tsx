@@ -2,32 +2,33 @@ import { useEffect, useState } from "react";
 import useEmployeeContext from "../../hooks/useEmployeeContext";
 import Button from "../UI/Button";
 import Container from "../UI/Container";
-import axios from "axios";
 import { CongeType } from "../../types/types";
 import CongesTable from "./CongesTable";
+import { useApiClient } from "../../axios";
 
 const EmployeeConges = () => {
   const { congesAvalaibleCurrentYear, congesAvalaibleNextYear } =
     useEmployeeContext();
+  const apiClient = useApiClient();
 
   const [congesPending, setCongesPending] = useState<CongeType[]>();
   const [congesAccepted, setCongesAccepted] = useState<CongeType[]>();
   const [congesRefused, setCongesRefused] = useState<CongeType[]>();
 
   const fetchPendingConges = () => {
-    axios
+    apiClient
       .get("http://localhost:3000/employee/conges_pending")
       .then((result) => setCongesPending(result.data.Result))
       .catch((err) => console.log(err));
   };
   const fetchAcceptedConges = () => {
-    axios
+    apiClient
       .get("http://localhost:3000/employee/conges_accepted")
       .then((result) => setCongesAccepted(result.data.Result))
       .catch((err) => console.log(err));
   };
   const fetchRefusedConges = () => {
-    axios
+    apiClient
       .get("http://localhost:3000/employee/conges_refused")
       .then((result) => setCongesRefused(result.data.Result))
       .catch((err) => console.log(err));

@@ -1,30 +1,23 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { employeeType } from "../types/types";
+import { useApiAdmin } from "../axios";
 
 const useFetchEmployees = () => {
   const [employees, setEmployees] = useState<employeeType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const apiAdmin = useApiAdmin();
 
   useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const result = await axios.get("http://localhost:3000/auth/employee");
+    const fetchEmployees = () => {
+      apiAdmin.get("/employee").then((result) => {
         if (result.data.Status) {
+          setLoading(false);
           setEmployees(result.data.Result);
         } else {
           setError(result.data.Error || "Failed to fetch employees");
         }
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message || "An error occurred");
-        } else {
-          setError("An unknown error occurred");
-        }
-      } finally {
-        setLoading(false);
-      }
+      });
     };
 
     fetchEmployees();

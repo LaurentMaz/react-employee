@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 import SearchBar from "../UI/SearchBar";
 import { MdLaptopMac } from "react-icons/md";
 import { FaDesktop } from "react-icons/fa";
+import { useApiAdmin } from "../../axios";
 
 const EquipementTable = () => {
   const [equipements, setEquipements] = useState<EquipementType[]>();
+  const apiAdmin = useApiAdmin();
 
   const handleDelete = (id?: number) => {
     if (id !== undefined) {
@@ -37,7 +39,7 @@ const EquipementTable = () => {
   };
 
   useEffect(() => {
-    axios
+    apiAdmin
       .get("http://localhost:3000/auth/equipements")
       .then((result) => {
         setEquipements(result.data.Result);
