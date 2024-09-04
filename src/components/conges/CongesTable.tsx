@@ -3,13 +3,17 @@ import Button from "../UI/Button";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
+import { useApiClient } from "../../axios";
+import { toast } from "react-toastify";
 
 interface CongesTableProps {
   conges: CongeType[];
+  setConges?: (e: any) => void;
+
   fullDisplay: boolean;
 }
 
-const CongesTable = ({ conges, fullDisplay }: CongesTableProps) => {
+const CongesTable = ({ conges, fullDisplay, setConges }: CongesTableProps) => {
   const statusIcon = (status: string) => {
     switch (status) {
       case "En cours":
@@ -20,6 +24,26 @@ const CongesTable = ({ conges, fullDisplay }: CongesTableProps) => {
         return <TiDelete className="text-red-600 text-lg" />;
       default:
         break;
+    }
+  };
+
+  const apiClient = useApiClient();
+
+  const handleDelete = (id: number | undefined) => {
+    if (!id) {
+      toast.error("ID de la tâche manquante");
+    } else {
+      apiClient
+        .delete(`/remove_conge/${id}`)
+        .then((result) => {
+          if (result.data.Status) {
+            setConges && setConges(conges?.filter((conge) => conge.id !== id));
+            toast.success("Congé supprimé");
+          } else {
+            toast.error(result.data.ErrorMessage);
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -81,13 +105,14 @@ const CongesTable = ({ conges, fullDisplay }: CongesTableProps) => {
                     <div className="flex gap-5">
                       <Button
                         type="danger"
-                        // onClick={() => handleClick(user.email, user.password)}
+                        onClick={() => handleDelete(conge.id)}
                       >
                         Supprimer
                       </Button>
                       <Button
                         type="warning"
-                        // onClick={() => handleClick(user.email, user.password)}
+                        link={true}
+                        to={`/home/conge/${conge.id}`}
                       >
                         Modifier
                       </Button>

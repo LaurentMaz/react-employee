@@ -68,7 +68,11 @@ const EmployeeConges = () => {
 
           <div className="flex flex-col gap-3">
             {congesPending && (
-              <CongesTable conges={congesPending} fullDisplay={true} />
+              <CongesTable
+                conges={congesPending}
+                setConges={setCongesPending}
+                fullDisplay={true}
+              />
             )}
           </div>
         </div>

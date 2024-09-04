@@ -23,6 +23,7 @@ import AddEquipementForm from "./components/equipements/AddEquipementForm";
 import UpdateEquipement from "./components/equipements/UpdateEquipement";
 import EmployeeConges from "./components/conges/EmployeeConges";
 import AddCongeForm from "./components/conges/AddCongeForm";
+import UpdateConge from "./components/conges/UpdateConge";
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
               element={<UpdateEmployee from="employee" />}
             />
             <Route path="/home/conges" element={<EmployeeConges />} />
+            <Route path="/home/conge/:id" element={<UpdateConge />} />
             <Route path="/home/add_conges/" element={<AddCongeForm />} />
           </Route>
         </Routes>
