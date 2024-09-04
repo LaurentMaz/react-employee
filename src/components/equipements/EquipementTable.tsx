@@ -20,14 +20,16 @@ const EquipementTable = () => {
       );
       if (confirmDelete) {
         axios
-          .delete(`http://localhost:3000/auth/remove_equipement`, {
-            data: { id: id },
-          })
-          .then(() => {
-            setEquipements(
-              equipements?.filter((equipement) => equipement.id !== id)
-            );
-            toast.success("Equipement supprimé");
+          .delete(`http://localhost:3000/auth/remove_equipement/${id}`)
+          .then((result) => {
+            if (result.data.Status) {
+              setEquipements(
+                equipements?.filter((equipement) => equipement.id !== id)
+              );
+              toast.success("Equipement supprimé");
+            } else {
+              toast.error(result.data.Error);
+            }
           })
           .catch((err) => {
             console.log(err);

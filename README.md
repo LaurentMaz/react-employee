@@ -40,6 +40,7 @@ Front End for Employees management system.
 
 ### TODOS
 
+- Ajouter un filtre sur les colonnes des congés
 - Système de ticket ?
 - Scale : SSR with express & ReactDOMServer
 - Créer un context pour la partie admin (? voir l'utilité)

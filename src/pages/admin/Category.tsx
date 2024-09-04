@@ -13,9 +13,7 @@ const Category = () => {
 
   const handleDelete = (id: number) => {
     axios
-      .delete("http://localhost:3000/auth/remove_category", {
-        params: { id: id },
-      })
+      .delete(`http://localhost:3000/auth/remove_category/${id}`)
       .then((result) => {
         if (result.data.Status) {
           setCategories(categories.filter((category) => category.id !== id));
