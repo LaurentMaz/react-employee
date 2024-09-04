@@ -18,7 +18,10 @@ const EmployeeEquipements = () => {
   return (
     <div className="flex gap-5">
       {equipements?.map((equipement) => (
-        <div className="flex flex-col items-center mt-5 justify-center shadow-md rounded-md p-5">
+        <div
+          key={equipement.id}
+          className="flex flex-col items-center mt-5 justify-center shadow-md rounded-md p-5"
+        >
           {equipement.type == "desktop" ? (
             <FaComputer className="text-6xl text-teal-700" />
           ) : (

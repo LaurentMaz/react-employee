@@ -36,8 +36,7 @@ Front End for Employees management system.
 ### IN PROGRESS
 
 - Gérer les congés des employés
-- Gérer la date d'entrée des employés pour ajuster le calcul des congés
-- Affiner le calcul des congés au réel
+- Gérer les congés des employés côté admin
 
 ### TODOS
 
@@ -46,6 +45,8 @@ Front End for Employees management system.
 - Créer un context pour la partie admin (? voir l'utilité)
 - Créer les vues des employés
 - Ajouter la gestion des téléphones mobiles
+- Gérer la date d'entrée des employés pour ajuster le calcul des congés
+- Affiner le calcul des congés au réel
 
 ### DONE
 

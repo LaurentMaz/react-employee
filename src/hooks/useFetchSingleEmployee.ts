@@ -1,42 +1,29 @@
 import { useEffect } from "react";
 import axios from "axios";
 import useEmployeeContext from "./useEmployeeContext";
-import { useNavigate } from "react-router-dom";
+import { useApiClient } from "../axios";
 
 const useFetchSingleEmployee = () => {
   axios.defaults.withCredentials = true;
-  const navigate = useNavigate();
+  const apiClient = useApiClient();
 
   const { logedEmployee, setLogedEmployee, setFetchEmpError, FetchEmpError } =
     useEmployeeContext();
 
   useEffect(() => {
-    const fetchEmployee = async () => {
-      try {
-        const result = await axios.get(`http://localhost:3000/employee/detail`);
-        if (result.data.Status) {
-          setLogedEmployee(result.data.Result);
-        } else {
-          setFetchEmpError(result.data.Error);
-        }
-      } catch (err) {
-        if (axios.isAxiosError(err)) {
-          if (err.response) {
-            // Vérifiez le code de statut de la réponse
-            if (err.response.status === 401) {
-              navigate("/"); // Redirige vers /start si l'utilisateur n'est pas authentifié
-            } else {
-              setFetchEmpError(err.response.data.Error || "An error occurred");
-            }
+    const fetchEmployee = () => {
+      apiClient
+        .get(`/detail`)
+        .then((result) => {
+          if (result.data.Status) {
+            setLogedEmployee(result.data.Result);
           } else {
-            // Gestion d'autres erreurs Axios
-            setFetchEmpError(err.message || "An error occurred");
+            if (result.data.Error.message == "jwt expired")
+              setFetchEmpError(result.data.Error);
           }
-        } else {
-          // Gestion d'erreurs non Axios
-          setFetchEmpError("An unknown error occurred");
-        }
-      }
+        })
+
+        .catch((err) => console.log("useFetchSingleEmployeeError:", err));
     };
 
     fetchEmployee();
