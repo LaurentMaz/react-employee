@@ -3,16 +3,18 @@ import Container from "../../components/UI/Container";
 import { CongeType } from "../../types/types";
 import { useApiAdmin } from "../../axios";
 import CongesTable from "../../components/conges/CongesTable";
+import RadioList from "../../components/UI/RadioList";
 
 const AdminConges = () => {
-  const [congePending, setCongePending] = useState<CongeType[]>();
+  const [allConges, setAllconges] = useState<CongeType[]>();
+  const [selectedStatus, setSelectedStatus] = useState("Tous");
   const apiAdmin = useApiAdmin();
 
   const fetchConges = () => {
     apiAdmin
       .get("/congesAll")
       .then((result) => {
-        setCongePending(result.data.Result);
+        setAllconges(result.data.Result);
       })
       .catch((err) => console.log(err));
   };
@@ -20,18 +22,30 @@ const AdminConges = () => {
   useEffect(() => {
     fetchConges();
   }, []);
+
   return (
     <Container className="flex flex-col gap-5">
-      <div>
-        <h2 className="text-2xl font-bold">Liste des congés</h2>
+      <div className="flex gap-20">
+        <div>
+          <h2 className="text-2xl font-bold">Liste des congés</h2>
+        </div>
+        <div className="flex gap-5">
+          <RadioList
+            name="status"
+            labels={["En cours", "Approuvé", "Rejeté", "Tous"]}
+            setParentState={setSelectedStatus}
+            parentState={selectedStatus}
+          />
+        </div>
       </div>
       <div>
-        {congePending && (
+        {allConges && (
           <CongesTable
-            conges={congePending}
+            conges={allConges}
             fullDisplay={true}
             admin={true}
             fetchParentData={fetchConges}
+            filter={selectedStatus}
           />
         )}
       </div>

@@ -5,6 +5,7 @@ import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
 import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 interface CongesTableProps {
   conges: CongeType[];
@@ -13,6 +14,7 @@ interface CongesTableProps {
   fullDisplay: boolean;
   admin?: boolean;
   fetchParentData?: () => void;
+  filter: string;
 }
 
 const CongesTable = ({
@@ -21,6 +23,7 @@ const CongesTable = ({
   setConges,
   admin = false,
   fetchParentData,
+  filter,
 }: CongesTableProps) => {
   const statusIcon = (status: string) => {
     switch (status) {
@@ -37,6 +40,7 @@ const CongesTable = ({
 
   const apiClient = useApiClient();
   const apiAdmin = useApiAdmin();
+  const [congesTemp, setCongesTemp] = useState<CongeType[]>(conges);
 
   const handleDelete = (id: number | undefined) => {
     if (!id) {
@@ -80,6 +84,25 @@ const CongesTable = ({
     }
   };
 
+  useEffect(() => {
+    if (filter && filter == "Tous") {
+      setCongesTemp(conges);
+    } else if (filter && filter !== "Tous") {
+      const filteredConges = conges.filter((conge) =>
+        conge.status.toLowerCase().includes(filter.toLowerCase())
+      );
+      setCongesTemp(filteredConges);
+    } else {
+      setCongesTemp(conges); // Réinitialiser si le filtre est vide
+    }
+  }, [filter, conges]);
+
+  useEffect(() => {
+    if (conges && conges.length > 0) {
+      setCongesTemp(conges);
+    }
+  }, []);
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -113,8 +136,8 @@ const CongesTable = ({
           </tr>
         </thead>
         <tbody>
-          {conges &&
-            conges.map((conge) => (
+          {congesTemp.length > 0 ? (
+            congesTemp.map((conge) => (
               <tr
                 key={conge.id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -193,7 +216,17 @@ const CongesTable = ({
                   </td>
                 )}
               </tr>
-            ))}
+            ))
+          ) : (
+            <tr>
+              <td
+                colSpan={fullDisplay ? 6 : 5}
+                className="px-6 py-4 text-center"
+              >
+                Aucune donnée trouvée
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
