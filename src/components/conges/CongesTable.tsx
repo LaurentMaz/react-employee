@@ -131,6 +131,10 @@ const CongesTable = ({
    * Modification de congesTemp en fonction du filtre status choisi
    */
   useEffect(() => {
+    setFilterMenu({
+      ...filterMenu,
+      filterState: filterStatus,
+    });
     filterConges(filterStatus, "status");
   }, [filterStatus, conges]);
 
@@ -172,6 +176,10 @@ const CongesTable = ({
   };
 
   useEffect(() => {
+    setFilterMenu({
+      ...filterMenu,
+      filterState: filterEmployeeName,
+    });
     filterConges(filterEmployeeName, "employeeFullName");
   }, [filterEmployeeName, conges]);
 

@@ -18,9 +18,9 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
         return (
           <div>
             <SearchBar
-              setData={filterMenu.setFilterState}
+              setData={setFilterState}
               placeholder="Rechercher par nom ou prénom"
-              value={filterMenu.filterState}
+              value={filterState}
             />
           </div>
         );
@@ -28,6 +28,7 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
         return (
           <div>
             <RadioList
+              key={filterState}
               name="status"
               labels={["En cours", "Approuvé", "Rejeté", "Tous"]}
               setValue={setFilterState}
@@ -43,7 +44,7 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
 
   return (
     <div
-      className="flex flex-col gap-5 fixed top-[30%] left-[50%] bg-white px-10 py-2 rounded shadow-lg w-[40%]"
+      className="flex flex-col gap-5 fixed top-[30%] left-[50%] bg-white px-10 py-8 rounded shadow-lg w-[40%]"
       style={{
         transform: "translate(-50%, -50%)", // Centre horizontalement et verticalement
         zIndex: 1000,

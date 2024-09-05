@@ -3,7 +3,6 @@ import Container from "../../components/UI/Container";
 import { CongeType } from "../../types/types";
 import { useApiAdmin } from "../../axios";
 import CongesTable from "../../components/conges/CongesTable";
-import RadioList from "../../components/UI/RadioList";
 
 const AdminConges = () => {
   const [allConges, setAllconges] = useState<CongeType[]>();
@@ -28,14 +27,6 @@ const AdminConges = () => {
         <div>
           <h2 className="text-2xl font-bold">Liste des congés</h2>
         </div>
-        {/* <div className="flex gap-5">
-          <RadioList
-            name="status"
-            labels={["En cours", "Approuvé", "Rejeté", "Tous"]}
-            setValue={setSelectedStatus}
-            value={selectedStatus}
-          />
-        </div> */}
       </div>
       <div>
         {allConges && (
@@ -44,8 +35,6 @@ const AdminConges = () => {
             fullDisplay={true}
             admin={true}
             fetchData={fetchConges}
-            // filterStatus={selectedStatus}
-            // status={status}
           />
         )}
       </div>

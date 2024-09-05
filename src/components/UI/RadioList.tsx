@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface RadioListProps {
   labels: string[];
@@ -12,6 +12,10 @@ const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
     setValue && setValue(e.target.value);
   };
 
+  useEffect(() => {
+    console.log("RENDER");
+  }, []);
+
   return (
     <div className="flex flex-wrap">
       {labels.map((label) => (
@@ -22,7 +26,7 @@ const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
             value={label}
             name={name}
             className="w-4 h-4 "
-            checked={value == label}
+            checked={value === label}
             onChange={handleChange}
           ></input>
           <label
