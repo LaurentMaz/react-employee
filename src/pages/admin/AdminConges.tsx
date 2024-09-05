@@ -7,7 +7,6 @@ import RadioList from "../../components/UI/RadioList";
 
 const AdminConges = () => {
   const [allConges, setAllconges] = useState<CongeType[]>();
-  const [selectedStatus, setSelectedStatus] = useState("Tous");
   const apiAdmin = useApiAdmin();
 
   const fetchConges = () => {
@@ -29,14 +28,14 @@ const AdminConges = () => {
         <div>
           <h2 className="text-2xl font-bold">Liste des congés</h2>
         </div>
-        <div className="flex gap-5">
+        {/* <div className="flex gap-5">
           <RadioList
             name="status"
             labels={["En cours", "Approuvé", "Rejeté", "Tous"]}
-            setParentState={setSelectedStatus}
-            parentState={selectedStatus}
+            setValue={setSelectedStatus}
+            value={selectedStatus}
           />
-        </div>
+        </div> */}
       </div>
       <div>
         {allConges && (
@@ -44,8 +43,9 @@ const AdminConges = () => {
             conges={allConges}
             fullDisplay={true}
             admin={true}
-            fetchParentData={fetchConges}
-            filterStatus={selectedStatus}
+            fetchData={fetchConges}
+            // filterStatus={selectedStatus}
+            // status={status}
           />
         )}
       </div>

@@ -78,7 +78,9 @@ export type CongeType = {
 
 export type filterMenuType = {
   visible: boolean;
-  x: number;
-  y: number;
   column: string | null;
+  filterState: string;
+  setFilterState: Dispatch<SetStateAction<string>> | null;
 };
+
+export type congesFiltersType = "employeeFullName" | "status";

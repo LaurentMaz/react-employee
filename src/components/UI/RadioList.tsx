@@ -3,18 +3,13 @@ import { Dispatch, SetStateAction } from "react";
 interface RadioListProps {
   labels: string[];
   name: string;
-  setParentState: Dispatch<SetStateAction<string>>;
-  parentState: string;
+  setValue: Dispatch<SetStateAction<string>> | null;
+  value: string;
 }
 
-const RadioList = ({
-  labels,
-  name,
-  setParentState,
-  parentState,
-}: RadioListProps) => {
+const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setParentState(e.target.value);
+    setValue && setValue(e.target.value);
   };
 
   return (
@@ -27,7 +22,7 @@ const RadioList = ({
             value={label}
             name={name}
             className="w-4 h-4 "
-            checked={parentState === label}
+            checked={value == label}
             onChange={handleChange}
           ></input>
           <label

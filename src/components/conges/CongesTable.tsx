@@ -1,4 +1,8 @@
-import { CongeType, filterMenuType } from "../../types/types";
+import {
+  congesFiltersType,
+  CongeType,
+  filterMenuType,
+} from "../../types/types";
 import Button from "../UI/Button";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
@@ -17,8 +21,7 @@ interface CongesTableProps {
 
   fullDisplay: boolean;
   admin?: boolean;
-  fetchParentData?: () => void;
-  filterStatus: string;
+  fetchData?: () => void;
 }
 
 const CongesTable = ({
@@ -26,8 +29,7 @@ const CongesTable = ({
   fullDisplay,
   setConges,
   admin = false,
-  fetchParentData,
-  filterStatus,
+  fetchData,
 }: CongesTableProps) => {
   const statusIcon = (status: string) => {
     switch (status) {
@@ -45,12 +47,16 @@ const CongesTable = ({
   const apiClient = useApiClient();
   const apiAdmin = useApiAdmin();
   const [congesTemp, setCongesTemp] = useState<CongeType[]>(conges);
-  const [filterEmployee, setFilterEmployee] = useState("");
+  const [filterEmployeeName, setFilterEmployeeName] = useState<string>("");
+  const [filterStatus, setFilterStatus] = useState<string>("Tous");
+  const [activeFilters, setActiveFilters] = useState<{ [key: string]: string }>(
+    {}
+  );
   const [filterMenu, setFilterMenu] = useState<filterMenuType>({
     visible: false,
-    x: 0,
-    y: 0,
     column: null,
+    filterState: "",
+    setFilterState: null,
   });
 
   const handleDelete = (id: number | undefined) => {
@@ -83,7 +89,7 @@ const CongesTable = ({
         })
         .then((result) => {
           if (result.data.Status) {
-            fetchParentData && fetchParentData();
+            fetchData && fetchData();
             toast.success("Demande modifiée");
           } else {
             toast.error(result.data.Error);
@@ -95,60 +101,79 @@ const CongesTable = ({
     }
   };
 
-  // Fonction pour afficher le menu contextuel
-  const handleContextMenu = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    column: string
-  ) => {
-    const target = e.target as SVGElement;
-    const parentDiv = target.parentElement;
-    if (parentDiv) {
-      const divRect = parentDiv.getBoundingClientRect();
-      const offsetX = e.clientX - divRect.left;
-      const offsetY = e.clientY - divRect.top;
+  // Fonction pour afficher le menu contextuel en fonction de la colonne filtrée
+  const handleContextMenu = (column: congesFiltersType) => {
+    let filterState = "";
+    let setFilterState = null;
 
-      setFilterMenu({
-        visible: true,
-        x: offsetX,
-        y: offsetY,
-        column,
-      });
+    switch (column) {
+      case "employeeFullName":
+        filterState = filterEmployeeName;
+        setFilterState = setFilterEmployeeName;
+        break;
+      case "status":
+        filterState = filterStatus;
+        setFilterState = setFilterStatus;
+        break;
+      default:
+        break;
     }
+
+    setFilterMenu({
+      visible: true,
+      column,
+      filterState: filterState,
+      setFilterState: setFilterState,
+    });
   };
 
   /**
    * Modification de congesTemp en fonction du filtre status choisi
    */
   useEffect(() => {
-    if (filterStatus && filterStatus == "Tous") {
-      setCongesTemp(conges);
-    } else if (filterStatus && filterStatus !== "Tous") {
-      const filteredConges = conges.filter((conge) =>
-        conge.status.toLowerCase().includes(filterStatus.toLowerCase())
-      );
-      setCongesTemp(filteredConges);
-    } else {
-      setCongesTemp(conges); // Réinitialiser si le filtre est vide
-    }
+    filterConges(filterStatus, "status");
   }, [filterStatus, conges]);
 
   /**
-   * Modification de congesTemp en fonction du filtre employee choisi
+   * Function de filtrage des congés avec filtres cumulatifs
+   * @param filter correspond au state mis à jour
+   * @param column correspond au nom de la colonne filtrée
    */
-  useEffect(() => {
-    if (filterEmployee && filterEmployee == "") {
-      setCongesTemp(conges);
-    } else if (filterEmployee && filterEmployee !== "") {
-      const filteredConges = conges.filter((conge) =>
-        conge.employeeFullName
-          ?.toLowerCase()
-          .includes(filterEmployee.toLowerCase())
-      );
-      setCongesTemp(filteredConges);
+  const filterConges = (filter: string, column: congesFiltersType) => {
+    let updatedFilters = { ...activeFilters };
+
+    // Ajouter ou mettre à jour le filtre pour une colonne spécifique
+    if (filter === "" || filter === "Tous") {
+      delete updatedFilters[column]; // Supprimer le filtre si le champ est vide
     } else {
-      setCongesTemp(conges); // Réinitialiser si le filtre est vide
+      updatedFilters[column] = filter; // Ajouter ou mettre à jour le filtre
     }
-  }, [filterEmployee, conges]);
+    setActiveFilters(updatedFilters);
+
+    let filteredConges = conges;
+
+    Object.keys(updatedFilters).forEach((col) => {
+      const filterValue = updatedFilters[col].toLowerCase();
+      filteredConges = filteredConges.filter((conge) => {
+        // Vérifiez le champ correspondant à la colonne
+        switch (col) {
+          case "employeeFullName":
+            return conge.employeeFullName?.toLowerCase().includes(filterValue);
+          case "status":
+            return conge.status?.toLowerCase().includes(filterValue);
+          // Ajoutez d'autres colonnes ici
+          default:
+            return true;
+        }
+      });
+    });
+
+    setCongesTemp(filteredConges);
+  };
+
+  useEffect(() => {
+    filterConges(filterEmployeeName, "employeeFullName");
+  }, [filterEmployeeName, conges]);
 
   /**
    * Initialisation de congesTemp avec une copie de conges pour filtrer les données sans dénaturé le tableau initial
@@ -173,12 +198,12 @@ const CongesTable = ({
                 className="flex gap-2 px-6 py-3 justify-start items-center"
               >
                 <div>EMPLOYE</div>
-                <div onClick={(e) => handleContextMenu(e, "employee")}>
-                  <FaFilter className="text-teal-700" />
+                <div onClick={() => handleContextMenu("employeeFullName")}>
+                  <FaFilter className="text-teal-700 cursor-pointer" />
                 </div>
-                {filterEmployee !== "" && (
-                  <div onClick={() => setFilterEmployee("")}>
-                    <MdDeleteSweep className="text-red-500 text-lg" />
+                {filterEmployeeName !== "" && (
+                  <div onClick={() => setFilterEmployeeName("")}>
+                    <MdDeleteSweep className="text-red-500 text-lg cursor-pointer" />
                   </div>
                 )}
               </th>
@@ -192,8 +217,20 @@ const CongesTable = ({
             <th scope="col" className="px-6 py-3">
               JOURS COMPTES
             </th>
-            <th scope="col" className="px-6 py-3">
-              STATUS
+            <th
+              scope="col"
+              className="flex gap-2 px-6 py-3 justify-start items-center"
+            >
+              <div>STATUS</div>
+
+              <div onClick={() => handleContextMenu("status")}>
+                <FaFilter className="text-teal-700 cursor-pointer" />
+              </div>
+              {filterStatus !== "Tous" && (
+                <div onClick={() => setFilterStatus("Tous")}>
+                  <MdDeleteSweep className="text-red-500 text-lg cursor-pointer" />
+                </div>
+              )}
             </th>
             {fullDisplay && (
               <th scope="col" className="px-6 py-3">
@@ -304,8 +341,6 @@ const CongesTable = ({
           <FilterColumn
             filterMenu={filterMenu}
             setFilterMenu={setFilterMenu}
-            setFilterEmployee={setFilterEmployee}
-            filterEmployee={filterEmployee}
           />,
           document.body
         )}
