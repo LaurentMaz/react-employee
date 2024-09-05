@@ -12,10 +12,6 @@ const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
     setValue && setValue(e.target.value);
   };
 
-  useEffect(() => {
-    console.log("RENDER");
-  }, []);
-
   return (
     <div className="flex flex-wrap flex-col gap-1">
       {labels.map((label) => (

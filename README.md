@@ -40,6 +40,7 @@ Front End for Employees management system.
 
 ### TODOS
 
+- Afficher le nb de jours de congés n-1 et n restants + alert quand demande > dispo
 - Scale : SSR with express & ReactDOMServer
 - Créer un context pour la partie admin (? voir l'utilité)
 - Créer les vues des employés

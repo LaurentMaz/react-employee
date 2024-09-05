@@ -141,9 +141,6 @@ const CongesTable = ({
     }
   };
 
-  /**
-   * Modification de congesTemp en fonction du filtre status choisi
-   */
   useEffect(() => {
     setFilterMenu({
       ...filterMenu,
@@ -151,6 +148,14 @@ const CongesTable = ({
     });
     filterConges(filterStatus, "status");
   }, [filterStatus, conges]);
+
+  useEffect(() => {
+    setFilterMenu({
+      ...filterMenu,
+      filterState: filterEmployeeName,
+    });
+    filterConges(filterEmployeeName, "employeeFullName");
+  }, [filterEmployeeName, conges]);
 
   /**
    * Function de filtrage des congés avec filtres cumulatifs
@@ -180,9 +185,7 @@ const CongesTable = ({
               conge.employeeFullName!.toLowerCase()
             ).includes(filterValue);
           case "status":
-            return removeAccents(conge.status?.toLowerCase()).includes(
-              filterValue
-            );
+            return conge.status?.toLowerCase().includes(filterValue);
           // Ajoutez d'autres colonnes ici
           default:
             return true;
@@ -192,14 +195,6 @@ const CongesTable = ({
 
     setCongesTemp(filteredConges);
   };
-
-  useEffect(() => {
-    setFilterMenu({
-      ...filterMenu,
-      filterState: filterEmployeeName,
-    });
-    filterConges(filterEmployeeName, "employeeFullName");
-  }, [filterEmployeeName, conges]);
 
   /**
    * Initialisation de congesTemp avec une copie de conges pour filtrer les données sans dénaturé le tableau initial
@@ -255,9 +250,14 @@ const CongesTable = ({
             >
               <div>STATUS</div>
 
-              <div onClick={() => handleContextMenu("status", filterStatusRef)}>
-                <FaFilter className="text-teal-700 cursor-pointer" />
-              </div>
+              {admin && (
+                <div
+                  onClick={() => handleContextMenu("status", filterStatusRef)}
+                >
+                  <FaFilter className="text-teal-700 cursor-pointer" />
+                </div>
+              )}
+
               {filterStatus !== "Tous" && (
                 <div onClick={() => setFilterStatus("Tous")}>
                   <MdDeleteSweep className="text-red-500 text-lg cursor-pointer" />
