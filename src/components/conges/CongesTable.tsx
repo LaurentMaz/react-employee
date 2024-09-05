@@ -14,6 +14,7 @@ import { FaFilter } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import FilterColumn from "../UI/FilterColumn";
 import { createPortal } from "react-dom";
+import { removeAccents } from "../../utils/helper";
 
 interface CongesTableProps {
   conges: CongeType[];
@@ -175,9 +176,13 @@ const CongesTable = ({
         // Vérifiez le champ correspondant à la colonne
         switch (col) {
           case "employeeFullName":
-            return conge.employeeFullName?.toLowerCase().includes(filterValue);
+            return removeAccents(
+              conge.employeeFullName!.toLowerCase()
+            ).includes(filterValue);
           case "status":
-            return conge.status?.toLowerCase().includes(filterValue);
+            return removeAccents(conge.status?.toLowerCase()).includes(
+              filterValue
+            );
           // Ajoutez d'autres colonnes ici
           default:
             return true;

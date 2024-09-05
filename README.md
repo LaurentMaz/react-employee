@@ -35,6 +35,7 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
+- Update les composants utilisant la SearchBar pour filtrer les données au lieu de API CALLS
 - Système de ticket ?
 
 ### TODOS
