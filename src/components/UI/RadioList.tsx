@@ -17,7 +17,7 @@ const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
   }, []);
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap flex-col gap-1">
       {labels.map((label) => (
         <div key={label} className="flex items-center me-4">
           <input
@@ -31,7 +31,7 @@ const RadioList = ({ labels, name, setValue, value }: RadioListProps) => {
           ></input>
           <label
             htmlFor={`${label.toLowerCase()}-radio`}
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
+            className="ms-2 text-xs font-medium text-gray-900 dark:text-gray-300 cursor-pointer"
           >
             {label}
           </label>

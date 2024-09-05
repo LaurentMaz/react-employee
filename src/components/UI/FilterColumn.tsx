@@ -44,7 +44,7 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
 
   return (
     <div
-      className="flex flex-col gap-5 absolute top-[12%] bg-white px-3 py-8 rounded shadow-2xl w-[25%]"
+      className="flex flex-col gap-5 fixed top-[23%] bg-white px-3 py-4 rounded shadow-2xl w-[25%]"
       style={{
         // transform: "translate(-50%, -50%)", // Centre horizontalement et verticalement
         zIndex: 1000,
@@ -53,12 +53,14 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
       {displayFilter()}
       <div className="flex gap-2">
         <Button
+          className="text-xs"
           type="danger"
           onClick={() => setFilterMenu({ ...filterMenu, visible: false })}
         >
           Fermer
         </Button>
         <Button
+          className="text-xs"
           type="main"
           onClick={() => setFilterMenu({ ...filterMenu, visible: false })}
         >

@@ -9,7 +9,7 @@ import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
 import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
-import { RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import FilterColumn from "../UI/FilterColumn";
@@ -377,7 +377,7 @@ const CongesTable = ({
       {filterMenu.visible && (
         <div
           onClick={() => setFilterMenu({ ...filterMenu, visible: false })}
-          className="	fixed top-0 left-0 right-0 bottom-0"
+          className="	fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-15"
         />
       )}
     </div>
