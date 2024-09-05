@@ -45,7 +45,7 @@ const AdminConges = () => {
             fullDisplay={true}
             admin={true}
             fetchParentData={fetchConges}
-            filter={selectedStatus}
+            filterStatus={selectedStatus}
           />
         )}
       </div>

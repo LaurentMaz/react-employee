@@ -67,10 +67,18 @@ export type EquipementType = {
 export type CongeType = {
   id?: number;
   employeeId?: number | null;
+  employeeFullName?: string;
   congeTypesId: number | null;
   startDate: string;
   endDate: string;
   businessDays?: number;
   status: "En cours" | "Approuvé" | "Rejeté";
   reason: string;
+};
+
+export type filterMenuType = {
+  visible: boolean;
+  x: number;
+  y: number;
+  column: string | null;
 };

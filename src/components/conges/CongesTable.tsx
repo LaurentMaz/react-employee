@@ -1,4 +1,4 @@
-import { CongeType } from "../../types/types";
+import { CongeType, filterMenuType } from "../../types/types";
 import Button from "../UI/Button";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
@@ -6,6 +6,10 @@ import { TiDelete } from "react-icons/ti";
 import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { FaFilter } from "react-icons/fa6";
+import { MdDeleteSweep } from "react-icons/md";
+import FilterColumn from "../UI/FilterColumn";
+import { createPortal } from "react-dom";
 
 interface CongesTableProps {
   conges: CongeType[];
@@ -14,7 +18,7 @@ interface CongesTableProps {
   fullDisplay: boolean;
   admin?: boolean;
   fetchParentData?: () => void;
-  filter: string;
+  filterStatus: string;
 }
 
 const CongesTable = ({
@@ -23,7 +27,7 @@ const CongesTable = ({
   setConges,
   admin = false,
   fetchParentData,
-  filter,
+  filterStatus,
 }: CongesTableProps) => {
   const statusIcon = (status: string) => {
     switch (status) {
@@ -41,6 +45,13 @@ const CongesTable = ({
   const apiClient = useApiClient();
   const apiAdmin = useApiAdmin();
   const [congesTemp, setCongesTemp] = useState<CongeType[]>(conges);
+  const [filterEmployee, setFilterEmployee] = useState("");
+  const [filterMenu, setFilterMenu] = useState<filterMenuType>({
+    visible: false,
+    x: 0,
+    y: 0,
+    column: null,
+  });
 
   const handleDelete = (id: number | undefined) => {
     if (!id) {
@@ -84,19 +95,64 @@ const CongesTable = ({
     }
   };
 
+  // Fonction pour afficher le menu contextuel
+  const handleContextMenu = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    column: string
+  ) => {
+    const target = e.target as SVGElement;
+    const parentDiv = target.parentElement;
+    if (parentDiv) {
+      const divRect = parentDiv.getBoundingClientRect();
+      const offsetX = e.clientX - divRect.left;
+      const offsetY = e.clientY - divRect.top;
+
+      setFilterMenu({
+        visible: true,
+        x: offsetX,
+        y: offsetY,
+        column,
+      });
+    }
+  };
+
+  /**
+   * Modification de congesTemp en fonction du filtre status choisi
+   */
   useEffect(() => {
-    if (filter && filter == "Tous") {
+    if (filterStatus && filterStatus == "Tous") {
       setCongesTemp(conges);
-    } else if (filter && filter !== "Tous") {
+    } else if (filterStatus && filterStatus !== "Tous") {
       const filteredConges = conges.filter((conge) =>
-        conge.status.toLowerCase().includes(filter.toLowerCase())
+        conge.status.toLowerCase().includes(filterStatus.toLowerCase())
       );
       setCongesTemp(filteredConges);
     } else {
       setCongesTemp(conges); // Réinitialiser si le filtre est vide
     }
-  }, [filter, conges]);
+  }, [filterStatus, conges]);
 
+  /**
+   * Modification de congesTemp en fonction du filtre employee choisi
+   */
+  useEffect(() => {
+    if (filterEmployee && filterEmployee == "") {
+      setCongesTemp(conges);
+    } else if (filterEmployee && filterEmployee !== "") {
+      const filteredConges = conges.filter((conge) =>
+        conge.employeeFullName
+          ?.toLowerCase()
+          .includes(filterEmployee.toLowerCase())
+      );
+      setCongesTemp(filteredConges);
+    } else {
+      setCongesTemp(conges); // Réinitialiser si le filtre est vide
+    }
+  }, [filterEmployee, conges]);
+
+  /**
+   * Initialisation de congesTemp avec une copie de conges pour filtrer les données sans dénaturé le tableau initial
+   */
   useEffect(() => {
     if (conges && conges.length > 0) {
       setCongesTemp(conges);
@@ -112,8 +168,19 @@ const CongesTable = ({
               DATES
             </th>
             {admin && (
-              <th scope="col" className="px-6 py-3">
-                EMPLOYE
+              <th
+                scope="col"
+                className="flex gap-2 px-6 py-3 justify-start items-center"
+              >
+                <div>EMPLOYE</div>
+                <div onClick={(e) => handleContextMenu(e, "employee")}>
+                  <FaFilter className="text-teal-700" />
+                </div>
+                {filterEmployee !== "" && (
+                  <div onClick={() => setFilterEmployee("")}>
+                    <MdDeleteSweep className="text-red-500 text-lg" />
+                  </div>
+                )}
               </th>
             )}
             {fullDisplay && (
@@ -153,7 +220,7 @@ const CongesTable = ({
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {conge.employeeId}
+                    {conge.employeeFullName}
                   </td>
                 )}
                 {fullDisplay && (
@@ -166,8 +233,10 @@ const CongesTable = ({
                 )}
 
                 <td className="px-6 py-4">{conge.businessDays}</td>
-                <td className="px-6 py-4 flex items-center justify-center gap-1">
-                  {conge.status} {statusIcon(conge.status)}
+                <td className="px-6 py-4">
+                  <div className="flex items-center justify-center gap-1">
+                    {conge.status} {statusIcon(conge.status)}
+                  </div>
                 </td>
                 {fullDisplay && !admin && (
                   <td className="px-6 py-4">
@@ -229,6 +298,25 @@ const CongesTable = ({
           )}
         </tbody>
       </table>
+      {/* Menu contextuel */}
+      {filterMenu.visible &&
+        createPortal(
+          <FilterColumn
+            filterMenu={filterMenu}
+            setFilterMenu={setFilterMenu}
+            setFilterEmployee={setFilterEmployee}
+            filterEmployee={filterEmployee}
+          />,
+          document.body
+        )}
+
+      {/* Clic en dehors du menu pour le fermer */}
+      {filterMenu.visible && (
+        <div
+          onClick={() => setFilterMenu({ ...filterMenu, visible: false })}
+          className="bg-black bg-opacity-80	fixed top-0 left-0 right-0 bottom-0"
+        />
+      )}
     </div>
   );
 };
