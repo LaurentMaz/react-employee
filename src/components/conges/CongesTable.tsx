@@ -9,7 +9,7 @@ import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
 import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import FilterColumn from "../UI/FilterColumn";
@@ -49,6 +49,11 @@ const CongesTable = ({
   const [congesTemp, setCongesTemp] = useState<CongeType[]>(conges);
   const [filterEmployeeName, setFilterEmployeeName] = useState<string>("");
   const [filterStatus, setFilterStatus] = useState<string>("Tous");
+  const filterStatusRef = useRef<HTMLTableCellElement | null>(null);
+  const filterEmployeeNameRef = useRef<HTMLTableCellElement | null>(null);
+  const [clickedRef, setclickedRef] =
+    useState<RefObject<HTMLTableCellElement>>();
+
   const [activeFilters, setActiveFilters] = useState<{ [key: string]: string }>(
     {}
   );
@@ -102,7 +107,10 @@ const CongesTable = ({
   };
 
   // Fonction pour afficher le menu contextuel en fonction de la colonne filtrée
-  const handleContextMenu = (column: congesFiltersType) => {
+  const handleContextMenu = (
+    column: congesFiltersType,
+    ref: React.RefObject<HTMLTableCellElement>
+  ) => {
     let filterState = "";
     let setFilterState = null;
 
@@ -125,6 +133,11 @@ const CongesTable = ({
       filterState: filterState,
       setFilterState: setFilterState,
     });
+
+    // Mettre à jour dynamiquement la position du conteneur en fonction du `ref`
+    if (ref.current) {
+      setclickedRef(ref);
+    }
   };
 
   /**
@@ -194,7 +207,7 @@ const CongesTable = ({
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table className="w-full min-h-[200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">
           <tr>
             <th scope="col" className="px-6 py-3">
@@ -202,11 +215,16 @@ const CongesTable = ({
             </th>
             {admin && (
               <th
+                ref={filterEmployeeNameRef}
                 scope="col"
                 className="flex gap-2 px-6 py-3 justify-start items-center"
               >
                 <div>EMPLOYE</div>
-                <div onClick={() => handleContextMenu("employeeFullName")}>
+                <div
+                  onClick={() =>
+                    handleContextMenu("employeeFullName", filterEmployeeNameRef)
+                  }
+                >
                   <FaFilter className="text-teal-700 cursor-pointer" />
                 </div>
                 {filterEmployeeName !== "" && (
@@ -226,12 +244,13 @@ const CongesTable = ({
               JOURS COMPTES
             </th>
             <th
+              ref={filterStatusRef}
               scope="col"
               className="flex gap-2 px-6 py-3 justify-start items-center"
             >
               <div>STATUS</div>
 
-              <div onClick={() => handleContextMenu("status")}>
+              <div onClick={() => handleContextMenu("status", filterStatusRef)}>
                 <FaFilter className="text-teal-700 cursor-pointer" />
               </div>
               {filterStatus !== "Tous" && (
@@ -350,14 +369,15 @@ const CongesTable = ({
             filterMenu={filterMenu}
             setFilterMenu={setFilterMenu}
           />,
-          document.body
+          // document.body
+          clickedRef?.current!
         )}
 
       {/* Clic en dehors du menu pour le fermer */}
       {filterMenu.visible && (
         <div
           onClick={() => setFilterMenu({ ...filterMenu, visible: false })}
-          className="bg-black bg-opacity-80	fixed top-0 left-0 right-0 bottom-0"
+          className="	fixed top-0 left-0 right-0 bottom-0"
         />
       )}
     </div>

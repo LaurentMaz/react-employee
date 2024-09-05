@@ -44,9 +44,9 @@ const FilterColumn = ({ filterMenu, setFilterMenu }: FilterColumnProps) => {
 
   return (
     <div
-      className="flex flex-col gap-5 fixed top-[30%] left-[50%] bg-white px-10 py-8 rounded shadow-lg w-[40%]"
+      className="flex flex-col gap-5 absolute top-[12%] bg-white px-3 py-8 rounded shadow-2xl w-[25%]"
       style={{
-        transform: "translate(-50%, -50%)", // Centre horizontalement et verticalement
+        // transform: "translate(-50%, -50%)", // Centre horizontalement et verticalement
         zIndex: 1000,
       }}
     >
