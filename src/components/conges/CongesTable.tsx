@@ -147,7 +147,7 @@ const CongesTable = ({
       filterState: filterStatus,
     });
     filterConges(filterStatus, "status");
-  }, [filterStatus]);
+  }, [filterStatus, congesTemp]);
 
   useEffect(() => {
     setFilterMenu({
@@ -155,7 +155,7 @@ const CongesTable = ({
       filterState: filterEmployeeName,
     });
     filterConges(filterEmployeeName, "employeeFullName");
-  }, [filterEmployeeName]);
+  }, [filterEmployeeName, congesTemp]);
 
   /**
    * Function de filtrage des congés avec filtres cumulatifs
@@ -185,7 +185,7 @@ const CongesTable = ({
               conge.employeeFullName!.toLowerCase()
             ).includes(filterValue);
           case "status":
-            return conge.status?.toLowerCase().includes(filterValue);
+            return conge.status.toLowerCase().includes(filterValue);
           // Ajoutez d'autres colonnes ici
           default:
             return true;
@@ -207,6 +207,7 @@ const CongesTable = ({
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      bU
       <table className="w-full min-h-[200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">
           <tr>
@@ -377,7 +378,6 @@ const CongesTable = ({
           // document.body
           clickedRef?.current!
         )}
-
       {/* Clic en dehors du menu pour le fermer */}
       {filterMenu.visible && (
         <div
