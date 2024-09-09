@@ -3,7 +3,7 @@ import Input from "./Input";
 import axios from "axios";
 
 interface SearchBarProps {
-  value: string;
+  value?: string;
   data?: any[];
   setData: any;
   apiRoute?: string;

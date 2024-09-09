@@ -45,7 +45,9 @@ const AddCategoryForm = () => {
         <Button type="danger" link={true} to="/dashboard/category">
           Annuler
         </Button>
-        <Button type="main">Ajouter</Button>
+        <Button type="main" submit={true}>
+          Ajouter
+        </Button>
       </div>
     </form>
   );
