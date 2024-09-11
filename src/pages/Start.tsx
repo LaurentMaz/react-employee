@@ -16,9 +16,11 @@ const Start = () => {
           if (result.data.role === "employee") {
             navigate("/home");
           }
+        } else {
+          console.log(result.data.Error);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }, []);
   return (
     <>

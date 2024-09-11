@@ -12,7 +12,7 @@ interface SearchBarProps {
 
 const SearchBar = ({
   data,
-  value,
+  value = "",
   setData,
   apiRoute,
   placeholder,

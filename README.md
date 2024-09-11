@@ -35,7 +35,7 @@ Front End for Employees management system.
 
 ### IN PROGRESS
 
-- Système de ticket ?
+- Système de ticket
 
 ### TODOS
 

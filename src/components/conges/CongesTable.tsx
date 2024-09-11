@@ -9,7 +9,7 @@ import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
 import { useApiAdmin, useApiClient } from "../../axios";
 import { toast } from "react-toastify";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
 import FilterColumn from "../UI/FilterColumn";
@@ -162,39 +162,42 @@ const CongesTable = ({
    * @param filter correspond au state mis à jour
    * @param column correspond au nom de la colonne filtrée
    */
-  const filterConges = (filter: string, column: congesFiltersType) => {
-    let updatedFilters = { ...activeFilters };
+  const filterConges = useCallback(
+    (filter: string, column: congesFiltersType) => {
+      let updatedFilters = { ...activeFilters };
 
-    // Ajouter ou mettre à jour le filtre pour une colonne spécifique
-    if (filter === "" || filter === "Tous") {
-      delete updatedFilters[column]; // Supprimer le filtre si le champ est vide
-    } else {
-      updatedFilters[column] = filter; // Ajouter ou mettre à jour le filtre
-    }
-    setActiveFilters(updatedFilters);
+      // Ajouter ou mettre à jour le filtre pour une colonne spécifique
+      if (filter === "" || filter === "Tous") {
+        delete updatedFilters[column]; // Supprimer le filtre si le champ est vide
+      } else {
+        updatedFilters[column] = filter; // Ajouter ou mettre à jour le filtre
+      }
+      setActiveFilters(updatedFilters);
 
-    let filteredConges = conges;
+      let filteredConges = conges;
 
-    Object.keys(updatedFilters).forEach((col) => {
-      const filterValue = updatedFilters[col].toLowerCase();
-      filteredConges = filteredConges.filter((conge) => {
-        // Vérifiez le champ correspondant à la colonne
-        switch (col) {
-          case "employeeFullName":
-            return removeAccents(
-              conge.employeeFullName!.toLowerCase()
-            ).includes(filterValue);
-          case "status":
-            return conge.status.toLowerCase().includes(filterValue);
-          // Ajoutez d'autres colonnes ici
-          default:
-            return true;
-        }
+      Object.keys(updatedFilters).forEach((col) => {
+        const filterValue = updatedFilters[col].toLowerCase();
+        filteredConges = filteredConges.filter((conge) => {
+          // Vérifiez le champ correspondant à la colonne
+          switch (col) {
+            case "employeeFullName":
+              return removeAccents(
+                conge.employeeFullName!.toLowerCase()
+              ).includes(filterValue);
+            case "status":
+              return conge.status.toLowerCase().includes(filterValue);
+            // Ajoutez d'autres colonnes ici
+            default:
+              return true;
+          }
+        });
       });
-    });
 
-    setCongesTemp(filteredConges);
-  };
+      setCongesTemp(filteredConges);
+    },
+    [filterStatus, filterEmployeeName]
+  );
 
   /**
    * Initialisation de congesTemp avec une copie de conges pour filtrer les données sans dénaturé le tableau initial

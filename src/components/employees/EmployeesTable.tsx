@@ -69,7 +69,6 @@ const EmployeesTable = ({ employees, setEmployees }: EmployeesTableProps) => {
       <SearchBar
         setData={setEmployeeFilter}
         value={employeeFilter}
-        // apiRoute="http://localhost:3000/auth/searchEmployee"
         placeholder="Rechercher un employé"
       />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
