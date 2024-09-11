@@ -16,16 +16,18 @@ Front End for Employees management system.
 ## Front end
 
 - Typescript
-- React Router DOM
+- React Router DOM with Outlet and Nested routes
 - Custom Hook
-- Reusable components
-- React Context
+- Reusable components (Button, Input, SearchBar,..etc)
+- React Context API
 - Axios
+- useCallback
 
 ## Back end
 
 - NodeJs Express Back end
 - Connect to SQL DB
+- Create a connexion Pool
 - Create API Routes
 - SQL Statements
 - CORS usage to connect back and front
