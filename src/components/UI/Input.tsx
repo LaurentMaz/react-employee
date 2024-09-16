@@ -53,6 +53,7 @@ const Input = ({
           required={isRequired}
           disabled={disabled}
           placeholder={placeholder}
+          autoFocus
         />
         {type === "password" && (
           <span
