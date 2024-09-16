@@ -1,7 +1,7 @@
 # React + TypeScript + NodeJS + Express + SQL
 
-Front End for Employees management system.
-! This project is not focused on design, responsive is not implemented !
+Employees management system.
+This project is not focused on design, responsive is not implemented !
 
 ## Authentication
 
@@ -33,6 +33,17 @@ Front End for Employees management system.
 - CORS usage to connect back and front
 - Mécanismes d'authentification et d'autorisation pour l'accès aux données : Middleware, JWT
 
+## Testing
+
+- Unit tests with Vitest
+- React Testing Library and JSDOM
+- Testing Components
+- Mocking APIs
+- Testing Forms
+- Testing State Management
+- Testing Authentication
+- Testing Routing
+
 ## TODO
 
 ### IN PROGRESS
@@ -49,6 +60,7 @@ Front End for Employees management system.
 - Ajouter la gestion des téléphones mobiles
 - Gérer la date d'entrée des employés pour ajuster le calcul des congés
 - Affiner le calcul des congés au réel
+- Improve JWT with Short lived access token & Refresh Token
 
 ### DONE
 

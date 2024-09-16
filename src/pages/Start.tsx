@@ -20,7 +20,9 @@ const Start = () => {
           console.log(result.data.Error);
         }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   return (
     <>

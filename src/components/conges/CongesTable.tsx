@@ -196,7 +196,7 @@ const CongesTable = ({
 
       setCongesTemp(filteredConges);
     },
-    [filterStatus, filterEmployeeName]
+    [filterStatus, filterEmployeeName, handleDelete]
   );
 
   /**
