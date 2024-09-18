@@ -1,7 +1,6 @@
 import "./App.css";
 import Category from "./pages/admin/Category";
 import Employee from "./pages/admin/Employee";
-import Home from "./pages/admin/Home";
 import LoginAdmin from "./pages/admin/LoginAdmin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddCategoryForm from "./components/categories/AddCategoryForm";
@@ -12,7 +11,6 @@ import { ToastContainer } from "react-toastify";
 import UpdateAdmin from "./components/admins/UpdateAdmin";
 import LoginEmployee from "./pages/employee/LoginEmployee";
 import Start from "./pages/Start";
-import Dashboard from "./pages/admin/Dashboard";
 import DashboardEmployee from "./pages/employee/DashboardEmployee";
 import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -25,6 +23,8 @@ import EmployeeConges from "./components/conges/EmployeeConges";
 import AddCongeForm from "./components/conges/AddCongeForm";
 import UpdateConge from "./components/conges/UpdateConge";
 import AdminConges from "./pages/admin/AdminConges";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -38,11 +38,11 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute type="authAdmin">
-                <Dashboard />
+                <AdminLayout />
               </ProtectedRoute>
             }
           >
-            <Route path="" element={<Home />} />
+            <Route path="" element={<AdminDashboard />} />
             <Route path="/dashboard/employee" element={<Employee />} />
             <Route path="/dashboard/conges" element={<AdminConges />} />
             <Route path="/dashboard/category" element={<Category />} />

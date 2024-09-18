@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/admins/Navbar";
 
-const Dashboard = () => {
+const AdminLayout = () => {
   return (
     <div className="flex w-full h-[100vh]">
       <div className="flex w-[15%] bg-teal-950 text-white items-start justify-center pt-10">
@@ -19,4 +19,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AdminLayout;

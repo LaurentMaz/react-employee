@@ -36,13 +36,6 @@ This project is not focused on design, responsive is not implemented !
 ## Testing
 
 - Unit tests with Vitest
-- React Testing Library and JSDOM
-- Testing Components
-- Mocking APIs
-- Testing Forms
-- Testing State Management
-- Testing Authentication
-- Testing Routing
 
 ## TODO
 
@@ -61,6 +54,14 @@ This project is not focused on design, responsive is not implemented !
 - Gérer la date d'entrée des employés pour ajuster le calcul des congés
 - Affiner le calcul des congés au réel
 - Improve JWT with Short lived access token & Refresh Token
+
+- React Testing Library and JSDOM
+- Testing Components
+- Mocking APIs
+- Testing Forms
+- Testing State Management
+- Testing Authentication
+- Testing Routing
 
 ### DONE
 

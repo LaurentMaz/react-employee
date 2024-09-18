@@ -1,57 +1,21 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { adminRecordType } from "../../types/types";
-import { toast } from "react-toastify";
-import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
 import Button from "../UI/Button";
+import { adminRecordType } from "../../types/types";
 
-const AdminTable = () => {
-  const { currentAdminEmail } = useFetchCurrentAdmin();
-  const [adminRecords, setAdminRecords] = useState<adminRecordType[] | null>();
-
-  const handleDelete = (
+interface adminTableProps {
+  adminRecords: adminRecordType[] | null;
+  currentAdminEmail: string;
+  handleDelete: (
     id: number | undefined,
     isSuperAdmin: boolean,
     email: string
-  ) => {
-    if (id !== undefined) {
-      const confirmDelete = confirm(
-        "Êtes-vous sûr de vouloir supprimer l'administrateur ?"
-      );
-      if (confirmDelete) {
-        axios
-          .request({
-            url: `http://localhost:3000/auth/delete_admin/${id}`,
-            method: "put",
-            data: { isSuperAdmin: isSuperAdmin, email: email },
-          })
-          .then((result) => {
-            if (result.data.Status) {
-              toast.success("Admin supprimé");
-              adminRecords &&
-                setAdminRecords(
-                  adminRecords.filter(
-                    (adminRecord) => adminRecord.email !== email
-                  )
-                );
-            } else {
-              toast.error(result.data.Error);
-            }
-          })
-          .catch((err) => alert(err));
-      }
-    }
-  };
+  ) => void;
+}
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/auth/admin_records")
-      .then((result) => {
-        if (result.data.Status) setAdminRecords(result.data.Result);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
+const AdminTable = ({
+  adminRecords,
+  currentAdminEmail,
+  handleDelete,
+}: adminTableProps) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
