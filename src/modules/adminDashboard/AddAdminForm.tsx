@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Container from "../UI/Container";
-import AvailableEmployeeTable from "./AvailableEmployeeTable";
+import Container from "../../components/UI/Container";
 import { FaBackspace } from "react-icons/fa";
+import AvailableEmployeeTable from "./AvailableEmployeeTable";
 
 const AddAdminForm = () => {
   return (

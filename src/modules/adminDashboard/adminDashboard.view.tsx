@@ -1,4 +1,4 @@
-import AdminTable from "../../components/admins/AdminTable";
+import AdminTable from "./AdminTable";
 import Button from "../../components/UI/Button";
 import RecapBox from "../../components/UI/RecapBox";
 import { adminRecordType } from "../../types/types";
@@ -8,7 +8,6 @@ interface adminDashboardViewProps {
   employeeTotal: string;
   salaryTotal: string;
   adminRecords: adminRecordType[];
-  setAdminRecords: React.Dispatch<React.SetStateAction<adminRecordType[]>>;
   handleDelete: (
     id: number | undefined,
     isSuperAdmin: boolean,
@@ -22,7 +21,6 @@ const AdminDashboardView = ({
   employeeTotal,
   salaryTotal,
   adminRecords,
-  setAdminRecords,
   handleDelete,
   currentAdminEmail,
 }: adminDashboardViewProps) => {

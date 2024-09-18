@@ -1,21 +1,16 @@
 import "./App.css";
-import Category from "./pages/admin/Category";
-import Employee from "./pages/admin/Employee";
 import LoginAdmin from "./pages/admin/LoginAdmin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddCategoryForm from "./components/categories/AddCategoryForm";
-import UpdateCategory from "./components/categories/UpdateCategory";
-import AddEmployeeForm from "./components/employees/AddEmployeeForm";
-import UpdateEmployee from "./components/employees/UpdateEmployee";
+import UpdateEmployee from "./modules/adminEmployees/UpdateEmployee";
 import { ToastContainer } from "react-toastify";
-import UpdateAdmin from "./components/admins/UpdateAdmin";
+import UpdateAdmin from "./modules/adminDashboard/UpdateAdmin";
 import LoginEmployee from "./pages/employee/LoginEmployee";
 import Start from "./pages/Start";
 import DashboardEmployee from "./pages/employee/DashboardEmployee";
 import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
-import AddAdminForm from "./components/admins/AddAdminForm";
+import AddAdminForm from "./modules/adminDashboard/AddAdminForm";
 import Equipement from "./pages/admin/Equipement";
 import AddEquipementForm from "./components/equipements/AddEquipementForm";
 import UpdateEquipement from "./components/equipements/UpdateEquipement";
@@ -25,6 +20,11 @@ import UpdateConge from "./components/conges/UpdateConge";
 import AdminConges from "./pages/admin/AdminConges";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminEmployee from "./pages/admin/AdminEmployee";
+import AddEmployeeForm from "./modules/adminEmployees/AddEmployeeForm";
+import AdminCategory from "./pages/admin/AdminCategory";
+import AddCategoryForm from "./modules/adminCategory/AddCategoryForm";
+import UpdateCategory from "./modules/adminCategory/UpdateCategory";
 
 function App() {
   return (
@@ -43,9 +43,9 @@ function App() {
             }
           >
             <Route path="" element={<AdminDashboard />} />
-            <Route path="/dashboard/employee" element={<Employee />} />
+            <Route path="/dashboard/employee" element={<AdminEmployee />} />
             <Route path="/dashboard/conges" element={<AdminConges />} />
-            <Route path="/dashboard/category" element={<Category />} />
+            <Route path="/dashboard/category" element={<AdminCategory />} />
             <Route path="/dashboard/equipement" element={<Equipement />} />
             <Route
               path="/dashboard/add_category"

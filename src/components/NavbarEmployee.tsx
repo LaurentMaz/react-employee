@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import NavItem from "../UI/NavItem";
 
 import { GoHome } from "react-icons/go";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
-import useEmployeeContext from "../../hooks/useEmployeeContext";
+import useEmployeeContext from "../hooks/useEmployeeContext";
+import NavItem from "./UI/NavItem";
 
 const NavbarEmployee = () => {
   const { logedEmployee } = useEmployeeContext();

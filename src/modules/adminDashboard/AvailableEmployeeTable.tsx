@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { employeeType } from "../../types/types";
-import Button from "../UI/Button";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "../../components/UI/Button";
 
 const AvailableEmployeeTable = () => {
   const [loading, setloading] = useState(true);
   const [users, setusers] = useState<employeeType[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -32,7 +30,9 @@ const AvailableEmployeeTable = () => {
       .catch((err) => console.log(err));
   };
 
-  return (
+  return loading ? (
+    "Chargement..."
+  ) : (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-md">

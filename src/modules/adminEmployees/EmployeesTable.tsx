@@ -2,8 +2,8 @@ import { employeeType } from "../../types/types";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
-import Button from "../UI/Button";
-import SearchBar from "../UI/SearchBar";
+import Button from "../../components/UI/Button";
+import SearchBar from "../../components/UI/SearchBar";
 import { useEffect, useState } from "react";
 
 interface EmployeesTableProps {

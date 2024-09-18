@@ -1,5 +1,5 @@
+import Button from "../../components/UI/Button";
 import { ICategories } from "../../types/types";
-import Button from "../UI/Button";
 import { MdDelete, MdOutlineEdit } from "react-icons/md";
 
 interface CategoriesTableProps {

@@ -7,10 +7,10 @@ import { FaComputer } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import axios from "axios";
-import NavItem from "../UI/NavItem";
-import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
+import NavItem from "./UI/NavItem";
+import useFetchCurrentAdmin from "../hooks/useFetchCurrentAdmin";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const { currentAdminId } = useFetchCurrentAdmin();
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
@@ -69,4 +69,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Input from "../UI/Input";
+import Input from "../../components/UI/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useFetchCurrentAdmin from "../../hooks/useFetchCurrentAdmin";
-import Button from "../UI/Button";
+import Button from "../../components/UI/Button";
 
 const UpdateAdmin = () => {
   const [adminChecked, setAdminChecked] = useState(true);

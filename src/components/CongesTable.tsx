@@ -1,20 +1,16 @@
-import {
-  congesFiltersType,
-  CongeType,
-  filterMenuType,
-} from "../../types/types";
-import Button from "../UI/Button";
+import { congesFiltersType, CongeType, filterMenuType } from "../types/types";
+import Button from "./UI/Button";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
-import { useApiAdmin, useApiClient } from "../../axios";
+import { useApiAdmin, useApiClient } from "../axios";
 import { toast } from "react-toastify";
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
-import FilterColumn from "../UI/FilterColumn";
+import FilterColumn from "./UI/FilterColumn";
 import { createPortal } from "react-dom";
-import { removeAccents } from "../../utils/helper";
+import { removeAccents } from "../utils/helper";
 
 interface CongesTableProps {
   conges: CongeType[];

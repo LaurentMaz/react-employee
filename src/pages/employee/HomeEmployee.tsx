@@ -5,7 +5,7 @@ import useEmployeeContext from "../../hooks/useEmployeeContext";
 import { MdOutlineWavingHand } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { CongeType } from "../../types/types";
-import CongesTable from "../../components/conges/CongesTable";
+import CongesTable from "../../components/CongesTable";
 
 const HomeEmployee = () => {
   const { logedEmployee } = useEmployeeContext();

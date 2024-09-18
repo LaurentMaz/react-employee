@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Input from "../UI/Input";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Button from "../UI/Button";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 
 const AddCategoryForm = () => {
   const [category, setCategory] = useState<string>();

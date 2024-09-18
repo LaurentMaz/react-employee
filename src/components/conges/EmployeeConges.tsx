@@ -3,8 +3,8 @@ import useEmployeeContext from "../../hooks/useEmployeeContext";
 import Button from "../UI/Button";
 import Container from "../UI/Container";
 import { CongeType } from "../../types/types";
-import CongesTable from "./CongesTable";
 import { useApiClient } from "../../axios";
+import CongesTable from "../CongesTable";
 
 const EmployeeConges = () => {
   const { congesAvalaibleCurrentYear, congesAvalaibleNextYear } =

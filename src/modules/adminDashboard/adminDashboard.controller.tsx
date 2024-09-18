@@ -102,7 +102,6 @@ const AdminDashboardController = () => {
         employeeTotal={employeeTotal}
         salaryTotal={salaryTotal}
         adminRecords={adminRecords}
-        setAdminRecords={setAdminRecords}
         currentAdminEmail={currentAdminEmail}
         handleDelete={handleDelete}
       />

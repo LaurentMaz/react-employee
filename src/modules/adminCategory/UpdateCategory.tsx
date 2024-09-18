@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Input from "../UI/Input";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import Button from "../UI/Button";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 
 const UpdateCategory = () => {
   const { id, name } = useParams();

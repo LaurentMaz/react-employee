@@ -1,13 +1,19 @@
-import "react-toastify/dist/ReactToastify.css";
-import EmployeesTable from "../../components/employees/EmployeesTable";
-import useFetchEmployees from "../../hooks/useFetchEmployees";
+import EmployeesTable from "./EmployeesTable";
 import Button from "../../components/UI/Button";
 import Container from "../../components/UI/Container";
+import { employeeType } from "../../types/types";
 
-const Employee = () => {
-  const { employees, setEmployees, loading, error } = useFetchEmployees();
-  if (error) console.log(error);
+interface adminEmployeesViewProps {
+  employees: employeeType[];
+  setEmployees: React.Dispatch<React.SetStateAction<employeeType[]>>;
+  loading: boolean;
+}
 
+const AdminEmployeesView = ({
+  employees,
+  setEmployees,
+  loading,
+}: adminEmployeesViewProps) => {
   return (
     <Container className="flex h-full flex-col items-center justify-start mt-16 gap-10">
       <div className="flex items-center justify-between w-full">
@@ -27,4 +33,4 @@ const Employee = () => {
   );
 };
 
-export default Employee;
+export default AdminEmployeesView;

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { employeeType } from "../../types/types";
-import Input from "../UI/Input";
+import Input from "../../components/UI/Input";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Button from "../UI/Button";
+import Button from "../../components/UI/Button";
 import { useApiAdmin, useApiClient } from "../../axios";
 
 interface UpdateEmployeeProps {

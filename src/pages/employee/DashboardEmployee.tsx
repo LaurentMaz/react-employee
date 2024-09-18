@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import NavbarEmployee from "../../components/employees/NavbarEmployee";
 import useFetchSingleEmployee from "../../hooks/useFetchSingleEmployee";
+import NavbarEmployee from "../../components/NavbarEmployee";
 
 const DashboardEmployee = () => {
   useFetchSingleEmployee();
