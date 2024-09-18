@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Container from "../UI/Container";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
 import useFetchCongeTypes from "../../hooks/useFetchCongeTypes";
 import { useEffect, useState } from "react";
 import { CongeType } from "../../types/types";
 import { useApiClient } from "../../axios";
 import { toast } from "react-toastify";
+import Container from "../../components/UI/Container";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 
 const UpdateConge = () => {
   const { id } = useParams();

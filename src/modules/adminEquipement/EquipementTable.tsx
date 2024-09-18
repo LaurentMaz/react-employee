@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { EquipementType } from "../../types/types";
-import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import SearchBar from "../UI/SearchBar";
 import { MdLaptopMac } from "react-icons/md";
 import { FaDesktop } from "react-icons/fa";
+import { EquipementType } from "../../types/types";
 import { useApiAdmin } from "../../axios";
+import SearchBar from "../../components/UI/SearchBar";
+import Button from "../../components/UI/Button";
 
 const EquipementTable = () => {
   const [equipements, setEquipements] = useState<EquipementType[]>();

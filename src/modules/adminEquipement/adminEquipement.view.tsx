@@ -1,6 +1,6 @@
-import EquipementTable from "../../components/equipements/EquipementTable";
 import Button from "../../components/UI/Button";
 import Container from "../../components/UI/Container";
+import EquipementTable from "./EquipementTable";
 
 const AdminEquipementView = () => {
   return (

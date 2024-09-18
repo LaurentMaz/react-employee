@@ -1,27 +1,18 @@
-import axios from "axios";
-import EmployeeEquipements from "../../components/employees/EmployeeEquipements";
-import Container from "../../components/UI/Container";
-import useEmployeeContext from "../../hooks/useEmployeeContext";
 import { MdOutlineWavingHand } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { CongeType } from "../../types/types";
+import Container from "../../components/UI/Container";
 import CongesTable from "../../components/CongesTable";
+import { CongeType, employeeType } from "../../types/types";
+import EmployeeEquipements from "./EmployeeEquipements";
 
-const HomeEmployee = () => {
-  const { logedEmployee } = useEmployeeContext();
-  const [congesPending, setCongesPending] = useState<CongeType[]>();
+interface employeeDashboardViewProps {
+  logedEmployee: employeeType | undefined;
+  congesPending: CongeType[];
+}
 
-  const fetchPendingConges = () => {
-    axios
-      .get("http://localhost:3000/employee/conges")
-      .then((result) => setCongesPending(result.data.Result))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    fetchPendingConges();
-  }, []);
-
+const EmployeeDashboardView = ({
+  logedEmployee,
+  congesPending,
+}: employeeDashboardViewProps) => {
   return (
     <Container className="flex-col justify-start items-start gap-10">
       <div className="flex text-lg items-center justify-center gap-2">
@@ -37,7 +28,7 @@ const HomeEmployee = () => {
       <div className="flex flex-col gap-5">
         <h2 className="text-xl font-bold">Mes congés</h2>
         <div>
-          {congesPending && (
+          {congesPending.length > 0 && (
             <CongesTable conges={congesPending} fullDisplay={false} />
           )}
         </div>
@@ -46,4 +37,4 @@ const HomeEmployee = () => {
   );
 };
 
-export default HomeEmployee;
+export default EmployeeDashboardView;

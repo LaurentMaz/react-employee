@@ -1,44 +1,26 @@
-import { useEffect, useState } from "react";
-import useEmployeeContext from "../../hooks/useEmployeeContext";
-import Button from "../UI/Button";
-import Container from "../UI/Container";
+import { Dispatch, SetStateAction } from "react";
+import CongesTable from "../../components/CongesTable";
+import Button from "../../components/UI/Button";
+import Container from "../../components/UI/Container";
 import { CongeType } from "../../types/types";
-import { useApiClient } from "../../axios";
-import CongesTable from "../CongesTable";
 
-const EmployeeConges = () => {
-  const { congesAvalaibleCurrentYear, congesAvalaibleNextYear } =
-    useEmployeeContext();
-  const apiClient = useApiClient();
+interface employeeCongesViewProps {
+  congesAvalaibleCurrentYear: number;
+  congesAvalaibleNextYear: number;
+  congesPending: CongeType[];
+  setCongesPending: Dispatch<SetStateAction<CongeType[]>>;
+  congesAccepted: CongeType[];
+  congesRefused: CongeType[];
+}
 
-  const [congesPending, setCongesPending] = useState<CongeType[]>();
-  const [congesAccepted, setCongesAccepted] = useState<CongeType[]>();
-  const [congesRefused, setCongesRefused] = useState<CongeType[]>();
-
-  const fetchPendingConges = () => {
-    apiClient
-      .get("http://localhost:3000/employee/conges_pending")
-      .then((result) => setCongesPending(result.data.Result))
-      .catch((err) => console.log(err));
-  };
-  const fetchAcceptedConges = () => {
-    apiClient
-      .get("http://localhost:3000/employee/conges_accepted")
-      .then((result) => setCongesAccepted(result.data.Result))
-      .catch((err) => console.log(err));
-  };
-  const fetchRefusedConges = () => {
-    apiClient
-      .get("http://localhost:3000/employee/conges_refused")
-      .then((result) => setCongesRefused(result.data.Result))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    fetchPendingConges();
-    fetchAcceptedConges();
-    fetchRefusedConges();
-  }, []);
+const EmployeeCongesView = ({
+  congesAvalaibleCurrentYear,
+  congesAvalaibleNextYear,
+  congesPending,
+  setCongesPending,
+  congesAccepted,
+  congesRefused,
+}: employeeCongesViewProps) => {
   return (
     <Container className="flex flex-col gap-5">
       <div className="shadow-lg p-10 rounded flex gap-10">
@@ -109,4 +91,4 @@ const EmployeeConges = () => {
   );
 };
 
-export default EmployeeConges;
+export default EmployeeCongesView;

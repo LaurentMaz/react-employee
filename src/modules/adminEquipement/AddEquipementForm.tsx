@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { EquipementType } from "../../types/types";
-import Input from "../UI/Input";
-import Container from "../UI/Container";
 import useFetchEmployees from "../../hooks/useFetchEmployees";
-import Button from "../UI/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Container from "../../components/UI/Container";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 
 const AddEquipementForm = () => {
   const { employees } = useFetchEmployees();

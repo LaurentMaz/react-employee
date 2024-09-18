@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import useFetchEmployees from "../../hooks/useFetchEmployees";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Container from "../UI/Container";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
+import Container from "../../components/UI/Container";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 import { EquipementType } from "../../types/types";
 import { toast } from "react-toastify";
 

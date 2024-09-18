@@ -6,16 +6,11 @@ import { ToastContainer } from "react-toastify";
 import UpdateAdmin from "./modules/adminDashboard/UpdateAdmin";
 import LoginEmployee from "./pages/employee/LoginEmployee";
 import Start from "./pages/Start";
-import DashboardEmployee from "./pages/employee/DashboardEmployee";
-import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
 import AddAdminForm from "./modules/adminDashboard/AddAdminForm";
-import AddEquipementForm from "./components/equipements/AddEquipementForm";
-import UpdateEquipement from "./components/equipements/UpdateEquipement";
-import EmployeeConges from "./components/conges/EmployeeConges";
-import AddCongeForm from "./components/conges/AddCongeForm";
-import UpdateConge from "./components/conges/UpdateConge";
+import UpdateEquipement from "./modules/adminEquipement/UpdateEquipement";
+import EmployeeConges from "./pages/employee/EmployeeConges";
 import AdminConges from "./pages/admin/AdminConges";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -25,6 +20,11 @@ import AdminCategory from "./pages/admin/AdminCategory";
 import AddCategoryForm from "./modules/adminCategory/AddCategoryForm";
 import UpdateCategory from "./modules/adminCategory/UpdateCategory";
 import AdminEquipement from "./pages/admin/AdminEquipement";
+import LayoutEmployee from "./pages/employee/LayoutEmployee";
+import DashboardEmployee from "./pages/employee/DashboardEmployee";
+import AddEquipementForm from "./modules/adminEquipement/AddEquipementForm";
+import AddCongeForm from "./modules/employeeConges/AddCongeForm";
+import UpdateConge from "./modules/employeeConges/UpdateConge";
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="" element={<AdminDashboard />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/dashboard/employee" element={<AdminEmployee />} />
             <Route path="/dashboard/conges" element={<AdminConges />} />
             <Route path="/dashboard/category" element={<AdminCategory />} />
@@ -78,17 +78,18 @@ function App() {
               element={<UpdateEquipement />}
             />
           </Route>
+
           <Route
             path="/home"
             element={
               <ProtectedRoute type="authEmployee">
                 <EmployeeContextProvider>
-                  <DashboardEmployee />
+                  <LayoutEmployee />
                 </EmployeeContextProvider>
               </ProtectedRoute>
             }
           >
-            <Route path="/home" element={<HomeEmployee />} />
+            <Route path="/home" element={<DashboardEmployee />} />
             <Route
               path="/home/profil/:id"
               element={<UpdateEmployee from="employee" />}

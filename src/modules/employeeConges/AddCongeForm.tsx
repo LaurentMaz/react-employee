@@ -1,12 +1,12 @@
 import axios from "axios";
-import Container from "../UI/Container";
-import Input from "../UI/Input";
 import { CongeType } from "../../types/types";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Button from "../UI/Button";
 import useFetchCongeTypes from "../../hooks/useFetchCongeTypes";
+import Container from "../../components/UI/Container";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
 
 const AddCongeForm = () => {
   const [congeItem, setCongeItem] = useState<CongeType>({
