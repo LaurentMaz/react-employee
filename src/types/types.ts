@@ -76,6 +76,18 @@ export type CongeType = {
   reason: string;
 };
 
+export type TicketsType = {
+  id?: number;
+  titre: string;
+  details: string;
+  service: number;
+  statut: "En cours" | "Terminé" | "Bloqué" | "Rejeté" | "En attente";
+  id_machine: number | null;
+  id_employee: number;
+  urgence: "Faible" | "Modérée" | "Urgent" | "Aujourd'hui";
+  emp_related: number | null;
+};
+
 export type filterMenuType = {
   visible: boolean;
   column: string | null;

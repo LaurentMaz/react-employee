@@ -7,6 +7,7 @@ import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
 import useEmployeeContext from "../hooks/useEmployeeContext";
 import NavItem from "./UI/NavItem";
+import { TfiHeadphoneAlt } from "react-icons/tfi";
 
 const NavbarEmployee = () => {
   const { logedEmployee } = useEmployeeContext();
@@ -35,6 +36,7 @@ const NavbarEmployee = () => {
           Icon={IoPersonCircleOutline}
         />
         <NavItem to={`/home/conges/`} title="Congés" Icon={FaRegCalendarAlt} />
+        <NavItem to="/home/tickets" title="Tickets" Icon={TfiHeadphoneAlt} />
         <NavItem
           to="/"
           title="Déconnexion"

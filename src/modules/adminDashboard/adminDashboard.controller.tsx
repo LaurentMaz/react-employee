@@ -40,6 +40,8 @@ const AdminDashboardController = () => {
       .then((result) => {
         if (result.data.Status) {
           setSalaryTotal(result.data.Result[0].salary);
+        } else {
+          console.log(result.data.Error);
         }
       })
       .catch((err) => console.log(err));

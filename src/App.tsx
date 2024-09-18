@@ -1,5 +1,4 @@
 import "./App.css";
-import React from "react";
 import LoginAdmin from "./pages/admin/LoginAdmin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UpdateEmployee from "./modules/adminEmployees/UpdateEmployee";
@@ -26,6 +25,8 @@ import DashboardEmployee from "./pages/employee/DashboardEmployee";
 import AddEquipementForm from "./modules/adminEquipement/AddEquipementForm";
 import AddCongeForm from "./modules/employeeConges/AddCongeForm";
 import UpdateConge from "./modules/employeeConges/UpdateConge";
+import AdminTickets from "./pages/admin/AdminTickets";
+import EmployeeTickets from "./pages/employee/EmployeeTickets";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
               path="/dashboard/equipement/:id"
               element={<UpdateEquipement />}
             />
+            <Route path="/dashboard/tickets" element={<AdminTickets />} />
           </Route>
 
           <Route
@@ -98,6 +100,7 @@ function App() {
             <Route path="/home/conges" element={<EmployeeConges />} />
             <Route path="/home/conge/:id" element={<UpdateConge />} />
             <Route path="/home/add_conges/" element={<AddCongeForm />} />
+            <Route path="/home/tickets" element={<EmployeeTickets />} />
           </Route>
         </Routes>
         <ToastContainer position="bottom-right" />

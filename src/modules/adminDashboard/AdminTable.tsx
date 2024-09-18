@@ -2,7 +2,7 @@ import Button from "../../components/UI/Button";
 import { adminRecordType } from "../../types/types";
 
 interface adminTableProps {
-  adminRecords: adminRecordType[] | null;
+  adminRecords: adminRecordType[];
   currentAdminEmail: string;
   handleDelete: (
     id: number | undefined,
@@ -36,7 +36,7 @@ const AdminTable = ({
           </tr>
         </thead>
         <tbody>
-          {adminRecords &&
+          {adminRecords.length > 0 &&
             adminRecords.map((admin) => (
               <tr
                 key={admin.id}
