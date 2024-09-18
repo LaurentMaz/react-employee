@@ -2,7 +2,7 @@ import EquipementTable from "../../components/equipements/EquipementTable";
 import Button from "../../components/UI/Button";
 import Container from "../../components/UI/Container";
 
-const Equipement = () => {
+const AdminEquipementView = () => {
   return (
     <Container className="flex flex-col mt-16 gap-10">
       <div className="flex justify-between w-full">
@@ -18,4 +18,4 @@ const Equipement = () => {
   );
 };
 
-export default Equipement;
+export default AdminEquipementView;

@@ -11,7 +11,6 @@ import HomeEmployee from "./pages/employee/HomeEmployee";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { EmployeeContextProvider } from "./contexts/employee.context";
 import AddAdminForm from "./modules/adminDashboard/AddAdminForm";
-import Equipement from "./pages/admin/Equipement";
 import AddEquipementForm from "./components/equipements/AddEquipementForm";
 import UpdateEquipement from "./components/equipements/UpdateEquipement";
 import EmployeeConges from "./components/conges/EmployeeConges";
@@ -25,6 +24,7 @@ import AddEmployeeForm from "./modules/adminEmployees/AddEmployeeForm";
 import AdminCategory from "./pages/admin/AdminCategory";
 import AddCategoryForm from "./modules/adminCategory/AddCategoryForm";
 import UpdateCategory from "./modules/adminCategory/UpdateCategory";
+import AdminEquipement from "./pages/admin/AdminEquipement";
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
             <Route path="/dashboard/employee" element={<AdminEmployee />} />
             <Route path="/dashboard/conges" element={<AdminConges />} />
             <Route path="/dashboard/category" element={<AdminCategory />} />
-            <Route path="/dashboard/equipement" element={<Equipement />} />
+            <Route path="/dashboard/equipement" element={<AdminEquipement />} />
             <Route
               path="/dashboard/add_category"
               element={<AddCategoryForm />}
