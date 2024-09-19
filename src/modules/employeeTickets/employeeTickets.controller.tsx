@@ -4,9 +4,13 @@ import { CiCircleCheck } from "react-icons/ci";
 import { TiDelete } from "react-icons/ti";
 import { useState } from "react";
 import { TicketsType } from "../../types/types";
+import { useApiClient } from "../../axios";
 
 const EmployeeTicketsController = () => {
   const [tickets, setTickets] = useState<TicketsType[]>([]);
+
+  const apiClient = useApiClient();
+
   const statusIcon = (status: string) => {
     switch (status) {
       case "En cours":

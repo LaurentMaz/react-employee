@@ -27,6 +27,7 @@ import AddCongeForm from "./modules/employeeConges/AddCongeForm";
 import UpdateConge from "./modules/employeeConges/UpdateConge";
 import AdminTickets from "./pages/admin/AdminTickets";
 import EmployeeTickets from "./pages/employee/EmployeeTickets";
+import AddTicketForm from "./modules/employeeTickets/AddTicketForm";
 
 function App() {
   return (
@@ -101,6 +102,7 @@ function App() {
             <Route path="/home/conge/:id" element={<UpdateConge />} />
             <Route path="/home/add_conges/" element={<AddCongeForm />} />
             <Route path="/home/tickets" element={<EmployeeTickets />} />
+            <Route path="/home/add_ticket" element={<AddTicketForm />} />
           </Route>
         </Routes>
         <ToastContainer position="bottom-right" />

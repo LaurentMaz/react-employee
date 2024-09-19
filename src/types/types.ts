@@ -80,11 +80,11 @@ export type TicketsType = {
   id?: number;
   titre: string;
   details: string;
-  service: number;
+  service: number | null;
   statut: "En cours" | "Terminé" | "Bloqué" | "Rejeté" | "En attente";
   id_machine: number | null;
-  id_employee: number;
-  urgence: "Faible" | "Modérée" | "Urgent" | "Aujourd'hui";
+  id_employee?: string;
+  urgence: "Faible" | "Modérée" | "Urgent" | "Aujourd'hui" | null;
   emp_related: number | null;
 };
 
