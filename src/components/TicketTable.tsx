@@ -3,7 +3,12 @@ import Button from "./UI/Button";
 
 interface ticketTableProps {
   admin?: boolean;
-  statusIcon: (status: string) => JSX.Element | undefined;
+  statusIcon: (
+    status: "En cours" | "Terminé" | "Bloqué" | "Rejeté" | "En attente"
+  ) => JSX.Element;
+  urgenceStyle: (
+    urgence: "Faible" | "Modérée" | "Urgent" | "Aujourd'hui" | null
+  ) => JSX.Element | undefined;
   tickets: TicketsType[];
   handleDelete: (id: number | undefined) => void;
 }
@@ -11,6 +16,7 @@ interface ticketTableProps {
 const TicketTable = ({
   admin,
   statusIcon,
+  urgenceStyle,
   tickets,
   handleDelete,
 }: ticketTableProps) => {
@@ -59,12 +65,13 @@ const TicketTable = ({
                   {ticket.titre}
                 </td>
                 <td className="px-6 py-4">{ticket.details}</td>
+                <td className="px-6 py-4">{ticket.service}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center justify-center gap-1">
                     {ticket.statut} {statusIcon(ticket.statut)}
                   </div>
                 </td>
-                <td className="px-6 py-4">{ticket.urgence}</td>
+                <td className="px-6 py-4">{urgenceStyle(ticket.urgence)}</td>
                 <td className="px-6 py-4">{ticket.id_machine}</td>
                 <td className="px-6 py-4">{ticket.emp_related}</td>
                 <td className="px-6 py-4">
