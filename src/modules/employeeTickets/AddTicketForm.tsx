@@ -41,19 +41,18 @@ const AddTicketForm = () => {
   ) => {
     let { name, value } = e.target;
 
-    setTicket({ ...ticket, [name]: value });
+    if (e.target.name == "id_machine" && e.target.value == "") {
+      setTicket({ ...ticket, id_machine: null });
+    } else {
+      setTicket({ ...ticket, [name]: value });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    for (const key in ticket) {
-      formData.append(key, ticket[key as keyof typeof ticket] as any);
-    }
-
     apiClient
-      .post("/add_ticket", formData)
+      .post("/add_ticket", ticket)
       .then((result) => {
         if (result.data.Status) {
           navigate("/home/tickets");
