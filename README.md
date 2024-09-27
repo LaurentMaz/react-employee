@@ -3,6 +3,8 @@
 Employees management system.
 This project is not focused on design, responsive is not implemented !
 
+Presentation video : [Cliquez ici](https://youtu.be/IOp-V1XN25k)
+
 ## Authentication
 
 - JWT Token for authentication with cookies
@@ -43,20 +45,18 @@ This project is not focused on design, responsive is not implemented !
 
 ### IN PROGRESS
 
-- Système de ticket
+- Ajout d'une section commentaires dans la gestion des équipements
+- Système de ticket : delete + update tickets from employees + all admin ticket system
 
 ### TODOS
 
 - Afficher le nb de jours de congés n-1 et n restants + alert quand demande > dispo
-- Trier les confés par date
+- Trier les congés par date
 - Scale : SSR with express & ReactDOMServer
-- Créer un context pour la partie admin (? voir l'utilité)
-- Créer les vues des employés
 - Ajouter la gestion des téléphones mobiles
 - Gérer la date d'entrée des employés pour ajuster le calcul des congés
 - Affiner le calcul des congés au réel
 - Improve JWT with Short lived access token & Refresh Token
-
 - Mocking APIs
 - Testing Forms
 - Testing State Management
@@ -65,6 +65,7 @@ This project is not focused on design, responsive is not implemented !
 
 ### DONE
 
+- Créer les vues des employés
 - Ajouter un filtre sur les colonnes des congés
 - Possibilité de modifier le mot de passe d'un employé
 - Possibilité de modifier le mot de passe d'un admin

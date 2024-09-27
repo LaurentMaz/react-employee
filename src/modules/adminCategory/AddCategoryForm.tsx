@@ -8,9 +8,8 @@ import Button from "../../components/UI/Button";
 const AddCategoryForm = () => {
   const [category, setCategory] = useState<string>();
   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
+  const addCategory = () => {
     axios
       .post("http://localhost:3000/auth/add_category", { category })
       .then((result) => {
@@ -22,6 +21,11 @@ const AddCategoryForm = () => {
         }
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    addCategory();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

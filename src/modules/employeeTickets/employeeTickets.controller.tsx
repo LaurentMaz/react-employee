@@ -34,23 +34,27 @@ const EmployeeTicketsController = () => {
     switch (urgence) {
       case "Faible":
         return (
-          <span className="text-white bg-green-500 px-2 rounded">
+          <span className="text-white bg-green-500 px-2 rounded flex items-center justify-center w-full">
             {urgence}
           </span>
         );
       case "Modérée":
         return (
-          <span className="text-white bg-amber-500 px-2 rounded">
+          <span className="text-white bg-amber-500 px-2 rounded flex items-center justify-center w-full">
             {urgence}
           </span>
         );
       case "Urgent":
         return (
-          <span className="text-white bg-red-500 px-2 rounded">{urgence}</span>
+          <span className="text-white bg-red-500 px-2 rounded flex items-center justify-center w-full">
+            {urgence}
+          </span>
         );
       case "Aujourd'hui":
         return (
-          <span className="text-white bg-black px-2 rounded">{urgence}</span>
+          <span className="text-white bg-black px-2 rounded flex items-center justify-center w-full">
+            {urgence}
+          </span>
         );
     }
   };

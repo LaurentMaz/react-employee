@@ -96,9 +96,7 @@ const AddEquipementForm = () => {
                   name="employee_id"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option value={""} disabled>
-                    -- Choisir un utilisateur --
-                  </option>
+                  <option value={""}>-- Non attribué --</option>
                   {employees.map((employee) => (
                     <option key={employee.id} value={employee.id}>
                       {employee.firstName + " " + employee.lastName}
@@ -117,7 +115,6 @@ const AddEquipementForm = () => {
                 label="RAM(Go)"
                 name="ram"
                 onChange={handleChange}
-                isRequired={true}
               />
               <Input
                 type="text"
@@ -125,7 +122,6 @@ const AddEquipementForm = () => {
                 label="Processeur"
                 name="proc"
                 onChange={handleChange}
-                isRequired={true}
               />
               <div>
                 <label className="font-semibold" htmlFor={"category"}>
@@ -142,6 +138,7 @@ const AddEquipementForm = () => {
                   </option>
                   <option value={"laptop"}>Oridnateur portable</option>
                   <option value={"desktop"}>Ordinateur fixe</option>
+                  <option value={"smartphone"}>Smartphone</option>
                 </select>
               </div>
             </div>
